@@ -14,7 +14,7 @@ users = open('user_position.txt')
 # Armazenando todas as linhas do arquivo de usuários
 content_users = users.readlines()
 
-
+#Percorrendo as linhas do arquivo main
 for linha in range(len(content_main)):
     if '	//AUTOCODE SMALLS INICIO' in content_main[linha]:
         inicio_small = linha
@@ -34,12 +34,13 @@ for linha in range((inicio_small + 1), fim_small):
 with open("main.txt",'w') as f: # Limpando  o arquivo
     pass
 
+#Percorrendo as linhas do arquivo main
 for linha in range(len(content_main)):
     with open('main.txt', 'a') as arquivo:
         arquivo.write(content_main[linha])
 
 
-
+#Percorrendo as linhas do arquivo de antenas
 for linha in range(len(content_smalls)):
     if 'INICIO HORA 1.0' in content_smalls[linha]:
         inicio_hora = linha
@@ -58,6 +59,7 @@ for linha in range((inicio_hora + 1), fim_hora):
 with open("main.txt",'w') as f: # Limpando  o arquivo
     pass
 
+#Percorrendo as linhas do arquivo main
 for linha in range(len(content_main)):
     with open('main.txt', 'a') as arquivo:
         arquivo.write(content_main[linha])
@@ -69,7 +71,7 @@ for linha in range(len(content_main)):
 
 
 
-
+#Percorrendo as linhas do arquivo main
 for linha in range(len(content_main)):
     if '	//AUTOCODE USERS INICIO' in content_main[linha]:
         inicio_user = linha
@@ -89,11 +91,12 @@ for linha in range((inicio_user + 1), fim_user):
 with open("main.txt",'w') as f: # Limpando  o arquivo
     pass
 
+#Percorrendo as linhas do arquivo main
 for linha in range(len(content_main)):
     with open('main.txt', 'a') as arquivo:
         arquivo.write(content_main[linha])
 
-
+#Percorrendo as linhas do arquivo de usuários
 for linha in range(len(content_users)):
     if 'INICIO HORA 1.0' in content_users[linha]:
         inicio_hora_usr = linha
@@ -112,6 +115,7 @@ for linha in range((inicio_hora_usr + 1), fim_hora_usr):
 with open("main.txt",'w') as f: # Limpando  o arquivo
     pass
 
+#Percorrendo as linhas do arquivo main
 for linha in range(len(content_main)):
     with open('main.txt', 'a') as arquivo:
         arquivo.write(content_main[linha])
