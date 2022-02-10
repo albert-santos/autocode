@@ -14,6 +14,9 @@ users = open('user_position.txt')
 # Armazenando todas as linhas do arquivo de usuários
 content_users = users.readlines()
 
+
+# ---REMOVE LINHAS JÁ EXISTENTES DE ALOCAÇÃO DE ANTENAS---
+
 #Percorrendo as linhas do arquivo main
 for linha in range(len(content_main)):
     if '	//AUTOCODE SMALLS INICIO' in content_main[linha]: #Demarcador da linha de inicio da alocação das antenas
@@ -47,28 +50,40 @@ for linha in range(len(content_main)):
         arquivo.write(content_main[linha])
 
 
+# ---ADICIONA LINHAS DE ALOCAÇÃO DE ANTENAS DE ACORDO COM A PLANILHA DE SMALLS---
+
 #Percorrendo as linhas do arquivo de antenas
 for linha in range(len(content_smalls)):
+
+    #Demarcador da linha de inicio da locação das antenas da hora 
     if 'INICIO HORA 1.0' in content_smalls[linha]:
-        inicio_hora = linha
-        
+        # Armazena a linha de inicio de alocação da hora
+        inicio_hora = linha 
+
+    #Demarcador da linha final de alocação das antenas da hora     
     if 'FIM HORA 1.0' in content_smalls[linha]:
+        # Armazena a linha final de alocação da hora
         fim_hora = linha
         
-print(f'Inicio hora: {inicio_hora}')
-print(f'Fim hora: {fim_hora}')
+print(f'Inicio da hora: {inicio_hora}')
+print(f'Fim da hora: {fim_hora}')
 
+# Percorre a quantidade de linhas de alocação da hora 
 for linha in range((inicio_hora + 1), fim_hora):
+    # Armazena cada linha de alocação do txt de antenas para a hora
     texto = content_smalls[linha]
+    # Insere a linha de alocação acima no content_main
     content_main.insert((inicio_small+1), texto)
 
-
+# Limpa o arquivo main.txt
 with open("main.txt",'w') as f: # Limpando  o arquivo
     pass
 
 #Percorrendo as linhas do arquivo main
 for linha in range(len(content_main)):
+    # Abre o arquivo main
     with open('main.txt', 'a') as arquivo:
+        # Escreve cada linha do content_main no main.txt
         arquivo.write(content_main[linha])
 
 
