@@ -1,14 +1,17 @@
 
-#Abrindo o arquivo do ns-3 no formato txt
+#Abrindo o arquivo main do ns-3 no formato txt
 main = open('main.txt')
+# Armazenando todas as linhas do main 
 content_main = main.readlines()
 
 # Abrindo o arquivo com as antenas
 smalls = open('small_position.txt')
+# Armazenando todas as linhas do arquivo de antenas
 content_smalls = smalls.readlines()
 
 #Abrindo o arquivo com o usuário
 users = open('user_position.txt')
+# Armazenando todas as linhas do arquivo de usuários
 content_users = users.readlines()
 
 
