@@ -16,27 +16,34 @@ content_users = users.readlines()
 
 #Percorrendo as linhas do arquivo main
 for linha in range(len(content_main)):
-    if '	//AUTOCODE SMALLS INICIO' in content_main[linha]:
-        inicio_small = linha
+    if '	//AUTOCODE SMALLS INICIO' in content_main[linha]: #Demarcador da linha de inicio da alocação das antenas
+        inicio_small = linha # armazena a linha de inicio da alocação das antenas
         # print(linha)
 
-    if '	//AUTOCODE SMALLS FIM' in content_main[linha]:
-        fim_small = linha
+    if '	//AUTOCODE SMALLS FIM' in content_main[linha]: #Demarcador da linha final da alocação das antenas
+        fim_small = linha # armazena a linha de fim da alocação das antenas
         # print(linha)
 
-print(f'Inicio small: {inicio_small}')
-print(f'Fim small: {fim_small}')
+print(f'Linha inicial da alocação das smalls: {inicio_small}')
+print(f'Linha final da alocação das smalls: {fim_small}')
 
+# Percorrendo somente as linhas de alocação das antenas
 for linha in range((inicio_small + 1), fim_small):
+
+    # Removendo as linhas de alocação que já existem
     content_main.remove(content_main[(inicio_small + 1)])
 
-
-with open("main.txt",'w') as f: # Limpando  o arquivo
+# Limpando o arquivo main.txt
+with open("main.txt",'w') as f:
     pass
 
 #Percorrendo as linhas do arquivo main
 for linha in range(len(content_main)):
+
+    # Abrindo o arquivo main
     with open('main.txt', 'a') as arquivo:
+
+        # Escrevendo cada linha do content_main para o main.txt
         arquivo.write(content_main[linha])
 
 
