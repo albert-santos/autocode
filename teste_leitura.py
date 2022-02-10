@@ -16,7 +16,7 @@ content_users = users.readlines()
 
 
 
-
+# SMALLS
 # ---REMOVE LINHAS JÁ EXISTENTES DE ALOCAÇÃO DE ANTENAS---
 
 #Percorrendo as linhas do arquivo main
@@ -53,7 +53,7 @@ for linha in range(len(content_main)):
 
 
 
-
+# SMALLS
 # ---ADICIONA LINHAS DE ALOCAÇÃO DE ANTENAS DE ACORDO COM A PLANILHA DE SMALLS---
 
 #Percorrendo as linhas do arquivo de antenas
@@ -95,6 +95,7 @@ for linha in range(len(content_main)):
 
 
 
+# USUÁRIOS
 # ---REMOVE LINHAS JÁ EXISTENTES DE ALOCAÇÃO DE USUÁRIOS---
 
 #Percorrendo as linhas do arquivo main
@@ -131,7 +132,7 @@ for linha in range(len(content_main)):
 
 
 
-
+# USUÁRIOS
 # ----ADICIONA LINHAS DE ALOCAÇÃO DE USUÁRIOS DE ACORDO COM A PLANILHA DE USUÁRIOS---
 
 
