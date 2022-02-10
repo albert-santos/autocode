@@ -15,6 +15,8 @@ users = open('user_position.txt')
 content_users = users.readlines()
 
 
+
+
 # ---REMOVE LINHAS JÁ EXISTENTES DE ALOCAÇÃO DE ANTENAS---
 
 #Percorrendo as linhas do arquivo main
@@ -46,8 +48,10 @@ for linha in range(len(content_main)):
     # Abrindo o arquivo main
     with open('main.txt', 'a') as arquivo:
 
-        # Escrevendo cada linha do content_main para o main.txt
+        # Escrevendo cada linha do content_main (sem as linhas de alocação) para o main.txt
         arquivo.write(content_main[linha])
+
+
 
 
 # ---ADICIONA LINHAS DE ALOCAÇÃO DE ANTENAS DE ACORDO COM A PLANILHA DE SMALLS---
@@ -65,8 +69,8 @@ for linha in range(len(content_smalls)):
         # Armazena a linha final de alocação da hora
         fim_hora = linha
         
-print(f'Inicio da hora: {inicio_hora}')
-print(f'Fim da hora: {fim_hora}')
+print(f'Inicio da hora para smalls: {inicio_hora}')
+print(f'Fim da hora para smalls: {fim_hora}')
 
 # Percorre a quantidade de linhas de alocação da hora 
 for linha in range((inicio_hora + 1), fim_hora):
@@ -91,53 +95,81 @@ for linha in range(len(content_main)):
 
 
 
-
+# ---REMOVE LINHAS JÁ EXISTENTES DE ALOCAÇÃO DE USUÁRIOS---
 
 #Percorrendo as linhas do arquivo main
 for linha in range(len(content_main)):
-    if '	//AUTOCODE USERS INICIO' in content_main[linha]:
-        inicio_user = linha
+    if '	//AUTOCODE USERS INICIO' in content_main[linha]: #Demarcador da linha de inicio da alocação de usuários
+        inicio_user = linha # armazena a linha de inicio da alocação dos usuários
         # print(linha)
 
-    if '	//AUTOCODE USERS FIM' in content_main[linha]:
-        fim_user = linha
+    if '	//AUTOCODE USERS FIM' in content_main[linha]: #Demarcador da linha final da alocação de usuários
+        fim_user = linha # armazena a linha final da alocação dos usuários
         # print(linha)
 
-print(f'Inicio user: {inicio_user}')
-print(f'Fim user: {fim_user}')
+print(f'Linha inicial da alocação dos usuários: {inicio_user}')
+print(f'Linha final da alocação dos usuários: {fim_user}')
 
+# Percorrendo somente as linhas de alocação dos usuários
 for linha in range((inicio_user + 1), fim_user):
+    # Removendo as linhas de alocação que já existem
     content_main.remove(content_main[(inicio_user + 1)])
 
-
-with open("main.txt",'w') as f: # Limpando  o arquivo
+# Limpando o arquivo main.txt
+with open("main.txt",'w') as f:
     pass
 
 #Percorrendo as linhas do arquivo main
 for linha in range(len(content_main)):
+    # Abre o aquivo main.txt
     with open('main.txt', 'a') as arquivo:
+
+         # Escrevendo cada linha do content_main (sem as linhas de alocação) para o main.txt
         arquivo.write(content_main[linha])
+
+
+
+
+
+
+# ----ADICIONA LINHAS DE ALOCAÇÃO DE USUÁRIOS DE ACORDO COM A PLANILHA DE USUÁRIOS---
+
 
 #Percorrendo as linhas do arquivo de usuários
 for linha in range(len(content_users)):
+
+    #Demarcador da linha de inicio da locação dos usuários da hora 
     if 'INICIO HORA 1.0' in content_users[linha]:
+
+        # Armazena a linha de inicio de alocação da hora
         inicio_hora_usr = linha
-        
+
+    #Demarcador da linha final da locação dos usuários da hora    
     if 'FIM HORA 1.0' in content_users[linha]:
+
+        # Armazena a linha de inicio de alocação da hora
         fim_hora_usr = linha
         
-print(f'Inicio hora usr: {inicio_hora_usr}')
-print(f'Fim hora usr: {fim_hora_usr}')
+print(f'Inicio da hora para usuários: {inicio_hora_usr}')
+print(f'Fim da hora para usuários: {fim_hora_usr}')
 
+# Percorre a quantidade de linhas de alocação de usuários da hora 
 for linha in range((inicio_hora_usr + 1), fim_hora_usr):
+
+     # Armazena cada linha de alocação do txt de usuários para a hora
     texto = content_users[linha]
+    # Insere a linha de alocação acima no content_main
     content_main.insert((inicio_user+1), texto)
 
-
-with open("main.txt",'w') as f: # Limpando  o arquivo
+# Limpando  o arquivo main.txt
+with open("main.txt",'w') as f:
     pass
 
 #Percorrendo as linhas do arquivo main
 for linha in range(len(content_main)):
+
+    # Abri o arquivo main.txt
     with open('main.txt', 'a') as arquivo:
+
+        # Escreve cada linha do content_main no main.txt
         arquivo.write(content_main[linha])
