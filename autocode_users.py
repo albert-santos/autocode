@@ -28,10 +28,10 @@ for posicao in range(np.size(user_matrix, 1)):  # Eixos x e y para cada hora
         for usuario in range(np.size(user_matrix, 0)):  # Quantidade de usuarios    
             
             if user_matrix[usuario, (posicao - 1)] != 0 and user_matrix[usuario,posicao] != 0:
-                print(f'    Comando para escrever a lista ({user_matrix[usuario, (posicao - 1)]},{user_matrix[usuario, posicao]})')
-
+                print(f'    positionAlloc4->Add (Vector ({user_matrix[usuario, (posicao - 1)]},{user_matrix[usuario, posicao]}));')
+                #positionAlloc4->Add (Vector ( 406, 32, 0));
                 with open('user_position.txt', 'a') as arquivo:
-                    arquivo.write(f'    Comando para escrever a lista ({user_matrix[usuario, (posicao - 1)]},{user_matrix[usuario, posicao]})\n')
+                    arquivo.write(f'    positionAlloc4->Add (Vector({user_matrix[usuario, (posicao - 1)]},{user_matrix[usuario, posicao]}));\n')
 
         with open('user_position.txt', 'a') as arquivo:
                 arquivo.write(f'FIM HORA {hora}\n')

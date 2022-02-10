@@ -24,16 +24,16 @@ for posicao in range(np.size(small_matrix, 1)):  # Eixos x e y para cada hora
         for small in range(np.size(small_matrix, 0)):  # Quantidade de smalls    
             
             if small==0:
-                print(f'    Comando para escrever a lista ({small_matrix[small, (posicao - 1)]},{small_matrix[small, posicao]})')
-
+                print(f'    positionAlloc->Add (Vector ({small_matrix[small, (posicao - 1)]},{small_matrix[small, posicao]}));')
+                # positionAlloc->Add (Vector (  0,  0, 0));
                 with open('small_position.txt', 'a') as arquivo:
-                    arquivo.write(f'    Comando para escrever a lista ({small_matrix[small, (posicao - 1)]},{small_matrix[small, posicao]})\n')
+                    arquivo.write(f'    positionAlloc->Add (Vector ({small_matrix[small, (posicao - 1)]},{small_matrix[small, posicao]}));\n')
 
             elif small_matrix[small, (posicao - 1)] != 0 or small_matrix[small,posicao] != 0 :
-                print(f'    Comando para escrever a lista ({small_matrix[small, (posicao - 1)]},{small_matrix[small, posicao]})')
+                print(f'    positionAlloc->Add ( Vector ({small_matrix[small, (posicao - 1)]},{small_matrix[small, posicao]}));')
 
                 with open('small_position.txt', 'a') as arquivo:
-                    arquivo.write(f'    Comando para escrever a lista ({small_matrix[small, (posicao - 1)]},{small_matrix[small, posicao]})\n')
+                    arquivo.write(f'    positionAlloc->Add (Vector ({small_matrix[small, (posicao - 1)]},{small_matrix[small, posicao]}));\n')
         
         with open('small_position.txt', 'a') as arquivo:
                 arquivo.write(f'FIM HORA {hora}\n')
