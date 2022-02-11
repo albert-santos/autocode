@@ -1,5 +1,10 @@
 import shutil # biblioteca para copiar arquivos txt
 import os # biblioteca para obter informações do sistema
+from autocode_smalls import autocode_smalls
+from autocode_users import autocode_users
+
+autocode_smalls ('SmallPosition.xls')
+autocode_users('UserPosition.xls')
 
 # Obtem o diretório atual
 cwd = os.getcwd()

@@ -39,5 +39,3 @@ def autocode_smalls (planilha_small):
             with open('small_position.txt', 'a') as arquivo:
                     arquivo.write(f'FIM HORA {hora}\n')
             hora += 1
-
-autocode_smalls ('SmallPosition.xls')

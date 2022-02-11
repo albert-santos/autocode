@@ -33,4 +33,3 @@ def autocode_users(planilha_users):
                     arquivo.write(f'FIM HORA {hora}\n')
             hora += 1
 
-autocode_users('UserPosition.xls')
