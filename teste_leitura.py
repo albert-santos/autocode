@@ -1,5 +1,5 @@
-import shutil
-import os
+import shutil # biblioteca para copiar arquivos txt
+import os # biblioteca para obter informações do sistema
 
 # Obtem o diretório atual
 cwd = os.getcwd()
