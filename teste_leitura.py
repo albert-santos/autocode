@@ -1,9 +1,11 @@
 import shutil
+import os
 
-# O caminho deve estar de acordo com o ambiente em que o código está sendo executado
+# Obtem o diretório atual
+cwd = os.getcwd()
 
-# src = r'/home/lpo_albert/Documentos/meus_codigos/autocode/main.txt'
-src = r'C:/Users/albert.DESKTOP-015ON1O/Documents/meus_codigos/autocode/main.txt'
+# Caminho do arquivo que serve como base
+src = f'{cwd}/main.txt'
 
 # Abrindo o arquivo com as antenas
 smalls = open('small_position.txt')
@@ -18,12 +20,10 @@ content_users = users.readlines()
 
 for hora in range(1, 25):
 
-    # Passando o caminho de um novo arquivo para a hora atual
-    nova_main = f'C:/Users/albert.DESKTOP-015ON1O\Documents/meus_codigos/autocode/arquivos_txt/main_{hora}.txt'
+    # Passando o caminho de um novo arquivo main para a hora atual
+    nova_main = f'{cwd}/arquivos_txt/main_{hora}.txt'
 
-    #nova_main = f'/home/lpo_albert/Documentos/meus_codigos/autocode/main_{hora}.txt' # caminho em outro ambiente
-
-    # Copiando o conteudo da main para a main da hora atual
+    # Copiando o conteudo do arquivo base para a main da hora atual
     dest = nova_main
     shutil.copy(src, dest)
 
