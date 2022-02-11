@@ -1,8 +1,9 @@
 import shutil
 
-src = r'/home/lpo_albert/Documentos/meus_codigos/autocode/main.txt'
-dest = r'/home/lpo_albert/Documentos/meus_codigos/autocode/main_1.txt'
-shutil.copy(src, dest)
+# O caminho deve estar de acordo com o ambiente em que o código está sendo executado
+
+# src = r'/home/lpo_albert/Documentos/meus_codigos/autocode/main.txt'
+src = r'C:/Users/albert.DESKTOP-015ON1O/Documents/meus_codigos/autocode/main.txt'
 
 # Abrindo o arquivo com as antenas
 smalls = open('small_position.txt')
@@ -16,6 +17,15 @@ content_users = users.readlines()
 
 
 for hora in range(1, 25):
+
+    # Passando o caminho de um novo arquivo para a hora atual
+    nova_main = f'C:/Users/albert.DESKTOP-015ON1O\Documents/meus_codigos/autocode/main_{hora}.txt'
+
+    #nova_main = f'/home/lpo_albert/Documentos/meus_codigos/autocode/main_{hora}.txt' # caminho em outro ambiente
+
+    # Copiando o conteudo da main para a main da hora atual
+    dest = nova_main
+    shutil.copy(src, dest)
 
     #Abrindo o arquivo main do ns-3 no formato txt
     arq = f'main_{hora}.txt'
