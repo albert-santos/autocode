@@ -216,3 +216,29 @@ for i in range(1, 25):
     # Novos arquivos em formato cc
     dest = f'{cwd}/arquivos_cc/main_{i}.cc'
     shutil.copy(src, dest)
+
+
+
+
+
+
+for i in range(1, 25):
+    # Criando diretórios para armazenar os arquivos necessários para executar no NS-3
+    try:
+        diretorio = f'./dir_ns3/SA_{i}'
+        os.makedirs(diretorio)
+    except:
+        pass
+
+    # Caminho do arquivo cc que será copiado
+    src = f'arquivos_cc/main_{i}.cc'
+    # Caminho de destino da cópia do arquivo cc
+    dest = diretorio
+    # Copiando o arquivo
+    shutil.copy(src, dest)
+
+    # Copiar as bilbiotecas my_controller para os diretórios NS-3
+    src_biblioteca1 = 'my-controller.cc'
+    shutil.copy(src_biblioteca1, dest)
+    src_biblioteca2 = 'my-controller.h'
+    shutil.copy(src_biblioteca2, dest)
