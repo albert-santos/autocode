@@ -19,7 +19,7 @@ content_users = users.readlines()
 for hora in range(1, 25):
 
     # Passando o caminho de um novo arquivo para a hora atual
-    nova_main = f'C:/Users/albert.DESKTOP-015ON1O\Documents/meus_codigos/autocode/main_{hora}.txt'
+    nova_main = f'C:/Users/albert.DESKTOP-015ON1O\Documents/meus_codigos/autocode/arquivos_txt/main_{hora}.txt'
 
     #nova_main = f'/home/lpo_albert/Documentos/meus_codigos/autocode/main_{hora}.txt' # caminho em outro ambiente
 
@@ -28,7 +28,7 @@ for hora in range(1, 25):
     shutil.copy(src, dest)
 
     #Abrindo o arquivo main do ns-3 no formato txt
-    arq = f'main_{hora}.txt'
+    arq = f'arquivos_txt/main_{hora}.txt'
     # main = open(arq, 'a')
     with open(arq, 'a') as arquivo:
         arquivo.write(f'')
@@ -61,14 +61,14 @@ for hora in range(1, 25):
         # Removendo as linhas de alocação que já existem
         content_main.remove(content_main[(inicio_small + 1)])
 
-    # Limpando o arquivo main.txt
+    # Limpando o arquivo main atual
     with open(arq,'w') as f:
         pass
 
     #Percorrendo as linhas do arquivo main
     for linha in range(len(content_main)):
 
-        # Abrindo o arquivo main
+        # Abrindo o arquivo main atual
         with open(arq, 'a') as arquivo:
 
             # Escrevendo cada linha do content_main (sem as linhas de alocação) para o main.txt
@@ -102,13 +102,13 @@ for hora in range(1, 25):
         # Insere a linha de alocação acima no content_main
         content_main.insert((inicio_small+1), texto)
 
-    # Limpa o arquivo main.txt
-    with open(arq,'w') as f: # Limpando  o arquivo
+    # Limpa o arquivo main atual
+    with open(arq,'w') as f:
         pass
 
     #Percorrendo as linhas do arquivo main
     for linha in range(len(content_main)):
-        # Abre o arquivo main
+        # Abre o arquivo main atual
         with open(arq, 'a') as arquivo:
             # Escreve cada linha do content_main no main.txt
             arquivo.write(content_main[linha])
@@ -139,13 +139,13 @@ for hora in range(1, 25):
         # Removendo as linhas de alocação que já existem
         content_main.remove(content_main[(inicio_user + 1)])
 
-    # Limpando o arquivo main.txt
+    # Limpando o arquivo main atual
     with open(arq,'w') as f:
         pass
 
     #Percorrendo as linhas do arquivo main
     for linha in range(len(content_main)):
-        # Abre o aquivo main.txt
+        # Abre o aquivo main atual
         with open(arq, 'a') as arquivo:
 
             # Escrevendo cada linha do content_main (sem as linhas de alocação) para o main.txt
@@ -185,14 +185,14 @@ for hora in range(1, 25):
         # Insere a linha de alocação acima no content_main
         content_main.insert((inicio_user+1), texto)
 
-    # Limpando  o arquivo main.txt
+    # Limpando  o arquivo main atual
     with open(arq,'w') as f:
         pass
 
     #Percorrendo as linhas do arquivo main
     for linha in range(len(content_main)):
 
-        # Abri o arquivo main.txt
+        # Abri o arquivo main atual
         with open(arq, 'a') as arquivo:
 
             # Escreve cada linha do content_main no main.txt
