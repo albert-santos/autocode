@@ -202,3 +202,17 @@ for hora in range(1, 25):
 
             # Escreve cada linha do content_main no main.txt
             arquivo.write(content_main[linha])
+
+
+
+
+
+# --- CONVERTER ARQUIVOS TXT PARA CC ---
+for i in range(1, 25):
+
+    # Caminho do arquivo que serve como base
+    src = f'{cwd}/arquivos_txt/main_{i}.txt'
+
+    # Novos arquivos em formato cc
+    dest = f'{cwd}/arquivos_cc/main_{i}.cc'
+    shutil.copy(src, dest)
