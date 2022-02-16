@@ -205,6 +205,39 @@ for hora in range(1, 25):
 
 
 
+    # FLOWMONITOR
+    # ---REMOVE LINHAS JÁ EXISTENTES DO FLOWMONITOR---
+
+    #Percorrendo as linhas do arquivo main
+    for linha in range(len(content_main)):
+        if '//INICIO FLOW MONITOR' in content_main[linha].strip(): #Demarcador da linha de inicio da alocação de usuários
+            inicio_flow = linha # armazena a linha de inicio da alocação dos usuários
+            # print(linha)
+
+        if '//FIM FLOW MONITOR' in content_main[linha].strip(): #Demarcador da linha final da alocação de usuários
+            fim_flow = linha # armazena a linha final da alocação dos usuários
+            # print(linha)
+
+    print(f'Linha inicial do flowmonitor: {inicio_flow}')
+    print(f'Linha final do flowmonitor: {fim_flow}')
+
+    # Percorrendo somente as linhas de alocação dos usuários
+    for linha in range((inicio_flow + 1), fim_flow):
+        # Removendo as linhas de alocação que já existem
+        content_main.remove(content_main[(inicio_flow + 1)])
+
+    # Limpando o arquivo main atual
+    with open(arq,'w') as f:
+        pass
+
+    #Percorrendo as linhas do arquivo main
+    for linha in range(len(content_main)):
+        # Abre o aquivo main atual
+        with open(arq, 'a') as arquivo:
+
+            # Escrevendo cada linha do content_main (sem as linhas de alocação) para o main.txt
+            arquivo.write(content_main[linha])
+
 
 
 # --- CONVERTER ARQUIVOS TXT PARA CC ---
