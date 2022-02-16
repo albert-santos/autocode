@@ -282,9 +282,9 @@
     //                              "LayoutType", StringValue ("RowFirst"));
 	
 	//AUTOCODE SMALLS INICIO
-    positionAlloc->Add (Vector (533.3333333333334,533.3333333333334));
-    positionAlloc->Add (Vector (266.6666666666667,0.0));
-    positionAlloc->Add (Vector (0.0,266.6666666666667));
+    positionAlloc->Add (Vector (533.3333333333334,533.3333333333334, 0.0));
+    positionAlloc->Add (Vector (266.6666666666667,0.0, 0.0));
+    positionAlloc->Add (Vector (0.0,266.6666666666667, 0.0));
 	//AUTOCODE SMALLS FIM
 	mobility.SetPositionAllocator(positionAlloc);
 	mobility.Install(enbNodes);
@@ -342,14 +342,14 @@
 	
 	Ptr<ListPositionAllocator> positionAlloc4 = CreateObject<ListPositionAllocator> ();
 	//AUTOCODE USERS INICIO
-    positionAlloc4->Add (Vector(603.5578974025354,565.905717776892));
-    positionAlloc4->Add (Vector(255.4677446400544,103.73396083865005));
-    positionAlloc4->Add (Vector(32.02315707523242,133.71365954775376));
-    positionAlloc4->Add (Vector(260.5408333858119,96.17802864987368));
-    positionAlloc4->Add (Vector(354.1309607105557,545.8667253190972));
-    positionAlloc4->Add (Vector(656.5790764144775,300.20135593388557));
-    positionAlloc4->Add (Vector(270.5157045108371,15.209614953503703));
-    positionAlloc4->Add (Vector(253.54860297820085,156.8300471803516));
+    positionAlloc4->Add (Vector(603.5578974025354,565.905717776892, 0.0));
+    positionAlloc4->Add (Vector(255.4677446400544,103.73396083865005, 0.0));
+    positionAlloc4->Add (Vector(32.02315707523242,133.71365954775376, 0.0));
+    positionAlloc4->Add (Vector(260.5408333858119,96.17802864987368, 0.0));
+    positionAlloc4->Add (Vector(354.1309607105557,545.8667253190972, 0.0));
+    positionAlloc4->Add (Vector(656.5790764144775,300.20135593388557, 0.0));
+    positionAlloc4->Add (Vector(270.5157045108371,15.209614953503703, 0.0));
+    positionAlloc4->Add (Vector(253.54860297820085,156.8300471803516, 0.0));
 	//AUTOCODE USERS FIM
 
 	uesMobility.SetMobilityModel("ns3::ConstantPositionMobilityModel");

@@ -282,13 +282,13 @@
     //                              "LayoutType", StringValue ("RowFirst"));
 	
 	//AUTOCODE SMALLS INICIO
-    positionAlloc->Add (Vector (800.0,533.3333333333334));
-    positionAlloc->Add (Vector (800.0,266.6666666666667));
-    positionAlloc->Add (Vector (533.3333333333334,533.3333333333334));
-    positionAlloc->Add (Vector (533.3333333333334,266.6666666666667));
-    positionAlloc->Add (Vector (266.6666666666667,800.0));
-    positionAlloc->Add (Vector (266.6666666666667,533.3333333333334));
-    positionAlloc->Add (Vector (266.6666666666667,266.6666666666667));
+    positionAlloc->Add (Vector (800.0,533.3333333333334, 0.0));
+    positionAlloc->Add (Vector (800.0,266.6666666666667, 0.0));
+    positionAlloc->Add (Vector (533.3333333333334,533.3333333333334, 0.0));
+    positionAlloc->Add (Vector (533.3333333333334,266.6666666666667, 0.0));
+    positionAlloc->Add (Vector (266.6666666666667,800.0, 0.0));
+    positionAlloc->Add (Vector (266.6666666666667,533.3333333333334, 0.0));
+    positionAlloc->Add (Vector (266.6666666666667,266.6666666666667, 0.0));
 	//AUTOCODE SMALLS FIM
 	mobility.SetPositionAllocator(positionAlloc);
 	mobility.Install(enbNodes);
@@ -346,23 +346,23 @@
 	
 	Ptr<ListPositionAllocator> positionAlloc4 = CreateObject<ListPositionAllocator> ();
 	//AUTOCODE USERS INICIO
-    positionAlloc4->Add (Vector(259.133993570489,341.370002980668));
-    positionAlloc4->Add (Vector(730.5332992331454,506.0829019083867));
-    positionAlloc4->Add (Vector(344.58483472949456,669.2791511317896));
-    positionAlloc4->Add (Vector(179.47943047449897,778.4634671299239));
-    positionAlloc4->Add (Vector(134.61511265735177,117.30439922462085));
-    positionAlloc4->Add (Vector(532.7904723385996,212.49605361369265));
-    positionAlloc4->Add (Vector(742.103126779876,260.43648470355583));
-    positionAlloc4->Add (Vector(7.56956526108743,89.25985876174325));
-    positionAlloc4->Add (Vector(689.0921559187094,539.5690921889807));
-    positionAlloc4->Add (Vector(188.56495899814146,789.2874076773521));
-    positionAlloc4->Add (Vector(165.6066616346492,623.0563402748951));
-    positionAlloc4->Add (Vector(567.9798713136634,591.4833329917467));
-    positionAlloc4->Add (Vector(183.1436059617116,655.0381643615808));
-    positionAlloc4->Add (Vector(370.62353049145196,192.62101165070337));
-    positionAlloc4->Add (Vector(677.0035825404136,268.1643655967668));
-    positionAlloc4->Add (Vector(379.18323519435626,183.6678946205958));
-    positionAlloc4->Add (Vector(639.9699673487603,550.9279216405753));
+    positionAlloc4->Add (Vector(259.133993570489,341.370002980668, 0.0));
+    positionAlloc4->Add (Vector(730.5332992331454,506.0829019083867, 0.0));
+    positionAlloc4->Add (Vector(344.58483472949456,669.2791511317896, 0.0));
+    positionAlloc4->Add (Vector(179.47943047449897,778.4634671299239, 0.0));
+    positionAlloc4->Add (Vector(134.61511265735177,117.30439922462085, 0.0));
+    positionAlloc4->Add (Vector(532.7904723385996,212.49605361369265, 0.0));
+    positionAlloc4->Add (Vector(742.103126779876,260.43648470355583, 0.0));
+    positionAlloc4->Add (Vector(7.56956526108743,89.25985876174325, 0.0));
+    positionAlloc4->Add (Vector(689.0921559187094,539.5690921889807, 0.0));
+    positionAlloc4->Add (Vector(188.56495899814146,789.2874076773521, 0.0));
+    positionAlloc4->Add (Vector(165.6066616346492,623.0563402748951, 0.0));
+    positionAlloc4->Add (Vector(567.9798713136634,591.4833329917467, 0.0));
+    positionAlloc4->Add (Vector(183.1436059617116,655.0381643615808, 0.0));
+    positionAlloc4->Add (Vector(370.62353049145196,192.62101165070337, 0.0));
+    positionAlloc4->Add (Vector(677.0035825404136,268.1643655967668, 0.0));
+    positionAlloc4->Add (Vector(379.18323519435626,183.6678946205958, 0.0));
+    positionAlloc4->Add (Vector(639.9699673487603,550.9279216405753, 0.0));
 	//AUTOCODE USERS FIM
 
 	uesMobility.SetMobilityModel("ns3::ConstantPositionMobilityModel");

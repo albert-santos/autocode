@@ -282,7 +282,7 @@
     //                              "LayoutType", StringValue ("RowFirst"));
 	
 	//AUTOCODE SMALLS INICIO
-    positionAlloc->Add (Vector (533.3333333333334,533.3333333333334));
+    positionAlloc->Add (Vector (533.3333333333334,533.3333333333334, 0.0));
 	//AUTOCODE SMALLS FIM
 	mobility.SetPositionAllocator(positionAlloc);
 	mobility.Install(enbNodes);
@@ -340,10 +340,10 @@
 	
 	Ptr<ListPositionAllocator> positionAlloc4 = CreateObject<ListPositionAllocator> ();
 	//AUTOCODE USERS INICIO
-    positionAlloc4->Add (Vector(353.53840706830806,761.9332689898017));
-    positionAlloc4->Add (Vector(634.755812104275,251.7772912286885));
-    positionAlloc4->Add (Vector(728.533425648377,271.9305322337121));
-    positionAlloc4->Add (Vector(554.5074860639758,405.99068791033864));
+    positionAlloc4->Add (Vector(353.53840706830806,761.9332689898017, 0.0));
+    positionAlloc4->Add (Vector(634.755812104275,251.7772912286885, 0.0));
+    positionAlloc4->Add (Vector(728.533425648377,271.9305322337121, 0.0));
+    positionAlloc4->Add (Vector(554.5074860639758,405.99068791033864, 0.0));
 	//AUTOCODE USERS FIM
 
 	uesMobility.SetMobilityModel("ns3::ConstantPositionMobilityModel");
