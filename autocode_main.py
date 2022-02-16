@@ -250,7 +250,7 @@ for hora in range(1, 25):
     # ----ADICIONA LINHAS DE FLOWMONITOR---
 
     # Armazena cada linha de alocação do txt de usuários para a hora
-    texto = f'	  flowmon->SerializeToXmlFile ("switch_SA{hora}.flowmon", false, false);\n'
+    texto = f'	  flowmon->SerializeToXmlFile ("scratch/SA_{hora}/switch_SA{hora}.flowmon", false, false);\n'
     # Insere a linha de alocação acima no content_main
     content_main.insert((inicio_flow+1), texto)
 
@@ -286,7 +286,7 @@ for i in range(1, 25):
 
 
 
-
+# --- DIRETÓRIOS PARA O NS-3 ---
 for i in range(1, 25):
     # Criando diretórios para armazenar os arquivos necessários para executar no NS-3
     try:
