@@ -111,7 +111,7 @@ for hora in range(1, 25):
         #Contador da quantidade de smalls
         qtd_smalls += 1
 
-    print(f'Quantidade de smalls da hora {hora}: {qtd_smalls}\n')
+    print(f'Quantidade de smalls da hora {hora}: {qtd_smalls}')
     # Limpa o arquivo main atual
     with open(arq,'w') as f:
         pass
@@ -187,6 +187,7 @@ for hora in range(1, 25):
     print(f'Inicio da hora para usuários: {inicio_hora_usr}')
     print(f'Fim da hora para usuários: {fim_hora_usr}')
 
+    qtd_users = 0
     # Percorre a quantidade de linhas de alocação de usuários da hora 
     for linha in range((inicio_hora_usr + 1), fim_hora_usr):
 
@@ -194,6 +195,11 @@ for hora in range(1, 25):
         texto = content_users[linha]
         # Insere a linha de alocação acima no content_main
         content_main.insert((inicio_user+1), texto)
+
+        # Contador para armazenar a quantidade de usuários
+        qtd_users += 1
+
+    print(f'Quantidade de usuários da hora {hora}: {qtd_users}')
 
     # Limpando  o arquivo main atual
     with open(arq,'w') as f:
@@ -271,6 +277,57 @@ for hora in range(1, 25):
 
             # Escreve cada linha do content_main no main.txt
             arquivo.write(content_main[linha])
+
+
+
+
+
+
+    #NÚMERO DE RRHS E DE USUÁRIOS
+    # ----REMOVE LINHAS DE CONFIGURAÇÃO DO Nº DE USUÁRIOS E DE RRHS-----
+
+    #Percorrendo as linhas do arquivo main
+    for linha in range(len(content_main)):
+        if '//AUTOCODE NUMBEROFRRHS INICIO' in content_main[linha].strip(): #Demarcador da linha de inicio da configuração do número de RRHs
+            inicio_numero_rrhs = linha # armazena a linha de inicio da configuração do número de RRHs
+
+        if '//AUTOCODE NUMBEROFRRHS FIM' in content_main[linha].strip(): #Demarcador da linha final da configuração do número de RRHs
+            fim_numero_rrhs = linha # armazena a linha final da configuração do número de RRHs
+
+        if '//AUTOCODE NUMBEROFUSERS INICIO' in content_main[linha].strip(): #Demarcador de início final da configuração do número de usuários
+            inicio_numero_users = linha # armazena a linha de início da configuração do número de usuários
+
+        if '//AUTOCODE NUMBEROFUSERS FIM' in content_main[linha].strip(): #Demarcador da linha final da configuração do número de usuários
+            fim_numero_users = linha # armazena a linha final da configuração do número de usuários
+
+    print(f'Linha inicial do Nº de RRHs: {inicio_numero_rrhs}')
+    print(f'Linha final do Nº de RRHs: {fim_numero_rrhs}')
+
+    print(f'Linha inicial do Nº de usuários: {inicio_numero_users}')
+    print(f'Linha final do Nº de usuários: {fim_numero_users}\n')
+
+    # Percorrendo somente as linhas da configuração do número de RRHs
+    for linha in range((inicio_numero_rrhs + 1), fim_numero_rrhs):
+        # Removendo as linhas de configuração do número de RRHs  que já existem
+        content_main.remove(content_main[(inicio_numero_rrhs + 1)])
+
+    # Percorrendo somente as linhas da configuração do número de usuários
+    for linha in range((inicio_numero_users + 1), fim_numero_users):
+        # Removendo as linhas de configuração do número de usuários  que já existem
+        content_main.remove(content_main[(inicio_numero_users)])
+
+    # Limpando o arquivo main atual
+    with open(arq,'w') as f:
+        pass
+
+    #Percorrendo as linhas do arquivo main
+    for linha in range(len(content_main)):
+        # Abre o aquivo main atual
+        with open(arq, 'a') as arquivo:
+
+            # Escrevendo cada linha do content_main (sem as linhas de configuração do nº de RRHs) para o main.txt
+            arquivo.write(content_main[linha])
+
 
 
 
