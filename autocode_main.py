@@ -3,6 +3,7 @@ import os #biblioteca para obter informações do sistema
 from autocode_smalls import autocode_smalls
 from autocode_users import autocode_users
 
+
 #Caminho para as planilhas de usuários e antenas
 planilha_smalls = 'SA_planilhas/SmallPosition.xls'
 planilha_users = 'SA_planilhas/UserPosition.xls'
@@ -39,6 +40,12 @@ content_users = users.readlines()
 
 
 for hora in range(1, 25):
+
+    # Linha de código do flowmonitor para cada hora (descomentar para o simulated annealing)
+    texto_flowmon = f'	  flowmon->SerializeToXmlFile ("scratch/SA_{hora}/switch_SA{hora}.flowmon", false, false);\n'
+
+    # Linha de código do flowmonitor para cada hora (descomentar para o HDSO)
+    # texto_flowmon = f'	  flowmon->SerializeToXmlFile ("scratch/HDSO_{hora}/switch_HDSO{hora}.flowmon", false, false);\n'
 
     # Passando o caminho de um novo arquivo main para a hora atual
     nova_main = f'{cwd}/arquivos_txt/main_{hora}.txt'
@@ -276,7 +283,7 @@ for hora in range(1, 25):
     # ----ADICIONA LINHAS DE FLOWMONITOR---
 
     # Armazena cada linha de alocação do txt de usuários para a hora
-    texto = f'	  flowmon->SerializeToXmlFile ("scratch/SA_{hora}/switch_SA{hora}.flowmon", false, false);\n'
+    texto = texto_flowmon
     # Insere a linha de alocação acima no content_main
     content_main.insert((inicio_flow+1), texto)
 
