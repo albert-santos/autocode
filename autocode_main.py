@@ -257,7 +257,7 @@ for hora in range(1, 25):
 
 
 
-     # FLOWMONITOR
+    # FLOWMONITOR
     # ----ADICIONA LINHAS DE FLOWMONITOR---
 
     # Armazena cada linha de alocação do txt de usuários para a hora
@@ -283,8 +283,8 @@ for hora in range(1, 25):
 
 
 
-    #NÚMERO DE RRHS E DE USUÁRIOS
-    # ----REMOVE LINHAS DE CONFIGURAÇÃO DO Nº DE USUÁRIOS E DE RRHS-----
+    # NÚMERO DE RRHS E DE USUÁRIOS
+    # --- REMOVE LINHAS DE CONFIGURAÇÃO DO Nº DE USUÁRIOS E DE RRHS ----
 
     #Percorrendo as linhas do arquivo main
     for linha in range(len(content_main)):
@@ -326,6 +326,31 @@ for hora in range(1, 25):
         with open(arq, 'a') as arquivo:
 
             # Escrevendo cada linha do content_main (sem as linhas de configuração do nº de RRHs) para o main.txt
+            arquivo.write(content_main[linha])
+
+
+
+    # NÚMERO DE RRHS E DE USUÁRIOS
+    # --- ADICIONA LINHAS DE CONFIGURAÇÃO DO Nº DE USUÁRIOS E DE RRHS ---
+
+    # Armazena cada linha de alocação do txt de usuários para a hora
+    texto_numero_rrhs = f'	  uint16_t numberOfRrhs = {qtd_smalls};\n'
+    texto_numero_users = f'	  uint16_t numberOfNodes = {qtd_users};\n'
+    # Insere a linha de alocação acima no content_main
+    content_main.insert((inicio_numero_rrhs +1), texto_numero_rrhs)
+    content_main.insert((inicio_numero_users +1), texto_numero_users)
+
+    # Limpando  o arquivo main atual
+    with open(arq,'w') as f:
+        pass
+
+    #Percorrendo as linhas do arquivo main
+    for linha in range(len(content_main)):
+
+        # Abri o arquivo main atual
+        with open(arq, 'a') as arquivo:
+
+            # Escreve cada linha do content_main no main.txt
             arquivo.write(content_main[linha])
 
 
