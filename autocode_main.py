@@ -46,7 +46,7 @@ content_users = users.readlines()
 for hora in range(1, 25):
 
     # Linha de código do flowmonitor para cada hora (descomentar para o simulated annealing)
-    texto_flowmon = f'	  flowmon->SerializeToXmlFile ("scratch/SA_flows/switch_SA{hora}.flowmon", false, false);\n'
+    texto_flowmon = f'	  flowmon->SerializeToXmlFile ("scratch/switch_SA_flowmon/switch_SA{hora}.flowmon", false, false);\n'
 
     # Linha de código do flowmonitor para cada hora (descomentar para o HDSO)
     # texto_flowmon = f'	  flowmon->SerializeToXmlFile ("scratch/HDSO_{hora}/switch_HDSO{hora}.flowmon", false, false);\n'
