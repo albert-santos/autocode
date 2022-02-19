@@ -285,6 +285,7 @@
     //                              "GridWidth", UintegerValue (4),
     //                              "LayoutType", StringValue ("RowFirst"));
 	
+	positionAlloc->Add (Vector (  300,  300, 0)); //Macro no centro do cenário
 	//AUTOCODE SMALLS INICIO
 	positionAlloc->Add (Vector (  0,  0, 0));
 	positionAlloc->Add (Vector (  266.666,  0, 0));

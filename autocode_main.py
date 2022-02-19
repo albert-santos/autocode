@@ -1,5 +1,5 @@
 import shutil # biblioteca para copiar arquivos txt
-import os # biblioteca para obter informações do sistema
+import os #biblioteca para obter informações do sistema
 from autocode_smalls import autocode_smalls
 from autocode_users import autocode_users
 
@@ -100,7 +100,7 @@ for hora in range(1, 25):
     print(f'Inicio da hora para smalls: {inicio_hora}')
     print(f'Fim da hora para smalls: {fim_hora}')
 
-    qtd_smalls = 0
+    quantidade_smalls = 0
     # Percorre a quantidade de linhas de alocação da hora 
     for linha in range((inicio_hora + 1), fim_hora):
         # Armazena cada linha de alocação do txt de antenas para a hora
@@ -109,9 +109,9 @@ for hora in range(1, 25):
         content_main.insert((inicio_small+1), texto)
 
         #Contador da quantidade de smalls
-        qtd_smalls += 1
+        quantidade_smalls += 1
 
-    print(f'Quantidade de smalls da hora {hora}: {qtd_smalls}')
+    print(f'Quantidade de smalls da hora {hora}: {quantidade_smalls+1}')
     # Limpa o arquivo main atual
     with open(arq,'w') as f:
         pass
@@ -187,7 +187,7 @@ for hora in range(1, 25):
     print(f'Inicio da hora para usuários: {inicio_hora_usr}')
     print(f'Fim da hora para usuários: {fim_hora_usr}')
 
-    qtd_users = 0
+    quantidade_users = 0
     # Percorre a quantidade de linhas de alocação de usuários da hora 
     for linha in range((inicio_hora_usr + 1), fim_hora_usr):
 
@@ -197,9 +197,9 @@ for hora in range(1, 25):
         content_main.insert((inicio_user+1), texto)
 
         # Contador para armazenar a quantidade de usuários
-        qtd_users += 1
+        quantidade_users += 1
 
-    print(f'Quantidade de usuários da hora {hora}: {qtd_users}')
+    print(f'Quantidade de usuários da hora {hora}: {quantidade_users+1}')
 
     # Limpando  o arquivo main atual
     with open(arq,'w') as f:
@@ -334,8 +334,8 @@ for hora in range(1, 25):
     # --- ADICIONA LINHAS DE CONFIGURAÇÃO DO Nº DE USUÁRIOS E DE RRHS ---
 
     # Armazena cada linha de alocação do txt de usuários para a hora
-    texto_numero_rrhs = f'	  uint16_t numberOfRrhs = {qtd_smalls};\n'
-    texto_numero_users = f'	  uint16_t numberOfNodes = {qtd_users};\n'
+    texto_numero_rrhs = f'	  uint16_t numberOfRrhs = {quantidade_smalls+1};\n'
+    texto_numero_users = f'	  uint16_t numberOfNodes = {quantidade_users+1};\n'
     # Insere a linha de alocação acima no content_main
     content_main.insert((inicio_numero_rrhs +1), texto_numero_rrhs)
     content_main.insert((inicio_numero_users +1), texto_numero_users)
