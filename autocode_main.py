@@ -100,6 +100,7 @@ for hora in range(1, 25):
     print(f'Inicio da hora para smalls: {inicio_hora}')
     print(f'Fim da hora para smalls: {fim_hora}')
 
+    qtd_smalls = 0
     # Percorre a quantidade de linhas de alocação da hora 
     for linha in range((inicio_hora + 1), fim_hora):
         # Armazena cada linha de alocação do txt de antenas para a hora
@@ -107,6 +108,10 @@ for hora in range(1, 25):
         # Insere a linha de alocação acima no content_main
         content_main.insert((inicio_small+1), texto)
 
+        #Contador da quantidade de smalls
+        qtd_smalls += 1
+
+    print(f'Quantidade de smalls da hora {hora}: {qtd_smalls}\n')
     # Limpa o arquivo main atual
     with open(arq,'w') as f:
         pass

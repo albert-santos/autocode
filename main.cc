@@ -495,7 +495,9 @@
 
 	 Simulator::Run ();
 	 Simulator::Destroy();
+	 //INICIO FLOW MONITOR
 	  flowmon->SerializeToXmlFile ("switch.flowmon", false, false);
+	 //FIM FLOW MONITOR
 		Ptr<PacketSink> sink1 = DynamicCast<PacketSink> (serverApps.Get (0));
 		std::cout << "Bytes received by server 1: " << sink1->GetTotalRx () << " ("
 							<< (8. * sink1->GetTotalRx ()) / 1000000 / simTime << " Mbps)"
