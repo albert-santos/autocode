@@ -8,6 +8,10 @@ from autocode_users import autocode_users
 planilha_smalls = 'SA_planilhas/SmallPosition.xls'
 planilha_users = 'SA_planilhas/UserPosition.xls'
 
+# #Caminho para as planilhas de usuários e antenas
+# planilha_smalls = 'HDSO_planilhas/SmallPosition_HDSO.xls'
+# planilha_users = 'HDSO_planilhas/UserPosition_HDSO.xls'
+
 #Gerando txt formatado para a alocação de usuários e de antenas
 autocode_smalls (planilha_smalls)
 autocode_users(planilha_users)
