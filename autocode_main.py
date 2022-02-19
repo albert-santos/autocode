@@ -6,6 +6,9 @@ from autocode_users import autocode_users
 autocode_smalls ('SmallPosition.xls')
 autocode_users('UserPosition.xls')
 
+diretorio_ns3 = f'./dir_ns3_SA/'
+#diretorio_ns3 = f'./dir_ns3_HDSO/'
+
 # Obtem o diretório atual
 cwd = os.getcwd()
 
@@ -377,7 +380,7 @@ for i in range(1, 25):
 for i in range(1, 25):
     # Criando diretórios para armazenar os arquivos necessários para executar no NS-3
     try:
-        diretorio = f'./dir_ns3/SA_{i}'
+        diretorio = f'{diretorio_ns3}SA_{i}'
         os.makedirs(diretorio)
     except:
         pass
