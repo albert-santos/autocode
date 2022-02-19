@@ -12,13 +12,13 @@ planilha_users = 'SA_planilhas/UserPosition.xls'
 # planilha_smalls = 'HDSO_planilhas/SmallPosition_HDSO.xls'
 # planilha_users = 'HDSO_planilhas/UserPosition_HDSO.xls'
 
-#Gerando txt formatado para a alocação de usuários e de antenas
-autocode_smalls (planilha_smalls)
-autocode_users(planilha_users)
-
 #Diretório que será passado para o NS-3
 diretorio_ns3 = f'./dir_ns3_SA/'
 #diretorio_ns3 = f'./dir_ns3_HDSO/'
+
+#Gerando txt formatado para a alocação de usuários e de antenas
+autocode_smalls (planilha_smalls)
+autocode_users(planilha_users)
 
 # Obtem o diretório atual
 cwd = os.getcwd()
