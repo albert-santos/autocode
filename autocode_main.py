@@ -3,13 +3,15 @@ import os #biblioteca para obter informações do sistema
 from autocode_smalls import autocode_smalls
 from autocode_users import autocode_users
 
-planilha_smalls = 'SmallPosition.xls'
-planilha_users = 'UserPosition.xls'
+#Caminho para as planilhas de usuários e antenas
+planilha_smalls = 'SA_planilhas/SmallPosition.xls'
+planilha_users = 'SA_planilhas/UserPosition.xls'
 
+#Gerando txt formatado para a alocação de usuários e de antenas
 autocode_smalls (planilha_smalls)
 autocode_users(planilha_users)
 
-
+#Diretório que será passado para o NS-3
 diretorio_ns3 = f'./dir_ns3_SA/'
 #diretorio_ns3 = f'./dir_ns3_HDSO/'
 
@@ -17,7 +19,7 @@ diretorio_ns3 = f'./dir_ns3_SA/'
 cwd = os.getcwd()
 
 # Caminho do arquivo que serve como base
-src = f'{cwd}/main.txt'
+src = f'{cwd}/arquivo_base/main.txt'
 
 # Abrindo o arquivo com as antenas
 smalls_txt = planilha_smalls.split('.')
@@ -403,7 +405,7 @@ for i in range(1, 25):
     shutil.copy(src, dest)
 
     # Copiar as bilbiotecas my_controller para os diretórios NS-3
-    src_biblioteca1 = 'my-controller.cc'
+    src_biblioteca1 = 'biblioteca_ns3/my-controller.cc'
     shutil.copy(src_biblioteca1, dest)
-    src_biblioteca2 = 'my-controller.h'
+    src_biblioteca2 = 'biblioteca_ns3/my-controller.h'
     shutil.copy(src_biblioteca2, dest)
