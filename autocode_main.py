@@ -3,8 +3,12 @@ import os #biblioteca para obter informações do sistema
 from autocode_smalls import autocode_smalls
 from autocode_users import autocode_users
 
-autocode_smalls ('SmallPosition.xls')
-autocode_users('UserPosition.xls')
+planilha_smalls = 'SmallPosition.xls'
+planilha_users = 'UserPosition.xls'
+
+autocode_smalls (planilha_smalls)
+autocode_users(planilha_users)
+
 
 diretorio_ns3 = f'./dir_ns3_SA/'
 #diretorio_ns3 = f'./dir_ns3_HDSO/'
@@ -16,12 +20,18 @@ cwd = os.getcwd()
 src = f'{cwd}/main.txt'
 
 # Abrindo o arquivo com as antenas
-smalls = open('small_position.txt')
+smalls_txt = planilha_smalls.split('.')
+smalls_txt = smalls_txt[0]
+smalls = open(f'{smalls_txt}.txt')
+
 # Armazenando todas as linhas do arquivo de antenas
 content_smalls = smalls.readlines()
 
 #Abrindo o arquivo com o usuário
-users = open('user_position.txt')
+users_txt = planilha_users.split('.')
+users_txt = users_txt[0]
+users = open(f'{users_txt}.txt')
+
 # Armazenando todas as linhas do arquivo de usuários
 content_users = users.readlines()
 
