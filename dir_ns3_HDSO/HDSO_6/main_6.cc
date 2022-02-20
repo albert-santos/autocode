@@ -582,7 +582,7 @@
 	 Simulator::Run ();
 	 Simulator::Destroy();
 	 //INICIO FLOW MONITOR
-	  flowmon->SerializeToXmlFile ("scratch/switch_SA_flowmon/switch_SA6.flowmon", false, false);
+	  flowmon->SerializeToXmlFile ("scratch/switch_HDSO_flowmon/switch_HDSO6.flowmon", false, false);
 	 //FIM FLOW MONITOR
 		Ptr<PacketSink> sink1 = DynamicCast<PacketSink> (serverApps.Get (0));
 		std::cout << "Bytes received by server 1: " << sink1->GetTotalRx () << " ("
