@@ -35,8 +35,8 @@
 	//#include <ns3/my-epc-helper.h>
 	using namespace ns3;
 
-	std::map <uint64_t, Ipv4Address> mymap;
-	std::map <uint64_t, uint64_t> mymap2;
+	// std::map <uint64_t, Ipv4Address> mymap;
+	// std::map <uint64_t, uint64_t> mymap2;
 //-----------------------------------------------------Funções
 
 	void CallMap (Ptr<PointToPointEpcHelper>  epcHelper){
