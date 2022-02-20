@@ -4,17 +4,17 @@ from autocode_smalls import autocode_smalls
 from autocode_users import autocode_users
 
 
-#Caminho para as planilhas de usuários e antenas
-planilha_smalls = 'SA_planilhas/SmallPosition.xls'
-planilha_users = 'SA_planilhas/UserPosition.xls'
+# #Caminho para as planilhas de usuários e antenas (SA)
+# planilha_smalls = 'SA_planilhas/SmallPosition.xls'
+# planilha_users = 'SA_planilhas/UserPosition.xls'
 
-# #Caminho para as planilhas de usuários e antenas
-# planilha_smalls = 'HDSO_planilhas/SmallPosition_HDSO.xls'
-# planilha_users = 'HDSO_planilhas/UserPosition_HDSO.xls'
+#Caminho para as planilhas de usuários e antenas (HDSO)
+planilha_smalls = 'HDSO_planilhas/SmallPosition_HDSO.xls'
+planilha_users = 'HDSO_planilhas/UserPosition_HDSO.xls'
 
 #Diretório que será passado para o NS-3
-diretorio_ns3 = f'./dir_ns3_SA/'
-#diretorio_ns3 = f'./dir_ns3_HDSO/'
+# diretorio_ns3 = f'./dir_ns3_SA/'
+diretorio_ns3 = f'./dir_ns3_HDSO/'
 
 #Gerando txt formatado para a alocação de usuários e de antenas
 autocode_smalls (planilha_smalls)
