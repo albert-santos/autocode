@@ -13,8 +13,8 @@ planilha_smalls = 'HDSO_planilhas/SmallPosition_HDSO.xls'
 planilha_users = 'HDSO_planilhas/UserPosition_HDSO.xls'
 
 #Diretório que será passado para o NS-3
-# diretorio_ns3 = f'./dir_ns3_SA/'
-diretorio_ns3 = f'./dir_ns3_HDSO/'
+# diretorio_ns3 = f'./dir_ns3_SA/SA'
+diretorio_ns3 = f'./dir_ns3_HDSO/HDSO'
 
 #Gerando txt formatado para a alocação de usuários e de antenas
 autocode_smalls (planilha_smalls)
@@ -403,7 +403,7 @@ for i in range(1, 25):
 for i in range(1, 25):
     # Criando diretórios para armazenar os arquivos necessários para executar no NS-3
     try:
-        diretorio = f'{diretorio_ns3}SA_{i}'
+        diretorio = f'{diretorio_ns3}_{i}'
         os.makedirs(diretorio)
     except:
         pass
