@@ -266,6 +266,27 @@
 	remoteHostStaticRouting->AddNetworkRouteTo (Ipv4Address ("7.0.0.0"), Ipv4Mask ("255.0.0.0"),pgwAddr, 1,1);
 	//remoteHostStaticRouting->SetDefaultRoute (internetIpIfaces.GetAddress(1), 1,1);
 
+	NodeContainer enbMacroNodes;
+	enbMacroNodes.Create(4);
+	// Mobilidade
+	Ptr<ListPositionAllocator> positionAllocMacro = CreateObject<ListPositionAllocator> ();
+	MobilityHelper mob;
+	mob.SetMobilityModel("ns3::ConstantPositionMobilityModel");
+
+	positionAllocMacro->Add (Vector (  250,  250, 0));
+	positionAllocMacro->Add (Vector (  250,  250, 0));
+	positionAllocMacro->Add (Vector (  250,  250, 0));
+	positionAllocMacro->Add (Vector (  250,  250, 0));
+
+	mob.SetPositionAllocator(positionAllocMacro);
+	mob.Install(NodeContainer(enbMacroNodes));
+
+	lteHelper->SetEnbAntennaModelType ("ns3::CosineAntennaModel");
+	lteHelper->SetEnbAntennaModelAttribute ("Orientation", DoubleValue (0));
+	lteHelper->SetEnbAntennaModelAttribute ("Beamwidth", DoubleValue (60));
+	lteHelper->SetEnbAntennaModelAttribute ("MaxGain", DoubleValue (0.0));	
+	NetDeviceContainer enbLteDevsMacro = lteHelper->InstallEnbDevice (enbMacroNodes);
+
 	NodeContainer enbNodes;
 	enbNodes.Create(numberOfRrhs);
 //-----------------------------------------------------Mobilidade
