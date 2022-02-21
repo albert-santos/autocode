@@ -72,14 +72,14 @@
 	//LogComponentEnable ("EvalvidServer", LOG_LEVEL_INFO);
 	//uint16_t numberOfRrhs = 19;
 	//AUTOCODE NUMBEROFRRHS INICIO
-	  uint16_t numberOfRrhs = 4;
+	  uint16_t numberOfRrhs = 6;
 	//AUTOCODE NUMBEROFRRHS FIM
 	//uint16_t numberOfNodes[19] = {70,45,50,45,60,55,65,60,65,45,60,65,50,45,45,50,45,60,50};
 	//uint16_t backNodes[19] = {50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50};
 	//uint16_t numberOfNodes[19] = {7,4,5,4,6,5,6,6,6,4,6,6,5,4,4,5,4,6,5};
 	//uint16_t numberOfNodes[7] = {7,4,5,4,6,5,6};
 	//AUTOCODE NUMBEROFUSERS INICIO
-	  uint16_t numberOfNodes = 56;
+	  uint16_t numberOfNodes = 58;
 	//AUTOCODE NUMBEROFUSERS FIM
 	//98
 	//uint16_t numberOfNodes[19] = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
@@ -308,9 +308,11 @@
 	
 	positionAlloc->Add (Vector (  300,  300, 0)); //Macro no centro do cenário
 	//AUTOCODE SMALLS INICIO
+FIM HORA 3.0
     positionAlloc->Add (Vector (333.3333333333333,333.3333333333333, 0.0));
     positionAlloc->Add (Vector (333.3333333333333,166.66666666666666, 0.0));
     positionAlloc->Add (Vector (166.66666666666666,333.3333333333333, 0.0));
+    positionAlloc->Add (Vector (166.66666666666666,166.66666666666666, 0.0));
 	//AUTOCODE SMALLS FIM
 	mobility.SetPositionAllocator(positionAlloc);
 	mobility.Install(enbNodes);
@@ -368,6 +370,7 @@
 	
 	Ptr<ListPositionAllocator> positionAlloc4 = CreateObject<ListPositionAllocator> ();
 	//AUTOCODE USERS INICIO
+FIM HORA 3.0
     positionAlloc4->Add (Vector(8.189681551674378,169.7351141491545, 0.0));
     positionAlloc4->Add (Vector(117.77668933851353,137.80550051359413, 0.0));
     positionAlloc4->Add (Vector(36.96061984796617,146.02435956601474, 0.0));
@@ -423,6 +426,7 @@
     positionAlloc4->Add (Vector(371.8388488982867,170.544484448592, 0.0));
     positionAlloc4->Add (Vector(452.5637129806532,123.87411468348114, 0.0));
     positionAlloc4->Add (Vector(134.17778258328266,300.926858632594, 0.0));
+    positionAlloc4->Add (Vector(123.47384254998623,307.12859869862484, 0.0));
 	//AUTOCODE USERS FIM
 
 	uesMobility.SetMobilityModel("ns3::ConstantPositionMobilityModel");

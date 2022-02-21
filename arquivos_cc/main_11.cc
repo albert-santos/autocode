@@ -79,7 +79,7 @@
 	//uint16_t numberOfNodes[19] = {7,4,5,4,6,5,6,6,6,4,6,6,5,4,4,5,4,6,5};
 	//uint16_t numberOfNodes[7] = {7,4,5,4,6,5,6};
 	//AUTOCODE NUMBEROFUSERS INICIO
-	  uint16_t numberOfNodes = 30;
+	  uint16_t numberOfNodes = 32;
 	//AUTOCODE NUMBEROFUSERS FIM
 	//98
 	//uint16_t numberOfNodes[19] = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
@@ -308,11 +308,11 @@
 	
 	positionAlloc->Add (Vector (  300,  300, 0)); //Macro no centro do cenário
 	//AUTOCODE SMALLS INICIO
+FIM HORA 11.0
     positionAlloc->Add (Vector (500.0,333.3333333333333, 0.0));
+    positionAlloc->Add (Vector (333.3333333333333,333.3333333333333, 0.0));
     positionAlloc->Add (Vector (333.3333333333333,166.66666666666666, 0.0));
-    positionAlloc->Add (Vector (166.66666666666666,500.0, 0.0));
-    positionAlloc->Add (Vector (0.0,500.0, 0.0));
-    positionAlloc->Add (Vector (0.0,333.3333333333333, 0.0));
+    positionAlloc->Add (Vector (166.66666666666666,333.3333333333333, 0.0));
 	//AUTOCODE SMALLS FIM
 	mobility.SetPositionAllocator(positionAlloc);
 	mobility.Install(enbNodes);
@@ -370,6 +370,7 @@
 	
 	Ptr<ListPositionAllocator> positionAlloc4 = CreateObject<ListPositionAllocator> ();
 	//AUTOCODE USERS INICIO
+FIM HORA 11.0
     positionAlloc4->Add (Vector(347.95242874080253,240.5277481124708, 0.0));
     positionAlloc4->Add (Vector(145.82802115079286,457.42692885791485, 0.0));
     positionAlloc4->Add (Vector(17.799092679660898,250.57563042282817, 0.0));
@@ -399,6 +400,7 @@
     positionAlloc4->Add (Vector(462.5256634853686,367.2196976543751, 0.0));
     positionAlloc4->Add (Vector(474.1354458114528,417.72475248803363, 0.0));
     positionAlloc4->Add (Vector(54.31492403913219,36.057012255568786, 0.0));
+    positionAlloc4->Add (Vector(77.30247534501366,407.933287074996, 0.0));
 	//AUTOCODE USERS FIM
 
 	uesMobility.SetMobilityModel("ns3::ConstantPositionMobilityModel");
@@ -529,7 +531,7 @@
 	 Simulator::Run ();
 	 Simulator::Destroy();
 	 //INICIO FLOW MONITOR
-	  flowmon->SerializeToXmlFile ("scratch/switch_HDSO_flowmon/switch_HDSO11.flowmon", false, false);
+	  flowmon->SerializeToXmlFile ("scratch/switch_SA_flowmon/switch_SA11.flowmon", false, false);
 	 //FIM FLOW MONITOR
 		Ptr<PacketSink> sink1 = DynamicCast<PacketSink> (serverApps.Get (0));
 		std::cout << "Bytes received by server 1: " << sink1->GetTotalRx () << " ("

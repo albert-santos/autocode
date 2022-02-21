@@ -72,14 +72,14 @@
 	//LogComponentEnable ("EvalvidServer", LOG_LEVEL_INFO);
 	//uint16_t numberOfRrhs = 19;
 	//AUTOCODE NUMBEROFRRHS INICIO
-	  uint16_t numberOfRrhs = 12;
+	  uint16_t numberOfRrhs = 14;
 	//AUTOCODE NUMBEROFRRHS FIM
 	//uint16_t numberOfNodes[19] = {70,45,50,45,60,55,65,60,65,45,60,65,50,45,45,50,45,60,50};
 	//uint16_t backNodes[19] = {50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50};
 	//uint16_t numberOfNodes[19] = {7,4,5,4,6,5,6,6,6,4,6,6,5,4,4,5,4,6,5};
 	//uint16_t numberOfNodes[7] = {7,4,5,4,6,5,6};
 	//AUTOCODE NUMBEROFUSERS INICIO
-	  uint16_t numberOfNodes = 89;
+	  uint16_t numberOfNodes = 91;
 	//AUTOCODE NUMBEROFUSERS FIM
 	//98
 	//uint16_t numberOfNodes[19] = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
@@ -308,6 +308,7 @@
 	
 	positionAlloc->Add (Vector (  300,  300, 0)); //Macro no centro do cenário
 	//AUTOCODE SMALLS INICIO
+FIM HORA 18.0
     positionAlloc->Add (Vector (500.0,500.0, 0.0));
     positionAlloc->Add (Vector (500.0,166.66666666666666, 0.0));
     positionAlloc->Add (Vector (500.0,0.0, 0.0));
@@ -319,6 +320,7 @@
     positionAlloc->Add (Vector (0.0,500.0, 0.0));
     positionAlloc->Add (Vector (0.0,333.3333333333333, 0.0));
     positionAlloc->Add (Vector (0.0,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (0.0,0.0, 0.0));
 	//AUTOCODE SMALLS FIM
 	mobility.SetPositionAllocator(positionAlloc);
 	mobility.Install(enbNodes);
@@ -376,6 +378,7 @@
 	
 	Ptr<ListPositionAllocator> positionAlloc4 = CreateObject<ListPositionAllocator> ();
 	//AUTOCODE USERS INICIO
+FIM HORA 18.0
     positionAlloc4->Add (Vector(437.7405411719995,369.2285961126941, 0.0));
     positionAlloc4->Add (Vector(461.518810496576,267.38361444613395, 0.0));
     positionAlloc4->Add (Vector(89.61574413962909,301.4114017090409, 0.0));
@@ -464,6 +467,7 @@
     positionAlloc4->Add (Vector(192.5848087334694,20.073026449270948, 0.0));
     positionAlloc4->Add (Vector(452.31454964836826,463.53491595904757, 0.0));
     positionAlloc4->Add (Vector(35.004851653193114,310.61121454271563, 0.0));
+    positionAlloc4->Add (Vector(398.56089833519934,497.4964690821554, 0.0));
 	//AUTOCODE USERS FIM
 
 	uesMobility.SetMobilityModel("ns3::ConstantPositionMobilityModel");

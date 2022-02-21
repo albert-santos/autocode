@@ -72,14 +72,14 @@
 	//LogComponentEnable ("EvalvidServer", LOG_LEVEL_INFO);
 	//uint16_t numberOfRrhs = 19;
 	//AUTOCODE NUMBEROFRRHS INICIO
-	  uint16_t numberOfRrhs = 3;
+	  uint16_t numberOfRrhs = 5;
 	//AUTOCODE NUMBEROFRRHS FIM
 	//uint16_t numberOfNodes[19] = {70,45,50,45,60,55,65,60,65,45,60,65,50,45,45,50,45,60,50};
 	//uint16_t backNodes[19] = {50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50};
 	//uint16_t numberOfNodes[19] = {7,4,5,4,6,5,6,6,6,4,6,6,5,4,4,5,4,6,5};
 	//uint16_t numberOfNodes[7] = {7,4,5,4,6,5,6};
 	//AUTOCODE NUMBEROFUSERS INICIO
-	  uint16_t numberOfNodes = 28;
+	  uint16_t numberOfNodes = 30;
 	//AUTOCODE NUMBEROFUSERS FIM
 	//98
 	//uint16_t numberOfNodes[19] = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
@@ -308,8 +308,10 @@
 	
 	positionAlloc->Add (Vector (  300,  300, 0)); //Macro no centro do cenário
 	//AUTOCODE SMALLS INICIO
+FIM HORA 6.0
     positionAlloc->Add (Vector (333.3333333333333,333.3333333333333, 0.0));
     positionAlloc->Add (Vector (166.66666666666666,333.3333333333333, 0.0));
+    positionAlloc->Add (Vector (166.66666666666666,0.0, 0.0));
 	//AUTOCODE SMALLS FIM
 	mobility.SetPositionAllocator(positionAlloc);
 	mobility.Install(enbNodes);
@@ -367,6 +369,7 @@
 	
 	Ptr<ListPositionAllocator> positionAlloc4 = CreateObject<ListPositionAllocator> ();
 	//AUTOCODE USERS INICIO
+FIM HORA 6.0
     positionAlloc4->Add (Vector(427.14919699926645,235.60652504478486, 0.0));
     positionAlloc4->Add (Vector(177.0068316706253,279.33913840491584, 0.0));
     positionAlloc4->Add (Vector(303.8068534251837,341.3906148904401, 0.0));
@@ -394,6 +397,7 @@
     positionAlloc4->Add (Vector(415.41003915004393,381.08927748319957, 0.0));
     positionAlloc4->Add (Vector(89.77498101397535,404.65394787940414, 0.0));
     positionAlloc4->Add (Vector(106.7369914799905,58.06050500621718, 0.0));
+    positionAlloc4->Add (Vector(140.27253444144188,47.855605308936624, 0.0));
 	//AUTOCODE USERS FIM
 
 	uesMobility.SetMobilityModel("ns3::ConstantPositionMobilityModel");

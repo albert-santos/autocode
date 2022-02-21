@@ -72,14 +72,14 @@
 	//LogComponentEnable ("EvalvidServer", LOG_LEVEL_INFO);
 	//uint16_t numberOfRrhs = 19;
 	//AUTOCODE NUMBEROFRRHS INICIO
-	  uint16_t numberOfRrhs = 11;
+	  uint16_t numberOfRrhs = 7;
 	//AUTOCODE NUMBEROFRRHS FIM
 	//uint16_t numberOfNodes[19] = {70,45,50,45,60,55,65,60,65,45,60,65,50,45,45,50,45,60,50};
 	//uint16_t backNodes[19] = {50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50};
 	//uint16_t numberOfNodes[19] = {7,4,5,4,6,5,6,6,6,4,6,6,5,4,4,5,4,6,5};
 	//uint16_t numberOfNodes[7] = {7,4,5,4,6,5,6};
 	//AUTOCODE NUMBEROFUSERS INICIO
-	  uint16_t numberOfNodes = 87;
+	  uint16_t numberOfNodes = 89;
 	//AUTOCODE NUMBEROFUSERS FIM
 	//98
 	//uint16_t numberOfNodes[19] = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
@@ -308,16 +308,12 @@
 	
 	positionAlloc->Add (Vector (  300,  300, 0)); //Macro no centro do cenário
 	//AUTOCODE SMALLS INICIO
-    positionAlloc->Add (Vector (500.0,333.3333333333333, 0.0));
-    positionAlloc->Add (Vector (500.0,166.66666666666666, 0.0));
-    positionAlloc->Add (Vector (333.3333333333333,500.0, 0.0));
-    positionAlloc->Add (Vector (333.3333333333333,0.0, 0.0));
-    positionAlloc->Add (Vector (166.66666666666666,500.0, 0.0));
+FIM HORA 13.0
+    positionAlloc->Add (Vector (333.3333333333333,333.3333333333333, 0.0));
+    positionAlloc->Add (Vector (333.3333333333333,166.66666666666666, 0.0));
     positionAlloc->Add (Vector (166.66666666666666,333.3333333333333, 0.0));
     positionAlloc->Add (Vector (166.66666666666666,166.66666666666666, 0.0));
-    positionAlloc->Add (Vector (166.66666666666666,0.0, 0.0));
-    positionAlloc->Add (Vector (0.0,500.0, 0.0));
-    positionAlloc->Add (Vector (0.0,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (0.0,333.3333333333333, 0.0));
 	//AUTOCODE SMALLS FIM
 	mobility.SetPositionAllocator(positionAlloc);
 	mobility.Install(enbNodes);
@@ -375,6 +371,7 @@
 	
 	Ptr<ListPositionAllocator> positionAlloc4 = CreateObject<ListPositionAllocator> ();
 	//AUTOCODE USERS INICIO
+FIM HORA 13.0
     positionAlloc4->Add (Vector(253.39211697689134,424.94411014131185, 0.0));
     positionAlloc4->Add (Vector(452.1298477673797,281.6368385437946, 0.0));
     positionAlloc4->Add (Vector(11.291889797199694,402.5444767762581, 0.0));
@@ -461,6 +458,7 @@
     positionAlloc4->Add (Vector(287.87624091713286,159.80937924132377, 0.0));
     positionAlloc4->Add (Vector(284.53271843291856,372.8466305828411, 0.0));
     positionAlloc4->Add (Vector(427.7165392847581,129.1047517549553, 0.0));
+    positionAlloc4->Add (Vector(298.86737916016045,312.07862004284976, 0.0));
 	//AUTOCODE USERS FIM
 
 	uesMobility.SetMobilityModel("ns3::ConstantPositionMobilityModel");
@@ -591,7 +589,7 @@
 	 Simulator::Run ();
 	 Simulator::Destroy();
 	 //INICIO FLOW MONITOR
-	  flowmon->SerializeToXmlFile ("scratch/switch_HDSO_flowmon/switch_HDSO13.flowmon", false, false);
+	  flowmon->SerializeToXmlFile ("scratch/switch_SA_flowmon/switch_SA13.flowmon", false, false);
 	 //FIM FLOW MONITOR
 		Ptr<PacketSink> sink1 = DynamicCast<PacketSink> (serverApps.Get (0));
 		std::cout << "Bytes received by server 1: " << sink1->GetTotalRx () << " ("
