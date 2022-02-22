@@ -299,21 +299,21 @@
 	lteHelper->SetEnbAntennaModelAttribute ("Beamwidth", DoubleValue (60));
 	lteHelper->SetEnbAntennaModelAttribute ("MaxGain", DoubleValue (0.0));  
     NetDeviceContainer device2 = lteHelper->InstallEnbDevice (enbMacroNodes.Get(1));
-    enbLteDevsMacro.Add (device1);
+    enbLteDevsMacro.Add (device2);
 
 	lteHelper->SetEnbAntennaModelType ("ns3::CosineAntennaModel");
 	lteHelper->SetEnbAntennaModelAttribute ("Orientation", DoubleValue (180));
 	lteHelper->SetEnbAntennaModelAttribute ("Beamwidth", DoubleValue (60));
 	lteHelper->SetEnbAntennaModelAttribute ("MaxGain", DoubleValue (0.0));  
     NetDeviceContainer device3 = lteHelper->InstallEnbDevice (enbMacroNodes.Get(2));
-    enbLteDevsMacro.Add (device1);
+    enbLteDevsMacro.Add (device3);
 
 	lteHelper->SetEnbAntennaModelType ("ns3::CosineAntennaModel");
 	lteHelper->SetEnbAntennaModelAttribute ("Orientation", DoubleValue (270));
 	lteHelper->SetEnbAntennaModelAttribute ("Beamwidth", DoubleValue (60));
 	lteHelper->SetEnbAntennaModelAttribute ("MaxGain", DoubleValue (0.0));  
     NetDeviceContainer device4 = lteHelper->InstallEnbDevice (enbMacroNodes.Get(3));
-    enbLteDevsMacro.Add (device1);
+    enbLteDevsMacro.Add (device4);
 
 
 	NodeContainer enbNodes;
