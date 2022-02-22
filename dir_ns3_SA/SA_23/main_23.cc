@@ -72,14 +72,14 @@
 	//LogComponentEnable ("EvalvidServer", LOG_LEVEL_INFO);
 	//uint16_t numberOfRrhs = 19;
 	//AUTOCODE NUMBEROFRRHS INICIO
-	  uint16_t numberOfRrhs = 9;
+	  uint16_t numberOfRrhs = 7;
 	//AUTOCODE NUMBEROFRRHS FIM
 	//uint16_t numberOfNodes[19] = {70,45,50,45,60,55,65,60,65,45,60,65,50,45,45,50,45,60,50};
 	//uint16_t backNodes[19] = {50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50};
 	//uint16_t numberOfNodes[19] = {7,4,5,4,6,5,6,6,6,4,6,6,5,4,4,5,4,6,5};
 	//uint16_t numberOfNodes[7] = {7,4,5,4,6,5,6};
 	//AUTOCODE NUMBEROFUSERS INICIO
-	  uint16_t numberOfNodes = 98;
+	  uint16_t numberOfNodes = 96;
 	//AUTOCODE NUMBEROFUSERS FIM
 	//98
 	//uint16_t numberOfNodes[19] = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
@@ -308,7 +308,6 @@
 	
 	positionAlloc->Add (Vector (  300,  300, 0)); //Macro no centro do cenário
 	//AUTOCODE SMALLS INICIO
-FIM HORA 23.0
     positionAlloc->Add (Vector (500.0,333.3333333333333, 0.0));
     positionAlloc->Add (Vector (500.0,166.66666666666666, 0.0));
     positionAlloc->Add (Vector (333.3333333333333,333.3333333333333, 0.0));
@@ -373,7 +372,6 @@ FIM HORA 23.0
 	
 	Ptr<ListPositionAllocator> positionAlloc4 = CreateObject<ListPositionAllocator> ();
 	//AUTOCODE USERS INICIO
-FIM HORA 23.0
     positionAlloc4->Add (Vector(390.0845146444329,418.3066314522559, 0.0));
     positionAlloc4->Add (Vector(476.37444809118,247.19155144304938, 0.0));
     positionAlloc4->Add (Vector(101.61740655487955,95.78848658174788, 0.0));

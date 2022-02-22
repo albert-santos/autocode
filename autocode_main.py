@@ -3,18 +3,30 @@ import os #biblioteca para obter informações do sistema
 from autocode_smalls import autocode_smalls
 from autocode_users import autocode_users
 
+print('\n')
+linha = '-'*50
+print(linha)
+print('AUTOCODE PARA NS-3:'.center(50))
+print(linha)
+while(1):
+    modo = str(input('Indique o algoritmo (Opcões: SA ou HDSO): '))
 
-#Caminho para as planilhas de usuários e antenas (SA)
-planilha_smalls = 'SA_planilhas/SmallPosition.xls'
-planilha_users = 'SA_planilhas/UserPosition.xls'
+    #Caminho para as planilhas de usuários e antenas (SA)
+    if modo.strip().upper() == 'SA':
+        planilha_smalls = 'SA_planilhas/SmallPosition.xls'
+        planilha_users = 'SA_planilhas/UserPosition.xls'
+        #Diretório que será passado para o NS-3
+        diretorio_ns3 = f'./dir_ns3_SA/SA'
+        break
+    elif modo.strip().upper() == 'HDSO':
+        planilha_smalls = 'HDSO_planilhas/SmallPosition_HDSO.xls'
+        planilha_users = 'HDSO_planilhas/UserPosition_HDSO.xls'
+        #Diretório que será passado para o NS-3
+        diretorio_ns3 = f'./dir_ns3_HDSO/HDSO'
+        break
+    else:
+        print('\nALGORITMO INCORRETO! TENTE NOVAMENTE.\n')
 
-# #Caminho para as planilhas de usuários e antenas (HDSO)
-# planilha_smalls = 'HDSO_planilhas/SmallPosition_HDSO.xls'
-# planilha_users = 'HDSO_planilhas/UserPosition_HDSO.xls'
-
-#Diretório que será passado para o NS-3
-diretorio_ns3 = f'./dir_ns3_SA/SA'
-# diretorio_ns3 = f'./dir_ns3_HDSO/HDSO'
 
 #Gerando txt formatado para a alocação de usuários e de antenas
 autocode_smalls (planilha_smalls)
@@ -45,11 +57,13 @@ content_users = users.readlines()
 
 for hora in range(1, 25):
 
-    # Linha de código do flowmonitor para cada hora (descomentar para o simulated annealing)
-    texto_flowmon = f'	  flowmon->SerializeToXmlFile ("scratch/switch_SA_flowmon/switch_SA{hora}.flowmon", false, false);\n'
+    if modo.strip().upper() == 'SA':
+        # Linha de código do flowmonitor para cada hora (descomentar para o simulated annealing)
+        texto_flowmon = f'	  flowmon->SerializeToXmlFile ("scratch/switch_SA_flowmon/switch_SA{hora}.flowmon", false, false);\n'
 
-    # # Linha de código do flowmonitor para cada hora (descomentar para o HDSO)
-    # texto_flowmon = f'	  flowmon->SerializeToXmlFile ("scratch/switch_HDSO_flowmon/switch_HDSO{hora}.flowmon", false, false);\n'
+    if modo.strip().upper() == 'HDSO':
+        # Linha de código do flowmonitor para cada hora (descomentar para o HDSO)
+        texto_flowmon = f'	  flowmon->SerializeToXmlFile ("scratch/switch_HDSO_flowmon/switch_HDSO{hora}.flowmon", false, false);\n'
 
     # Passando o caminho de um novo arquivo main para a hora atual
     nova_main = f'{cwd}/arquivos_txt/main_{hora}.txt'
@@ -128,7 +142,7 @@ for hora in range(1, 25):
 
     quantidade_smalls = 0
     # Percorre a quantidade de linhas de alocação da hora 
-    for linha in range((inicio_hora + 1), fim_hora+1):
+    for linha in range((inicio_hora + 1), fim_hora):
         # Armazena cada linha de alocação do txt de antenas para a hora
         texto = content_smalls[linha]
         # Insere a linha de alocação acima no content_main
@@ -215,7 +229,7 @@ for hora in range(1, 25):
 
     quantidade_users = 0
     # Percorre a quantidade de linhas de alocação de usuários da hora 
-    for linha in range((inicio_hora_usr + 1), fim_hora_usr+1):
+    for linha in range((inicio_hora_usr + 1), fim_hora_usr):
 
         # Armazena cada linha de alocação do txt de usuários para a hora
         texto = content_users[linha]
@@ -360,8 +374,8 @@ for hora in range(1, 25):
     # --- ADICIONA LINHAS DE CONFIGURAÇÃO DO Nº DE USUÁRIOS E DE RRHS ---
 
     # Armazena cada linha de alocação do txt de usuários para a hora
-    texto_numero_rrhs = f'	  uint16_t numberOfRrhs = {quantidade_smalls+1};\n'
-    texto_numero_users = f'	  uint16_t numberOfNodes = {quantidade_users+1};\n'
+    texto_numero_rrhs = f'	  uint16_t numberOfRrhs = {quantidade_smalls};\n'
+    texto_numero_users = f'	  uint16_t numberOfNodes = {quantidade_users};\n'
     # Insere a linha de alocação acima no content_main
     content_main.insert((inicio_numero_rrhs +1), texto_numero_rrhs)
     content_main.insert((inicio_numero_users +1), texto_numero_users)
