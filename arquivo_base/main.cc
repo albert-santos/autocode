@@ -281,11 +281,23 @@
 	mob.SetPositionAllocator(positionAllocMacro);
 	mob.Install(NodeContainer(enbMacroNodes));
 
-	lteHelper->SetEnbAntennaModelType ("ns3::CosineAntennaModel");
-	lteHelper->SetEnbAntennaModelAttribute ("Orientation", DoubleValue (0));
-	lteHelper->SetEnbAntennaModelAttribute ("Beamwidth", DoubleValue (60));
-	lteHelper->SetEnbAntennaModelAttribute ("MaxGain", DoubleValue (0.0));	
-	NetDeviceContainer enbLteDevsMacro = lteHelper->InstallEnbDevice (enbMacroNodes);
+	// lteHelper->SetEnbAntennaModelType ("ns3::CosineAntennaModel");
+	// lteHelper->SetEnbAntennaModelAttribute ("Orientation", DoubleValue (0));
+	// lteHelper->SetEnbAntennaModelAttribute ("Beamwidth", DoubleValue (60));
+	// lteHelper->SetEnbAntennaModelAttribute ("MaxGain", DoubleValue (0.0));	
+	NetDeviceContainer enbLteDevsMacro; //= lteHelper->InstallEnbDevice (enbMacroNodes.get(0));
+	//NetDeviceContainer devices;
+  	for (NodeContainer::Iterator i = enbMacroNodes.Begin (); i != enbMacroNodes.End (); ++i)
+    	{
+      		Ptr<Node> node = *i;
+			cout <<"nó macro: "<< i << "\n";
+			lteHelper->SetEnbAntennaModelType ("ns3::CosineAntennaModel");
+			lteHelper->SetEnbAntennaModelAttribute ("Orientation", DoubleValue (90*i));
+			lteHelper->SetEnbAntennaModelAttribute ("Beamwidth", DoubleValue (60));
+			lteHelper->SetEnbAntennaModelAttribute ("MaxGain", DoubleValue (0.0));  
+      		Ptr<NetDevice> device = InstallSingleEnbDevice (node);
+      		enbLteDevsMacro.Add (device);
+    	}
 
 	NodeContainer enbNodes;
 	enbNodes.Create(numberOfRrhs);
