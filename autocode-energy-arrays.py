@@ -36,12 +36,12 @@ array_SA_RRH_by_BBU = df_SA_RRH_by_BBU.values
 df_HDSO_users_by_BBU = pd.read_excel(energy_worksheets, sheet_name="HDSO_Users_by_BBU")
 #print(df_HDSO_users_by_BBU)
 array_HDSO_users_by_BBU = df_HDSO_users_by_BBU.values
-# get_formated_arrays(array_HDSO_users_by_BBU, 'HDSO_Users_by_BBU')
+get_formated_arrays(array_HDSO_users_by_BBU, 'HDSO_Users_by_BBU')
 
 df_HDSO_RRH_by_BBU = pd.read_excel(energy_worksheets, sheet_name="HDSO_RRH_by_BBU")
 #print(df_HDSO_RRH_by_BBU)
 array_HDSO_RRH_by_BBU = df_HDSO_RRH_by_BBU.values
-get_formated_arrays(array_HDSO_RRH_by_BBU, 'HDSO_RRH_by_BBU')
+# get_formated_arrays(array_HDSO_RRH_by_BBU, 'HDSO_RRH_by_BBU')
 
 
 
@@ -158,10 +158,10 @@ get_formated_arrays(array_HDSO_RRH_by_BBU, 'HDSO_RRH_by_BBU')
 
 
 # int HDSO_Users_by_BBU_0 [number_of_BBUs] = {11, 14, 14, 16, 14, 19};
-# int HDSO_Users_by_BBU_1 [number_of_BBUs] = {8, 20, 9, 6, 9, 10};    
-# int HDSO_Users_by_BBU_2 [number_of_BBUs] = {13, 8, 6, 9, 8, 8};     
-# int HDSO_Users_by_BBU_3 [number_of_BBUs] = {7, 8, 8, 6, 7, 9};      
-# int HDSO_Users_by_BBU_4 [number_of_BBUs] = {12, 5, 5, 5, 5, 6};     
+# int HDSO_Users_by_BBU_1 [number_of_BBUs] = {8, 20, 9, 6, 9, 10};
+# int HDSO_Users_by_BBU_2 [number_of_BBUs] = {13, 8, 6, 9, 8, 8};
+# int HDSO_Users_by_BBU_3 [number_of_BBUs] = {7, 8, 8, 6, 7, 9};
+# int HDSO_Users_by_BBU_4 [number_of_BBUs] = {12, 5, 5, 5, 5, 6};
 # int HDSO_Users_by_BBU_5 [number_of_BBUs] = {1, 3, 3, 5, 6, 5};
 # int HDSO_Users_by_BBU_6 [number_of_BBUs] = {3, 0, 8, 2, 2, 3};
 # int HDSO_Users_by_BBU_7 [number_of_BBUs] = {1, 2, 0, 0, 0, 0};
@@ -171,6 +171,7 @@ get_formated_arrays(array_HDSO_RRH_by_BBU, 'HDSO_RRH_by_BBU')
 # int HDSO_Users_by_BBU_11 [number_of_BBUs] = {10, 10, 9, 9, 8, 10};
 # int HDSO_Users_by_BBU_12 [number_of_BBUs] = {14, 13, 13, 16, 15, 14};
 # int HDSO_Users_by_BBU_13 [number_of_BBUs] = {16, 16, 16, 14, 13, 16};
+# int HDSO_Users_by_BBU_14 [number_of_BBUs] = {12, 10, 13, 14, 11, 11};
 # int HDSO_Users_by_BBU_15 [number_of_BBUs] = {9, 9, 8, 11, 13, 10};
 # int HDSO_Users_by_BBU_16 [number_of_BBUs] = {10, 12, 11, 12, 10, 18};
 # int HDSO_Users_by_BBU_17 [number_of_BBUs] = {17, 15, 15, 14, 13, 14};
@@ -180,7 +181,6 @@ get_formated_arrays(array_HDSO_RRH_by_BBU, 'HDSO_RRH_by_BBU')
 # int HDSO_Users_by_BBU_21 [number_of_BBUs] = {15, 13, 13, 12, 16, 12};
 # int HDSO_Users_by_BBU_22 [number_of_BBUs] = {15, 16, 16, 16, 15, 18};
 # int HDSO_Users_by_BBU_23 [number_of_BBUs] = {14, 15, 10, 21, 9, 28};
-
 
 # map_HDSO_Users_by_BBU[0] = HDSO_Users_by_BBU_0;
 # map_HDSO_Users_by_BBU[1] = HDSO_Users_by_BBU_1;
