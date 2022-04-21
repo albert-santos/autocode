@@ -15,6 +15,11 @@ def get_formated_arrays (array, array_name):
                 print(f'{array[i,j]}', end='')
                 print('};')
 
+    print('')
+    for i in range(array.shape[0]):
+        print(f'map_{array_name}[{i}] = {array_name}_{i};')
+        
+
 energy_worksheets = 'Energy_worksheets/vetores-para-calculo-de-energia.xlsx'
 
 
@@ -66,6 +71,31 @@ get_formated_arrays(array_HDSO_RRH_by_BBU, 'HDSO_RRH_by_BBU')
 # int SA_Users_by_BBU_22 [number_of_BBUs] = {17, 13, 19, 14, 13, 12};
 # int SA_Users_by_BBU_23 [number_of_BBUs] = {11, 12, 9, 20, 26, 12};
 
+# map_SA_Users_by_BBU[0] = SA_Users_by_BBU_0;
+# map_SA_Users_by_BBU[1] = SA_Users_by_BBU_1;
+# map_SA_Users_by_BBU[2] = SA_Users_by_BBU_2;
+# map_SA_Users_by_BBU[3] = SA_Users_by_BBU_3;
+# map_SA_Users_by_BBU[4] = SA_Users_by_BBU_4;
+# map_SA_Users_by_BBU[5] = SA_Users_by_BBU_5;
+# map_SA_Users_by_BBU[6] = SA_Users_by_BBU_6;
+# map_SA_Users_by_BBU[7] = SA_Users_by_BBU_7;
+# map_SA_Users_by_BBU[8] = SA_Users_by_BBU_8;
+# map_SA_Users_by_BBU[9] = SA_Users_by_BBU_9;
+# map_SA_Users_by_BBU[10] = SA_Users_by_BBU_10;
+# map_SA_Users_by_BBU[11] = SA_Users_by_BBU_11;
+# map_SA_Users_by_BBU[12] = SA_Users_by_BBU_12;
+# map_SA_Users_by_BBU[13] = SA_Users_by_BBU_13;
+# map_SA_Users_by_BBU[14] = SA_Users_by_BBU_14;
+# map_SA_Users_by_BBU[15] = SA_Users_by_BBU_15;
+# map_SA_Users_by_BBU[16] = SA_Users_by_BBU_16;
+# map_SA_Users_by_BBU[17] = SA_Users_by_BBU_17;
+# map_SA_Users_by_BBU[18] = SA_Users_by_BBU_18;
+# map_SA_Users_by_BBU[19] = SA_Users_by_BBU_19;
+# map_SA_Users_by_BBU[20] = SA_Users_by_BBU_20;
+# map_SA_Users_by_BBU[21] = SA_Users_by_BBU_21;
+# map_SA_Users_by_BBU[22] = SA_Users_by_BBU_22;
+# map_SA_Users_by_BBU[23] = SA_Users_by_BBU_23;
+
 
 
 # int SA_RRH_by_BBU_0 [number_of_BBUs] = {1, 2, 1, 1, 1, 1};
@@ -92,6 +122,32 @@ get_formated_arrays(array_HDSO_RRH_by_BBU, 'HDSO_RRH_by_BBU')
 # int SA_RRH_by_BBU_21 [number_of_BBUs] = {1, 1, 1, 1, 2, 1};
 # int SA_RRH_by_BBU_22 [number_of_BBUs] = {1, 1, 1, 1, 2, 2};
 # int SA_RRH_by_BBU_23 [number_of_BBUs] = {1, 1, 1, 1, 1, 1};
+
+
+# map_SA_RRH_by_BBU[0] = SA_RRH_by_BBU_0;
+# map_SA_RRH_by_BBU[1] = SA_RRH_by_BBU_1;
+# map_SA_RRH_by_BBU[2] = SA_RRH_by_BBU_2;
+# map_SA_RRH_by_BBU[3] = SA_RRH_by_BBU_3;
+# map_SA_RRH_by_BBU[4] = SA_RRH_by_BBU_4;
+# map_SA_RRH_by_BBU[5] = SA_RRH_by_BBU_5;
+# map_SA_RRH_by_BBU[6] = SA_RRH_by_BBU_6;
+# map_SA_RRH_by_BBU[7] = SA_RRH_by_BBU_7;
+# map_SA_RRH_by_BBU[8] = SA_RRH_by_BBU_8;
+# map_SA_RRH_by_BBU[9] = SA_RRH_by_BBU_9;
+# map_SA_RRH_by_BBU[10] = SA_RRH_by_BBU_10;
+# map_SA_RRH_by_BBU[11] = SA_RRH_by_BBU_11;
+# map_SA_RRH_by_BBU[12] = SA_RRH_by_BBU_12;
+# map_SA_RRH_by_BBU[13] = SA_RRH_by_BBU_13;
+# map_SA_RRH_by_BBU[14] = SA_RRH_by_BBU_14;
+# map_SA_RRH_by_BBU[15] = SA_RRH_by_BBU_15;
+# map_SA_RRH_by_BBU[16] = SA_RRH_by_BBU_16;
+# map_SA_RRH_by_BBU[17] = SA_RRH_by_BBU_17;
+# map_SA_RRH_by_BBU[18] = SA_RRH_by_BBU_18;
+# map_SA_RRH_by_BBU[19] = SA_RRH_by_BBU_19;
+# map_SA_RRH_by_BBU[20] = SA_RRH_by_BBU_20;
+# map_SA_RRH_by_BBU[21] = SA_RRH_by_BBU_21;
+# map_SA_RRH_by_BBU[22] = SA_RRH_by_BBU_22;
+# map_SA_RRH_by_BBU[23] = SA_RRH_by_BBU_23;
 
 
 
@@ -126,6 +182,34 @@ get_formated_arrays(array_HDSO_RRH_by_BBU, 'HDSO_RRH_by_BBU')
 # int HDSO_Users_by_BBU_23 [number_of_BBUs] = {14, 15, 10, 21, 9, 28};
 
 
+# map_HDSO_Users_by_BBU[0] = HDSO_Users_by_BBU_0;
+# map_HDSO_Users_by_BBU[1] = HDSO_Users_by_BBU_1;
+# map_HDSO_Users_by_BBU[2] = HDSO_Users_by_BBU_2;
+# map_HDSO_Users_by_BBU[3] = HDSO_Users_by_BBU_3;
+# map_HDSO_Users_by_BBU[4] = HDSO_Users_by_BBU_4;
+# map_HDSO_Users_by_BBU[5] = HDSO_Users_by_BBU_5;
+# map_HDSO_Users_by_BBU[6] = HDSO_Users_by_BBU_6;
+# map_HDSO_Users_by_BBU[7] = HDSO_Users_by_BBU_7;
+# map_HDSO_Users_by_BBU[8] = HDSO_Users_by_BBU_8;
+# map_HDSO_Users_by_BBU[9] = HDSO_Users_by_BBU_9;
+# map_HDSO_Users_by_BBU[10] = HDSO_Users_by_BBU_10;
+# map_HDSO_Users_by_BBU[11] = HDSO_Users_by_BBU_11;
+# map_HDSO_Users_by_BBU[12] = HDSO_Users_by_BBU_12;
+# map_HDSO_Users_by_BBU[13] = HDSO_Users_by_BBU_13;
+# map_HDSO_Users_by_BBU[14] = HDSO_Users_by_BBU_14;
+# map_HDSO_Users_by_BBU[15] = HDSO_Users_by_BBU_15;
+# map_HDSO_Users_by_BBU[16] = HDSO_Users_by_BBU_16;
+# map_HDSO_Users_by_BBU[17] = HDSO_Users_by_BBU_17;
+# map_HDSO_Users_by_BBU[18] = HDSO_Users_by_BBU_18;
+# map_HDSO_Users_by_BBU[19] = HDSO_Users_by_BBU_19;
+# map_HDSO_Users_by_BBU[20] = HDSO_Users_by_BBU_20;
+# map_HDSO_Users_by_BBU[21] = HDSO_Users_by_BBU_21;
+# map_HDSO_Users_by_BBU[22] = HDSO_Users_by_BBU_22;
+# map_HDSO_Users_by_BBU[23] = HDSO_Users_by_BBU_23;
+
+
+
+
 # int HDSO_RRH_by_BBU_0 [number_of_BBUs] = {2, 1, 1, 4, 2, 2};
 # int HDSO_RRH_by_BBU_1 [number_of_BBUs] = {1, 3, 2, 2, 1, 1};
 # int HDSO_RRH_by_BBU_2 [number_of_BBUs] = {2, 2, 2, 3, 2, 1};
@@ -150,3 +234,29 @@ get_formated_arrays(array_HDSO_RRH_by_BBU, 'HDSO_RRH_by_BBU')
 # int HDSO_RRH_by_BBU_21 [number_of_BBUs] = {3, 3, 2, 2, 1, 2};
 # int HDSO_RRH_by_BBU_22 [number_of_BBUs] = {2, 2, 3, 1, 3, 2};
 # int HDSO_RRH_by_BBU_23 [number_of_BBUs] = {3, 1, 2, 3, 1, 2};
+
+
+# map_HDSO_RRH_by_BBU[0] = HDSO_RRH_by_BBU_0;
+# map_HDSO_RRH_by_BBU[1] = HDSO_RRH_by_BBU_1;
+# map_HDSO_RRH_by_BBU[2] = HDSO_RRH_by_BBU_2;
+# map_HDSO_RRH_by_BBU[3] = HDSO_RRH_by_BBU_3;
+# map_HDSO_RRH_by_BBU[4] = HDSO_RRH_by_BBU_4;
+# map_HDSO_RRH_by_BBU[5] = HDSO_RRH_by_BBU_5;
+# map_HDSO_RRH_by_BBU[6] = HDSO_RRH_by_BBU_6;
+# map_HDSO_RRH_by_BBU[7] = HDSO_RRH_by_BBU_7;
+# map_HDSO_RRH_by_BBU[8] = HDSO_RRH_by_BBU_8;
+# map_HDSO_RRH_by_BBU[9] = HDSO_RRH_by_BBU_9;
+# map_HDSO_RRH_by_BBU[10] = HDSO_RRH_by_BBU_10;
+# map_HDSO_RRH_by_BBU[11] = HDSO_RRH_by_BBU_11;
+# map_HDSO_RRH_by_BBU[12] = HDSO_RRH_by_BBU_12;
+# map_HDSO_RRH_by_BBU[13] = HDSO_RRH_by_BBU_13;
+# map_HDSO_RRH_by_BBU[14] = HDSO_RRH_by_BBU_14;
+# map_HDSO_RRH_by_BBU[15] = HDSO_RRH_by_BBU_15;
+# map_HDSO_RRH_by_BBU[16] = HDSO_RRH_by_BBU_16;
+# map_HDSO_RRH_by_BBU[17] = HDSO_RRH_by_BBU_17;
+# map_HDSO_RRH_by_BBU[18] = HDSO_RRH_by_BBU_18;
+# map_HDSO_RRH_by_BBU[19] = HDSO_RRH_by_BBU_19;
+# map_HDSO_RRH_by_BBU[20] = HDSO_RRH_by_BBU_20;
+# map_HDSO_RRH_by_BBU[21] = HDSO_RRH_by_BBU_21;
+# map_HDSO_RRH_by_BBU[22] = HDSO_RRH_by_BBU_22;
+# map_HDSO_RRH_by_BBU[23] = HDSO_RRH_by_BBU_23;
