@@ -1,4 +1,5 @@
 //-----------------------------------------------------Include
+// Carregamento de módulos através da inclusão dos arquivos
 	#include <fstream>
 	#include <string.h>
 	#include "ns3/csma-helper.h"
@@ -33,28 +34,48 @@
 	#include <stdio.h>
 	#include <stdlib.h>
 	//#include <ns3/my-epc-helper.h>
+
 	using namespace ns3;
 
+	/* Criação de dicionários
+		mymap relaciona o IMSI (International mobile subscriber identity) do usuário e o seu IP (Internet Protocol)
+		mymap2 relaciona o IMSI (International mobile subscriber identity) com a RRH_ID a qual está conectado
+	*/
 	std::map <uint64_t, Ipv4Address> mymap;
 	std::map <uint64_t, uint64_t> mymap2;
-//-----------------------------------------------------Funções
 
+//-----------------------------------------------------Funções
+	/* Função para o obter o mymap (IMSI X IP)
+		Foi adicionado o método RecvMymap no código do epcHelper
+		RecvMymap retorna o dicionário com a relação (IMSI X IP) 
+	*/
 	void CallMap (Ptr<PointToPointEpcHelper>  epcHelper){
 		mymap = epcHelper->RecvMymap();
 		// for (std::map<uint64_t, Ipv4Address >::iterator it=mymap.begin(); it!=mymap.end(); ++it)
 		// std::cout <<"imsi: "<< it->first << " ip address: " << it->second << '\n';
 	}
 
+	/* Função para alocar as RRHs às BBUs 
+		Utiliza o MyCtrl gerado pelo OFSwitch13
+		O método de alocação toma como argumento dois objetos do tipo map,
+  		relacionando imsi a IP e imsi a cellid, respectivamente.
+  		O objetivo desta função é relacionar UE, ENB e BBU,
+  		através da construção de um map relacionando ip a bbu antes de começar o tráfego de dados.
+	*/
 	void SendToController(Ptr<MyController> MyCtrl){
 		MyCtrl->Allocation(mymap,mymap2);
 		//for (std::map<uint64_t, Ipv4Address>::iterator it=mymap.begin(); it!=mymap.end(); ++it)
 		//std::cout <<"imsi: "<< it->first << " ip address: " << it->second << '\n';
 	}
- void NotifyConnectionEstablishedUe (std::string context,
+
+	/* Função que cria a relção IMSI X Cellid
+		Após a conexão ser estabelecida podemos obter a relação
+	*/
+ 	void NotifyConnectionEstablishedUe (std::string context,
 																uint64_t imsi,
 																uint16_t cellid,
 																uint16_t rnti)
- {
+ 	{
 	 //std::cout << Simulator::Now ().GetSeconds () << " " << context
 	 //          << " UE IMSI " << imsi
 	 //          << ": connected to CellId " << cellid
@@ -64,7 +85,7 @@
 		 mymap2[imsi]=cellid;
 		//  for (std::map<uint64_t, uint64_t>::iterator it=mymap2.begin(); it!=mymap2.end(); ++it)
 		//  std::cout <<"imsi: "<< it->first << " connected to cellid: " << it->second << '\n';
- }
+ 	}
 //-----------------------------------------------------Configurações
  int main (int argc, char *argv[])
  {
@@ -115,15 +136,36 @@
 	cmd.Parse(argc, argv);
 
 	Mac48Address::Allocate ();
+
+	// Cria  o helper(Assistente) para o LTE
 	Ptr<LteHelper> lteHelper = CreateObject<LteHelper> ();
+
+	/*Cria um assistente EPC(Evolved Packet Core) para criar uma rede EPC com links ponto a ponto
+	  no Backhaul da rede */ 
 	Ptr<PointToPointEpcHelper>  epcHelper = CreateObject<PointToPointEpcHelper> ();
+
+	// Informa para o assistente LTE qual é o assistente EPC
 	lteHelper->SetEpcHelper (epcHelper);
+
+	/* Configurações do EPC
+		S1uLinkMtu: indica o MTU (Maximum Transmission Unit) para a interface S1-U em bytes. S1-U é a interface
+		entre o EPC (especificamente o SGW-Serving Gateway) com as eNB (Evolved EnodeB). 
+		S1uLinkDelay: indica o delay que será utillizado na interface S1-U
+		S1uLinkDataRate: indica a taxa de dados para ser usada no link S1-U.
+	*/
 	epcHelper->SetAttribute ("S1uLinkMtu", UintegerValue(7000));
 	epcHelper->SetAttribute ("S1uLinkDelay", TimeValue(Seconds(0.00015)));
 	epcHelper->SetAttribute ("S1uLinkDataRate", DataRateValue (DataRate ("70Gb/s")));
+
+	/* Configurações do LTE
+		SetSchedulerType: indica o tipo de scheduler que será utillizado nas eNBs.
+		SetHandoverAlgorithmType: indica o tipo de handover que será utilizado pelas eNBs.
+		ServingCellThreshold: Se o RSRQ (Reference Signal Received Quality) da célula servidora for pior que esse limite, 
+		 as células vizinhas serão consideradas para transferência.
+		NeighbourCellOffset: OffSet (diferença de RSRQ) mínimo entre a célula servidora e a melhor célula vizinha para acionar o handover.
+	*/
 	lteHelper->SetSchedulerType ("ns3::RrFfMacScheduler");
 	//lteHelper->SetHandoverAlgorithmType ("ns3::NoOpHandoverAlgorithm"); // disable automatic handover
-	
 	lteHelper->SetHandoverAlgorithmType ("ns3::A2A4RsrqHandoverAlgorithm");
 	lteHelper->SetHandoverAlgorithmAttribute ("ServingCellThreshold",
                                           UintegerValue (30));
@@ -134,55 +176,121 @@
 	ConfigStore inputConfig;
 	inputConfig.ConfigureDefaults();
 
+	/* GlobalValue::Bind realiza uma busca em todas variáveis globais para encontrar a variável indicada ("ChecksumEnabled")
+		Ao encontrar, configura o seu valor de acordo com o que foi passado (BooleanValue (true))
+	*/
 	GlobalValue::Bind ("ChecksumEnabled", BooleanValue (true));
+
+	/* Configurando a periodicidade do SRS (Sounding Reference Signal)
+		SRS é um sinal de referência que o UE (User Equipment) transmite no sentido de uplink para as eNBs.
+		As eNBs utilizam esse sinal para estimar a qualidade do canal de uplink em uma largura de banda mais ampla. 
+		SrsPeriodicity: indica o intervalo de tempo (ms) em que o UE envia o SRS para a eNB
+	*/
 	Config::SetDefault ("ns3::LteEnbRrc::SrsPeriodicity", UintegerValue (160));
 	//Config::SetDefault ("ns3::OFSwitch13Device::PipelineCapacity", DataRateValue (DataRate ("100Gb/s")));
+
+	// Defina o tipo de modelo de perda de caminho a ser usado para os canais DL(Dowlink) e UL(Uplink).
 	lteHelper->SetAttribute("PathlossModel", StringValue("ns3::FriisPropagationLossModel"));
 
 	// parse again so you can override default values from the command line
 	cmd.Parse(argc, argv);
 
+	// Obtém o nó PGW (Packet Data Network Gateway) do EPC
 	Ptr<Node> pgw = epcHelper->GetPgwNode ();
 	//Mac48Address::Allocate ();
-	// Create a single RemoteHost
+
 //-----------------------------------------------------Nós
+	// Cria contêineres (conjunto) de nós
 	NodeContainer remoteHostContainer;
 	NodeContainer mainswitchC;
 	NodeContainer topswitchC;
+
+	//Indica a quantidade nós que o contêiner vai ter
 	mainswitchC.Create (1);
 	topswitchC.Create (1);
+	
+	//Obtém o ponteiro do primeiro nó no contêiner
 	Ptr<Node> topswitch = topswitchC.Get(0);
 	Ptr<Node> mainswitch = mainswitchC.Get(0);
+
+	//cria o contêiner de nós que representarão as BBUs
 	NodeContainer midswitch;
 	midswitch.Create (6);
-	remoteHostContainer.Create (1);
+
+	/* Configuração do remoteHost
+		Indica a quantidade de nós que devem ser criados no remoteHostContainer
+		Obtém o ponteiro do nó criado no contêiner
+		Cria um assistem de pilhas protocolos de internet (InternetStackHelper)
+		 *InternetStackHelper é um assistente de topologia inter-rede
+		Instala os as pilhas protocolos da Internet (TCP,UDP-User Datagram Protocol, IP, etc) em cada nó do contêiner remoteHostContainer
+	*/remoteHostContainer.Create (1);
 	Ptr<Node> remoteHost = remoteHostContainer.Get (0);
 	InternetStackHelper internet;
 	internet.Install (remoteHostContainer);
 //-----------------------------------------------------Links
+
+	/*Construção de um conjunto de objetos CsmaNetDevice
+	  CSMA (Carrier Sense Multiple Access) foi desenvolvido para minimizar a probabilidade de colisão e, assim, aumentar o desempenho.
+	*/
+	//Cria um assistente CSMA
 	CsmaHelper csmaHelper;
+	//Configura a taxa de dados do canal
 	csmaHelper.SetChannelAttribute ("DataRate", DataRateValue (DataRate ("1Gbps")));//600Gbps
+	//Configura o delay do canal
 	csmaHelper.SetChannelAttribute ("Delay", TimeValue (NanoSeconds (15)));//10
+	//Configura o MTU de nível MAC (Media Access Control)
 	csmaHelper.SetDeviceAttribute ("Mtu", UintegerValue (9000));
+	//Anexa uma fila ao CsmaNetDevice. Os parâmetros do SetQueue indicam 
+	//o tipo de fila, o atributo a ser configurado na fila e o valor do atributo a ser configurado
 	csmaHelper.SetQueue ("ns3::DropTailQueue","MaxPackets", UintegerValue (65536));
+
+	// Cria contêineres que possuem um vetor de ponteiros ns3::NetDevice
 	NetDeviceContainer hostDevices;
 	NetDeviceContainer switchPorts[8];
+
+	// Cria um contêiner de nós por meio da concatenação dos NodeContainers remoteHost e topswitch.
 	NodeContainer pair (remoteHost, topswitch);
+	/*Criação de um canal CSMA entre o remoteHost e topswitch  
+		O método install cria um ns3::CsmaChannel com os atributos configurados por CsmaHelper::SetChannelAttribute.
+		Retorna um contêiner contendo os dispositivos de rede adicionados.
+	*/
 	NetDeviceContainer link = csmaHelper.Install (pair);
+	// Anexa o conteúdo do primeiro dispositivo (remoteHost) do NetDeviceContainer link ao final do contêiner hostDevices.
 	hostDevices.Add (link.Get (0));
+	// Anexa o conteúdo do segundo dispositivo (topswitch) do NetDeviceContainer link ao indice 0 do contêiner switchPorts.
 	switchPorts[0].Add (link.Get (1));
+
+
+	// Contêiner pair passa a ser a concatenação do topswitch com o primeiro dispositivo (Primeira BBU) do contêiner midswitch
 	pair = NodeContainer(topswitch,midswitch.Get(0));
+	// link passa a ser um canal CSMA entre o topswitch e o  primeiro dispositivo (Primeira BBU) do contêiner midswitch
 	link = csmaHelper.Install (pair);
+	// Anexa o conteúdo do primeiro dispositivo (topswitch) do NetDeviceContainer link ao indice 0 do contêiner switchPorts.
 	switchPorts[0].Add (link.Get (0));
+	// Anexa o conteúdo do segundo dispositivo (midswitch[0]- BBU 0) do NetDeviceContainer link ao indice 1 do contêiner switchPorts.
 	switchPorts[1].Add (link.Get (1));
+
+
+	// Contêiner pair passa a ser a concatenação do primeiro dispositivo (Primeira BBU) do contêiner midswitch com o mainswitch
 	pair =NodeContainer(midswitch.Get(0), mainswitch);
+	// link passa a ser um canal CSMA entre o primeiro dispositivo (Primeira BBU) do contêiner midswitch e o mainswitch 
 	link = csmaHelper.Install (pair);
+	// Anexa o conteúdo do primeiro dispositivo (midswitch[0]- BBU 0) do NetDeviceContainer link ao indice 1 do contêiner switchPorts.
 	switchPorts[1].Add (link.Get (0));
+	// Anexa o conteúdo do segundo dispositivo (mainswitch) do NetDeviceContainer link ao indice 3 do contêiner switchPorts.
 	switchPorts[3].Add (link.Get (1));
+
+
+	// Contêiner pair passa a ser a concatenação do primeiro dispositivo (Primeira BBU) do contêiner midswitch com o mainswitch
 	pair = NodeContainer(topswitch,midswitch.Get(1));
+	// link passa a ser um canal CSMA entre o topswitch e o segundo dispositivo (Segunda BBU) do contêiner midswitch 
 	link = csmaHelper.Install (pair);
+	// Anexa o conteúdo do primeiro dispositivo (topswitch) do NetDeviceContainer link ao indice 0 do contêiner switchPorts.
 	switchPorts[0].Add (link.Get (0));
+	// Anexa o conteúdo do segundo dispositivo (midswitch[1]- BBU 1) do NetDeviceContainer link ao indice 2 do contêiner switchPorts.
 	switchPorts[2].Add (link.Get (1));
+
+
 	pair =NodeContainer(midswitch.Get(1), mainswitch);
 	link = csmaHelper.Install (pair);
 	switchPorts[2].Add (link.Get (0));
@@ -192,6 +300,7 @@
 	link = csmaHelper.Install (pair);
 	switchPorts[0].Add (link.Get (0));
 	switchPorts[4].Add (link.Get (1));
+
 	pair =NodeContainer(midswitch.Get(2), mainswitch);
 	link = csmaHelper.Install (pair);
 	switchPorts[4].Add (link.Get (0));
@@ -201,6 +310,7 @@
 	link = csmaHelper.Install (pair);
 	switchPorts[0].Add (link.Get (0));
 	switchPorts[5].Add (link.Get (1));
+
 	pair =NodeContainer(midswitch.Get(3), mainswitch);
 	link = csmaHelper.Install (pair);
 	switchPorts[5].Add (link.Get (0));
@@ -210,6 +320,7 @@
 	link = csmaHelper.Install (pair);
 	switchPorts[0].Add (link.Get (0));
 	switchPorts[6].Add (link.Get (1));
+
 	pair =NodeContainer(midswitch.Get(4), mainswitch);
 	link = csmaHelper.Install (pair);
 	switchPorts[6].Add (link.Get (0));
@@ -219,6 +330,7 @@
 	link = csmaHelper.Install (pair);
 	switchPorts[0].Add (link.Get (0));
 	switchPorts[7].Add (link.Get (1));
+
 	pair =NodeContainer(midswitch.Get(5), mainswitch);
 	link = csmaHelper.Install (pair);
 	switchPorts[7].Add (link.Get (0));
@@ -229,20 +341,55 @@
 	hostDevices.Add (link.Get (0));
 	switchPorts[3].Add (link.Get (1));
 
+	/* Ao final teremos a seguinte configuração
+
+														remoteHost
+															|
+														Topswitch
+
+							|				|				|				|				|				|
+						Midswitch[0]	Midswitch[1]	Midswitch[2]	Midswitch[3]	Midswitch[4]	Midswitch[5]
+							|				|				|				|				|				|
+															
+														Mainswithc
+															|
+														   PGW
+
+
+		Cada uma da BBUs, representadas pelo Midswitch, são conectadas ao topswitch e ao mainswitch
+		O topswitch por sua vez, se conecta com o remoteHost onde se encontra a parte das aplicações
+		E o Mainswitch está conectado ao PGW do núcle da rede LTE 
+	*/
+
+
+//-----------------------------------------------------Switchs
 	// Create the controller node
 	Ptr<Node> controllerNode = CreateObject<Node> ();
 	Ptr<Node> controllerNode2 = CreateObject<Node> ();
 
 	//Ptr<OFSwitch13InternalHelper> of13Helper = CreateObject<OFSwitch13InternalHelper> ();
 	//Ptr<OFSwitch13LearningController> learnCtrl = CreateObject<OFSwitch13LearningController> ();
+	
+	// Contém um vetor de ponteiros ns3::OFSwitch13Device
 	OFSwitch13DeviceContainer ofSwitchDevices;
 	//of13Helper->InstallController (controllerNode, learnCtrl);
 
-	// Configure the OpenFlow network domain
+	/* Configure the OpenFlow network domain
+		OFSwitch13InternalHelper: Este auxiliar estende a classe base e pode ser instanciado para criar e configurar um domínio de rede OpenFlow 1.3 
+		 composto por um ou mais switches OpenFlow conectados a um ou vários controladores OpenFlow simulados internos.
+	*/
 	Ptr<OFSwitch13InternalHelper> ofMyCtrlHelper = CreateObject<OFSwitch13InternalHelper> ();
+
+	// Cria o controlador MyCrrl baseado na classe MyController do OFSwich13
 	Ptr<MyController> MyCtrl = CreateObject<MyController> ();
+	//Instala o aplicativo do controlador MyCtrl no nó controllerNode2
 	ofMyCtrlHelper->InstallController (controllerNode2, MyCtrl);
 
+	/* Criando Dispositivos OpenFlow
+		InstallSwitch: cria um dispositivo OpenFlow e o agrega ao nó do switch.
+			Primeiro Parâmetro: nó do switch onde instalar o dispositivo OpenFlow.
+			Segundo Parâmetro: dispositivos a serem adicionados como portas de switch físico.
+	*/
 	ofSwitchDevices.Add (ofMyCtrlHelper->InstallSwitch (mainswitch, switchPorts[3]));
 	ofSwitchDevices.Add (ofMyCtrlHelper->InstallSwitch (topswitch, switchPorts[0]));
 	ofSwitchDevices.Add (ofMyCtrlHelper->InstallSwitch (midswitch.Get(0), switchPorts[1]));
@@ -251,49 +398,104 @@
 	ofSwitchDevices.Add (ofMyCtrlHelper->InstallSwitch (midswitch.Get(3), switchPorts[5]));
 	ofSwitchDevices.Add (ofMyCtrlHelper->InstallSwitch (midswitch.Get(4), switchPorts[6]));
 	ofSwitchDevices.Add (ofMyCtrlHelper->InstallSwitch (midswitch.Get(5), switchPorts[7]));
-	ofMyCtrlHelper->CreateOpenFlowChannels ();
 
+	// CreateOpenFlowChannels: Este método virtual deve interconectar todos os switches a todos os controladores 
+	//	instalados por este assistente e iniciar as conexões individuais do canal OpenFlow
+	ofMyCtrlHelper->CreateOpenFlowChannels ();
 	//of13Helper->CreateOpenFlowChannels ();
 
+//-----------------------------------------------------Endereços IP
+
+	// Uma classe assistente para facilitar a atribuição simples de endereços IPv4
 	Ipv4AddressHelper ipv4h;
+	// Defina o número de rede base, máscara de rede e endereço base.
 	ipv4h.SetBase ("1.0.0.0", "255.255.255.0","0.0.0.2");
+	/* 
+		Assign: Atribui endereços IP aos dispositivos de rede especificados no contêiner hostDevices com base no 
+		prefixo de rede e endereços atuais.
+		*O hostDevices possui o remoteHost e o PGW. Ou seja, esse dois vão receber endereços do tipo 1.0.0.2 e 1.0.0.3
+	*/
 	Ipv4InterfaceContainer internetIpIfaces = ipv4h.Assign (hostDevices);
+	// Obtém o endereço IP do remoteHost
 	Ipv4Address remoteHostAddr = internetIpIfaces.GetAddress (0);
+	// Obtém o endereço IP do PGW
 	Ipv4Address pgwAddr = internetIpIfaces.GetAddress (1);
 
+	//Classe assistente que adiciona objetos ns3::Ipv4StaticRouting.
 	Ipv4StaticRoutingHelper ipv4RoutingHelper;
+
+	/* GetStaticRouting:
+		Tente encontrar o protocolo de roteamento estático como o protocolo de roteamento principal ou 
+		 na lista de protocolos de roteamento associados ao IPv4 fornecido (protocolos do remoteHost).
+		Retorna um ponteiro do tipo Ipv4StaticRouting ou 0 se não for encontrado
+	*/
 	Ptr<Ipv4StaticRouting> remoteHostStaticRouting = ipv4RoutingHelper.GetStaticRouting (remoteHost->GetObject<Ipv4> ());
+	
+	/*  AddNetworkRouteTo:
+			Adiciona uma rota de rede à tabela de roteamento estático.
+			Parâmetros:
+				network: A rede Ipv4Address para esta rota.
+				networkMask: O Ipv4Mask da rede.
+				nextHop: O próximo salto na rota para a rede de destino.
+				interface: O índice de interface de rede usado para enviar pacotes para o destino.
+				métrica: Métrica de rota no caso de várias rotas para o mesmo destino
+	*/
 	remoteHostStaticRouting->AddNetworkRouteTo (Ipv4Address ("7.0.0.0"), Ipv4Mask ("255.0.0.0"),pgwAddr, 1,1);
 	//remoteHostStaticRouting->SetDefaultRoute (internetIpIfaces.GetAddress(1), 1,1);
 
+
+//-----------------------------------------------------Macro BS (Base Station)
+	// Para simular uma macro é necessário criar quatro eNBs sendo que cada eNB terá uma antena. Cada antena terá uma direção diferente
+
+	// Cria um contêiner para os nós da Macro
 	NodeContainer enbMacroNodes;
+	// Indica a quantidade de nós do contêiner
 	enbMacroNodes.Create(4);
-	// Mobilidade
+
+
+	/* ListPositionAllocator:
+		Aloca posições de uma lista determinística especificada pelo usuário.
+	*/
 	Ptr<ListPositionAllocator> positionAllocMacro = CreateObject<ListPositionAllocator> ();
+	
+	/* Mobilidade da Macro
+		Classe assistente usada para atribuir posições e modelos de mobilidade aos nós.
+		SetMobilityModel: define o modelo de mobilidade, nesse caso é constante (ns3::ConstantPositionMobilityModel)
+	*/
 	MobilityHelper mob;
 	mob.SetMobilityModel("ns3::ConstantPositionMobilityModel");
-
+	/* Posição dos nós da macro
+		positionAllocMacro->Add: Adiciona uma posição (indicada pelo Vector) à lista de posições (positionAllocMacro).
+		A macro possui 4 nós que devem estar na mesma posição (250,  250, 0).
+		A macro possui 4 nós porque cada nó terá uma antena que apontará para uma direção para poder cobrir um espaço de 360°
+	*/
 	positionAllocMacro->Add (Vector (  250,  250, 0));
 	positionAllocMacro->Add (Vector (  250,  250, 0));
 	positionAllocMacro->Add (Vector (  250,  250, 0));
 	positionAllocMacro->Add (Vector (  250,  250, 0));
 
+	// Indica as posições para o helper de mobilidade
 	mob.SetPositionAllocator(positionAllocMacro);
+	// Instala as configurações de mobilidade, feita pelo assistente mob, nos nós da Macro 
 	mob.Install(NodeContainer(enbMacroNodes));
 
-	// lteHelper->SetEnbAntennaModelType ("ns3::CosineAntennaModel");
-	// lteHelper->SetEnbAntennaModelAttribute ("Orientation", DoubleValue (0));
-	// lteHelper->SetEnbAntennaModelAttribute ("Beamwidth", DoubleValue (60));
-	// lteHelper->SetEnbAntennaModelAttribute ("MaxGain", DoubleValue (0.0));	
-	NetDeviceContainer enbLteDevsMacro; //= lteHelper->InstallEnbDevice (enbMacroNodes.get(0));
-	//NetDeviceContainer devices;
-
+	// Cria um contêiner para os dispositivos de rede da macro
+	NetDeviceContainer enbLteDevsMacro;
     
+	/* Configurando a direção das antenas da macro
+		Cada antena terá uma direção diferente em graus (0°, 90°, 180°, 270° e 360°)
+	*/
+	// Define o tipo da antena 1
 	lteHelper->SetEnbAntennaModelType ("ns3::CosineAntennaModel");
+	// Define a orientação (°) da antena 1
 	lteHelper->SetEnbAntennaModelAttribute ("Orientation", DoubleValue (0));
+	// Beamwidth: determina a intensidade do sinal esperada dada a direção e a distância de radiação de uma antena
 	lteHelper->SetEnbAntennaModelAttribute ("Beamwidth", DoubleValue (60));
-	lteHelper->SetEnbAntennaModelAttribute ("MaxGain", DoubleValue (0.0));  
+	// Maxgain: O ganho (dB) na mira da antena (a direção do ganho máximo)
+	lteHelper->SetEnbAntennaModelAttribute ("MaxGain", DoubleValue (0.0));
+	// Instala um dispositivo de rede do tipo LteEnbNetDevice em um nó do contêiner enbMacroNodes
     NetDeviceContainer device1 = lteHelper->InstallEnbDevice (enbMacroNodes.Get(0));
+	// Adiciona o dispositivo no contêiner de dispositivos da macro
     enbLteDevsMacro.Add (device1);
 
 	lteHelper->SetEnbAntennaModelType ("ns3::CosineAntennaModel");
@@ -317,15 +519,22 @@
     NetDeviceContainer device4 = lteHelper->InstallEnbDevice (enbMacroNodes.Get(3));
     enbLteDevsMacro.Add (device4);
 
-	NodeContainer enbNodes;
-	enbNodes.Create(numberOfRrhs);
 //-----------------------------------------------------Mobilidade
+
+	// Criando contêiner para as eNBs
+	NodeContainer enbNodes;
+	// Indica a quantidade de nós que devem ser criados
+	enbNodes.Create(numberOfRrhs);
+	
+	// Cria a lista para armazenar posições das eNBs
 	Ptr<ListPositionAllocator> positionAlloc = CreateObject<ListPositionAllocator> ();
 	// for (uint16_t i = 0; i < numberOfRrhs; i++)
 	// 	{
 	// 		positionAlloc->Add (Vector(50,distance * i , 0));
 	// 	}
+	// Cria um assistente de mobilidade
 	MobilityHelper mobility;
+	// Configura o modelo de mobilidade (constante)
 	mobility.SetMobilityModel("ns3::ConstantPositionMobilityModel");
 
 	// mobility.SetPositionAllocator ("ns3::GridPositionAllocator",
@@ -336,7 +545,7 @@
     //                              "GridWidth", UintegerValue (4),
     //                              "LayoutType", StringValue ("RowFirst"));
 	
-	positionAlloc->Add (Vector (  300,  300, 0)); //Macro no centro do cenário
+	// Indica as posições das eNBs
 	//AUTOCODE SMALLS INICIO
     positionAlloc->Add (Vector (500.0,166.66666666666666, 0.0));
     positionAlloc->Add (Vector (333.3333333333333,500.0, 0.0));
@@ -346,10 +555,17 @@
     positionAlloc->Add (Vector (166.66666666666666,166.66666666666666, 0.0));
     positionAlloc->Add (Vector (0.0,166.66666666666666, 0.0));
 	//AUTOCODE SMALLS FIM
+	// Passa a lista de posições para o assistente de mobilidade
 	mobility.SetPositionAllocator(positionAlloc);
+	// Instala as configurações de mobilidade nos nós das eNBs (enbNodes)
 	mobility.Install(enbNodes);
 
+	// Instala dispositivos LTE nos nós enbNodes
+	NetDeviceContainer enbLteDevs = lteHelper->InstallEnbDevice (enbNodes);
+
+	// // Cria a lista para armazenar posições do remoteHost e dos switchs
 	Ptr<ListPositionAllocator> positionAlloc2 = CreateObject<ListPositionAllocator> ();
+	// Indica as posições
 	positionAlloc2->Add (Vector (  0,  10, 0));  // Server
 	positionAlloc2->Add (Vector (  10, 10, 0));  // top
 	positionAlloc2->Add (Vector ( 25, 10, 0));  // mid1
@@ -359,29 +575,43 @@
 	positionAlloc2->Add (Vector ( 25, 50, 0));  // mid5
 	positionAlloc2->Add (Vector ( 25, 60, 0));  // mid6
 	positionAlloc2->Add (Vector (40, 10, 0));  // main
+
+	// Cria um assistente de mobilidade
 	MobilityHelper mobility2;
+	// Configura o modelo de mobilidade (constante)
 	mobility2.SetMobilityModel("ns3::ConstantPositionMobilityModel");
+	// Passa a lista de posições para o assistente de mobilidade
 	mobility2.SetPositionAllocator(positionAlloc2);
+	// Instala a configuração de mobilidade nos respectivos dispositivos
 	mobility2.Install(NodeContainer(remoteHostContainer,topswitch, midswitch, mainswitch));
+	
+	// Cria uma lista de posições para o ctrl1, ctrl2 e o PGW
 	Ptr<ListPositionAllocator> positionAlloc3 = CreateObject<ListPositionAllocator> ();
+	// Indica as posições
 	positionAlloc3->Add (Vector (  10,  20, 0));  // ctrl1
 	positionAlloc3->Add (Vector (  40, 20, 0));  // ctrl2
 	positionAlloc3->Add (Vector ( 50, 10, 0));  // pgw
+	//Cria um assistente de mobilidade
 	MobilityHelper mobility3;
+	// Define o tipo modelo de mobilidade
 	mobility3.SetMobilityModel("ns3::ConstantPositionMobilityModel");
+	// Passa as posições para o assistente de mobilidade
 	mobility3.SetPositionAllocator(positionAlloc3);
+	//Instala a configuração de mobilidade nos dispositivos indicados
 	mobility3.Install(NodeContainer( controllerNode,controllerNode2, pgw));
-	// Install LTE Devices to the nodes
-	NetDeviceContainer enbLteDevs = lteHelper->InstallEnbDevice (enbNodes);
 
 
-	//--------------------------------------------Nós moveis
+	//--------------------------------------------Nós UE
+	//Cria o contêiner de nós para os UE
 	NodeContainer ueNodes;
+	// Indica a quantidade de usuários que devem ser criados
+	ueNodes.Create(numberOfNodes);
+
+	// Cria o assistente de mobilidade
 	MobilityHelper uesMobility;
 	//double yvalue=0;
 
 	//yvalue= i*distance;
-	ueNodes.Create(numberOfNodes);
 	// uesMobility[i].SetPositionAllocator("ns3::RandomDiscPositionAllocator",
 	//                                 "X", StringValue ("50.0"),
 	//                                 //"Y", StringValue (std::to_string(yvalue)),
@@ -400,7 +630,9 @@
 	//                                "Speed", StringValue ("ns3::ConstantRandomVariable[Constant=1.0]"),
 	//                                "Bounds", RectangleValue (Rectangle (0, 5000, 0, 5000)));
 	
+	// Cria uma lista para armazenar a posição dos usuários
 	Ptr<ListPositionAllocator> positionAlloc4 = CreateObject<ListPositionAllocator> ();
+	// Passa as posições dos usuários
 	//AUTOCODE USERS INICIO
     positionAlloc4->Add (Vector(128.971078865183,85.64490026506199, 0.0));
     positionAlloc4->Add (Vector(404.58486472831197,394.3918591579332, 0.0));
@@ -494,26 +726,41 @@
     positionAlloc4->Add (Vector(403.75096614228306,465.7315594016373, 0.0));
 	//AUTOCODE USERS FIM
 
+	// Define o modelo de mobilidade (constante)
 	uesMobility.SetMobilityModel("ns3::ConstantPositionMobilityModel");
+	// Passa a lista de posições para o assistente de mobilidade
 	uesMobility.SetPositionAllocator(positionAlloc4);
+	// instala as configurações de mobilidade nos nós ueNodes
 	uesMobility.Install (ueNodes);
 
+	// Crie um contêiner de dispositivos de rede para os UE
 	NetDeviceContainer ueLteDevs;
-	
+	// Cria um conjunto de UE nos nós ueNodes.
 	ueLteDevs = lteHelper->InstallUeDevice (ueNodes);
-//-----------------------------------------------------Routing
+
+//-----------------------------------------------------Roteamento
+	// Instala pilha de protocolos da internet em cada nó do contêiner ueNodes
 	internet.Install (ueNodes);
 	
+	// Ipv4InterfaceContainer contém um vetor de std::pair de Ptr<Ipv4> e índice de interface.
 	Ipv4InterfaceContainer ueIpIface; 
-
+	// Atribui endereços IPv4 a dispositivos UE (ueLteDevs).
 	ueIpIface = epcHelper->AssignUeIpv4Address (NetDeviceContainer (ueLteDevs));
 
-	
 	for (uint32_t u = 0; u < numberOfNodes; u++)
 		{
-		Ptr<Node> ueNode_sg = ueNodes.Get (u);
-		Ptr<Ipv4StaticRouting> ueStaticRouting = ipv4RoutingHelper.GetStaticRouting (ueNode_sg->GetObject<Ipv4> ());
-		ueStaticRouting->SetDefaultRoute (epcHelper->GetUeDefaultGatewayAddress (), 1);
+			// Obtém o nó do contêiner
+			Ptr<Node> ueNode_sg = ueNodes.Get (u);
+			// Tente encontrar o protocolo de roteamento estático como o protocolo de roteamento principal ou 
+		 	// na lista de protocolos de roteamento associados ao IPv4 fornecido (ueNode_sg)
+			Ptr<Ipv4StaticRouting> ueStaticRouting = ipv4RoutingHelper.GetStaticRouting (ueNode_sg->GetObject<Ipv4> ());
+			
+			/* SetDefaultRoute (nextHop, interface): Adiciona uma rota padrão à tabela de roteamento estático.
+				nextHop: O Ipv4Address para enviar pacotes na esperança de que eles sejam encaminhados corretamente.
+				interface: O índice de interface de rede usado para enviar pacotes
+				GetUeDefaultGatewayAddress: Retorna o endereço IPv4 do Gateway padrão a ser usado pelos UEs para acessar a Internet
+			*/
+			ueStaticRouting->SetDefaultRoute (epcHelper->GetUeDefaultGatewayAddress (), 1);
 		}
 	 // for (int i = 0; i < numberOfRrhs; i++)
 	 // {
@@ -523,83 +770,155 @@
 		// 	}
 	 // }
 
+		/* lteHelper->Attach: Permite a conexão automática de um conjunto de dispositivos UE a uma célula adequada usando o 
+			procedimento de seleção de célula inicial no modo inativo.
+
+			Ao chamar o attach, o UE iniciará o procedimento inicial de seleção de células no início da simulação. Além disso, 
+			a função também instrui cada UE a entrar imediatamente no modo CONNECTED e ativa o EPS (Evolved Packet switched System) bearer padrão.
+			Se esta função for chamada quando o UE estiver em uma situação em que não é possível entrar no modo CONNECTED (por exemplo, antes do início da simulação), 
+			o UE tentará se conectar o mais cedo possível (por exemplo, depois de acampar em uma célula adequada).
+		*/
 		lteHelper->Attach (ueLteDevs);
+
 //-----------------------------------------------------Bearer
+
+	// Laço que percorre todos os usuários
 	for (uint32_t u = 0; u < numberOfNodes; u++)
 		{
+			//Obtém o ponteiro do dispositivo de rede (ueLteNetDevice) de um usuário do contêiner ueLteDevs
 			Ptr<NetDevice> ueDevice = ueLteDevs.Get (u);
+
+			/* Informação sobre o 3GPP (3rd Generation Partnership Project ) TS 36.413 9.2.1.18 GBR (Guaranteed Bit Rate) QoS (Quality of Service)
+				GBR garante uma taxa de dados entre o UE e o PGW. Para garantir a taxa de dados é necessário que o EPS bearer seja dedicado
+				Todos os usuários vão ter essa configuração de EPS bearer.
+				Para mais informações sobre EPS bearer, acesse: https://www.netmanias.com/en/post/blog/5933/lte-qos/lte-qos-part-2-lte-qos-parameters-qci-arp-gbr-mbr-and-ambr
+
+			*/
 			GbrQosInformation qos;
-			qos.gbrDl = 132;  // bit/s, considering IP, UDP, RLC, PDCP header size
+
+			/*  Define a taxa de dados(bits/s) garantida de Downlink no EPS bearer considerando 
+				IP, UDP, RLC (Radio Link Control), PDCP (Packet Data Convergence Protocol) header size 
+			*/
+			qos.gbrDl = 132;
+			// Define a taxa de dados(bits/s) garantida de Uplink no EPS bearer 
 			qos.gbrUl = 132;
+
+			/* MBR (Maximum Bit Rate)
+				Define o MBR de Downlink e Uplink do EPS beater
+			*/
 			qos.mbrDl = qos.gbrDl;
 			qos.mbrUl = qos.gbrUl;
 
+			/* QCI (Qos Class Identifier)
+				Número inteiro que define o tipo de performace de Qos
+				GBR_CONV_VOICE: Possui QCI = 1 e pode ser utilizado para serviços de voz. Mais informações em:
+					https://www.nsnam.org/doxygen/classns3_1_1_eps_bearer.html#details
+			*/
 			enum EpsBearer::Qci q = EpsBearer::GBR_CONV_VOICE;
+
+			/* Cria um EPS bearer com as especificações anteriores
+				q: corresponde ao QCI configurado
+				qos: corresponde GbrQosInformation configurado
+			*/
 			EpsBearer bearer (q, qos);
+
+			// Verdadeiro significa que o EPS bearer pode ter prioridade ou antecipação sobre outros
 			bearer.arp.preemptionCapability = true;
+			// Verdadeiro significa que o EPS bearer pode ser antecipado por outros 
 			bearer.arp.preemptionVulnerability = true;
+
+			/* Ativa um EPS bearer dedicado em um determinado conjunto de dispositivos UE.
+				ueDevice: o conjunto de dispositvos UE do LTE
+				bearer: as características do bearer a ser ativado
+				EpcTft: Essa classe implementa o modelo de fluxo de tráfego (TFT) do EPS bearer, 
+					que é o conjunto de todos os filtros de pacote associados a um portador EPS.
+			*/
 			lteHelper->ActivateDedicatedEpsBearer (ueDevice, bearer, EpcTft::Default ());
 		}
+
 //-----------------------------------------------------Aplicação
-		 //uint16_t dlPort = 900;
-		 uint16_t ulPort = 900;
-		 ApplicationContainer clientApps;
-		 ApplicationContainer serverApps;
-		 Ptr<UniformRandomVariable> startTimeSeconds = CreateObject<UniformRandomVariable> ();
-		 startTimeSeconds->SetAttribute ("Min", DoubleValue (2.0));
-		 startTimeSeconds->SetAttribute ("Max", DoubleValue (2.020));
-			
-			//++ulPort;
-			//++dlPort;
-			//PacketSinkHelper dlPacketSinkHelper ("ns3::TcpSocketFactory", InetSocketAddress (Ipv4Address::GetAny (), dlPort));
-			PacketSinkHelper ulPacketSinkHelper ("ns3::UdpSocketFactory", InetSocketAddress (Ipv4Address::GetAny (), ulPort));
-			//PacketSinkHelper packetSinkHelper ("ns3::UdpSocketFactory", InetSocketAddress (Ipv4Address::GetAny (), otherPort));
-			//serverApps.Add (dlPacketSinkHelper.Install (ueNodes[u]));
-			serverApps.Add (ulPacketSinkHelper.Install (remoteHost));
-			//serverApps.Add (packetSinkHelper.Install (ueNodes.Get(u))); 
-			//BulkSendHelper dlClient ("ns3::TcpSocketFactory", InetSocketAddress (ueIpIface.GetAddress (u), dlPort));
-			//dlClient.SetAttribute ("Interval", TimeValue (MilliSeconds(interPacketInterval)));
-			//dlClient.SetAttribute ("MaxPackets", UintegerValue(1000000));
-			
-			//BulkSendHelper ulClient ("ns3::TcpSocketFactory", InetSocketAddress (remoteHostAddr, ulPort));
-			UdpClientHelper ulClient (remoteHostAddr, ulPort);
-			ulClient.SetAttribute ("Interval", TimeValue (MilliSeconds(interPacketInterval)));
-			ulClient.SetAttribute ("MaxPackets", UintegerValue(1000000));
+	//uint16_t dlPort = 900;
+	 
+	// Número da porta de uplink
+	uint16_t ulPort = 900;
+	/* ApplicationContainer: contém um vetor de ponteiros ns3::Application (clase base para aplicações no NS-3)
+		Cria um contêiner para as aplicações dos usuários e do servidor remoto
+	*/
+	ApplicationContainer clientApps;
+	ApplicationContainer serverApps;
+	
+	/* Tempo de início das aplicações
+		Gera um número aleatório entre 2.0 e 2.020
+	*/
+	Ptr<UniformRandomVariable> startTimeSeconds = CreateObject<UniformRandomVariable> ();
+	startTimeSeconds->SetAttribute ("Min", DoubleValue (2.0));
+	startTimeSeconds->SetAttribute ("Max", DoubleValue (2.020));
+		
+	//++ulPort;
+	//++dlPort;
+	//PacketSinkHelper dlPacketSinkHelper ("ns3::TcpSocketFactory", InetSocketAddress (Ipv4Address::GetAny (), dlPort));
 
-			//UdpClientHelper client (ueIpIface.GetAddress (u), otherPort);
-			//client.SetAttribute ("Interval", TimeValue (MilliSeconds(interPacketInterval)));
-			//client.SetAttribute ("MaxPackets", UintegerValue(1000000));
+	/* PacketSinkHelper: um assistente para facilitar a instanciação de um ns3::PacketSinkApplication em um conjunto de nós.
+		ns3::UdpSocketFactory: o nome do protocolo a ser usado para receber tráfego
+			Essa string identifica o tipo de SocketFactory usado para criar soquetes para os aplicativos. Nesse caso é UDP
+		O segundo parâmetro é o endereço do sink
+		InetSocketAddress: essa classe contém um Ipv4Address e um número de porta para formar um endpoint de transporte IPv4.
+	*/
+	PacketSinkHelper ulPacketSinkHelper ("ns3::UdpSocketFactory", InetSocketAddress (Ipv4Address::GetAny (), ulPort));
+	//PacketSinkHelper packetSinkHelper ("ns3::UdpSocketFactory", InetSocketAddress (Ipv4Address::GetAny (), otherPort));
+	//serverApps.Add (dlPacketSinkHelper.Install (ueNodes[u]));
 
-			//clientApps.Add (dlClient.Install (remoteHost));
-			clientApps.Add (ulClient.Install (ueNodes));
-			Time startTime = Seconds (startTimeSeconds->GetValue ());
-			serverApps.Start (startTime);
-			clientApps.Start (startTime);
-		 clientApps.Stop (Seconds (simTime));
+	//Instala um ns3::PacketSinkApplication em cada nó do contêiner remoteHost
+	// Adiciona a aplicação instalada no contêiner de apliações serverApps 
+	serverApps.Add (ulPacketSinkHelper.Install (remoteHost));
+
+	//serverApps.Add (packetSinkHelper.Install (ueNodes.Get(u))); 
+	//BulkSendHelper dlClient ("ns3::TcpSocketFactory", InetSocketAddress (ueIpIface.GetAddress (u), dlPort));
+	//dlClient.SetAttribute ("Interval", TimeValue (MilliSeconds(interPacketInterval)));
+	//dlClient.SetAttribute ("MaxPackets", UintegerValue(1000000));
+		
+	//BulkSendHelper ulClient ("ns3::TcpSocketFactory", InetSocketAddress (remoteHostAddr, ulPort));
+
+
+	UdpClientHelper ulClient (remoteHostAddr, ulPort);
+	ulClient.SetAttribute ("Interval", TimeValue (MilliSeconds(interPacketInterval)));
+	ulClient.SetAttribute ("MaxPackets", UintegerValue(1000000));
+
+	//UdpClientHelper client (ueIpIface.GetAddress (u), otherPort);
+	//client.SetAttribute ("Interval", TimeValue (MilliSeconds(interPacketInterval)));
+	//client.SetAttribute ("MaxPackets", UintegerValue(1000000));
+
+	//clientApps.Add (dlClient.Install (remoteHost));
+	clientApps.Add (ulClient.Install (ueNodes));
+	Time startTime = Seconds (startTimeSeconds->GetValue ());
+	serverApps.Start (startTime);
+	clientApps.Start (startTime);
+	clientApps.Stop (Seconds (simTime));
 		 
 
-		 Ptr<FlowMonitor> flowmon;
-		 FlowMonitorHelper flowmonHelper;
-		 flowmon = flowmonHelper.InstallAll (); 
-		 if (trace)
-			{
-				ofMyCtrlHelper->EnableOpenFlowPcap ("openflow");
-				ofMyCtrlHelper->EnableDatapathStats ("switch-stats");
-				csmaHelper.EnablePcap ("mainswitch", mainswitchC);
-				csmaHelper.EnablePcap ("topswitch", topswitchC);
-				csmaHelper.EnablePcap ("midswitch", midswitch);
-				csmaHelper.EnablePcap ("server", hostDevices);
-				//lteHelper->EnableTraces ();
-				lteHelper->EnablePhyTraces ();
-				lteHelper->EnableMacTraces ();
-				lteHelper->EnableRlcTraces ();
-				lteHelper->EnablePdcpTraces ();
-			}
+	Ptr<FlowMonitor> flowmon;
+	FlowMonitorHelper flowmonHelper;
+	flowmon = flowmonHelper.InstallAll (); 
+	if (trace)
+	{
+		ofMyCtrlHelper->EnableOpenFlowPcap ("openflow");
+		ofMyCtrlHelper->EnableDatapathStats ("switch-stats");
+		csmaHelper.EnablePcap ("mainswitch", mainswitchC);
+		csmaHelper.EnablePcap ("topswitch", topswitchC);
+		csmaHelper.EnablePcap ("midswitch", midswitch);
+		csmaHelper.EnablePcap ("server", hostDevices);
+		//lteHelper->EnableTraces ();
+		lteHelper->EnablePhyTraces ();
+		lteHelper->EnableMacTraces ();
+		lteHelper->EnableRlcTraces ();
+		lteHelper->EnablePdcpTraces ();
+	}
 		 
-		 AnimationInterface anim ("animation.xml");
-		 Simulator::Stop(Seconds(simTime));
-		 // AnimationInterface anim ("cran.xml");
-		 anim.SetMaxPktsPerTraceFile (999999);
+	AnimationInterface anim ("animation.xml");
+	Simulator::Stop(Seconds(simTime));
+	// AnimationInterface anim ("cran.xml");
+	anim.SetMaxPktsPerTraceFile (999999);
+
 //-----------------------------------------------------Handover
 	// Add X2 inteface
 	lteHelper->AddX2Interface (enbNodes);
@@ -612,6 +931,7 @@
 									 MakeCallback (&NotifyConnectionEstablishedUe));
 		Config::Connect ("/NodeList/*/DeviceList/*/LteEnbRrc/HandoverEndOk",
 									 MakeCallback (&MyController::Update, MyCtrl));
+
 //-----------------------------------------------------Schedule/Callbacks
 		Simulator::Schedule(Seconds(0.5),&CallMap, epcHelper);
 		Simulator::Schedule(Seconds(1.5),&SendToController, MyCtrl);
@@ -621,6 +941,7 @@
 
 	 Simulator::Run ();
 	 Simulator::Destroy();
+	 
 	 //INICIO FLOW MONITOR
 	  flowmon->SerializeToXmlFile ("scratch/switch_SA_flowmon/switch_SA1.flowmon", false, false);
 	 //FIM FLOW MONITOR
@@ -629,4 +950,5 @@
 							<< (8. * sink1->GetTotalRx ()) / 1000000 / simTime << " Mbps)"
 							<< std::endl;
 	 return 0;
+	 
 	}
