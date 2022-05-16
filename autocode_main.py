@@ -58,11 +58,11 @@ content_users = users.readlines()
 for hora in range(1, 25):
 
     if modo.strip().upper() == 'SA':
-        # Linha de código do flowmonitor para cada hora (descomentar para o simulated annealing)
+        # Linha de código do flowmonitor para cada hora
         texto_flowmon = f'	  flowmon->SerializeToXmlFile ("scratch/switch_SA_flowmon/switch_SA{hora}.flowmon", false, false);\n'
 
     if modo.strip().upper() == 'HDSO':
-        # Linha de código do flowmonitor para cada hora (descomentar para o HDSO)
+        # Linha de código do flowmonitor para cada hora
         texto_flowmon = f'	  flowmon->SerializeToXmlFile ("scratch/switch_HDSO_flowmon/switch_HDSO{hora}.flowmon", false, false);\n'
 
     # Passando o caminho de um novo arquivo main para a hora atual

@@ -374,7 +374,7 @@
 	OFSwitch13DeviceContainer ofSwitchDevices;
 	//of13Helper->InstallController (controllerNode, learnCtrl);
 
-	/* Configure the OpenFlow network domain
+	/* Configura o domínio de rede OpenFlow
 		OFSwitch13InternalHelper: Este auxiliar estende a classe base e pode ser instanciado para criar e configurar um domínio de rede OpenFlow 1.3 
 		 composto por um ou mais switches OpenFlow conectados a um ou vários controladores OpenFlow simulados internos.
 	*/
@@ -853,7 +853,6 @@
 	Ptr<UniformRandomVariable> startTimeSeconds = CreateObject<UniformRandomVariable> ();
 	startTimeSeconds->SetAttribute ("Min", DoubleValue (2.0));
 	startTimeSeconds->SetAttribute ("Max", DoubleValue (2.020));
-		
 	//++ulPort;
 	//++dlPort;
 	//PacketSinkHelper dlPacketSinkHelper ("ns3::TcpSocketFactory", InetSocketAddress (Ipv4Address::GetAny (), dlPort));
@@ -869,7 +868,7 @@
 	//serverApps.Add (dlPacketSinkHelper.Install (ueNodes[u]));
 
 	//Instala um ns3::PacketSinkApplication em cada nó do contêiner remoteHost
-	// Adiciona a aplicação instalada no contêiner de apliações serverApps 
+	// Adiciona a aplicação instalada no contêiner de apliacações serverApps 
 	serverApps.Add (ulPacketSinkHelper.Install (remoteHost));
 
 	//serverApps.Add (packetSinkHelper.Install (ueNodes.Get(u))); 
@@ -879,9 +878,15 @@
 		
 	//BulkSendHelper ulClient ("ns3::TcpSocketFactory", InetSocketAddress (remoteHostAddr, ulPort));
 
-
+	/* Configuração de UDP
+		UdpClientHelper: Cria uma aplicação de cliente que envia pacotes UDP com um número de sequência de 32 bits e um timestamp de 64 bits.
+		remoteHostAddr: O endereço IP do servidor UDP remoto
+		ulPort: O número da porta do servidor UDP remoto
+	*/
 	UdpClientHelper ulClient (remoteHostAddr, ulPort);
+	// Interval: O tempo de espera entre os pacotes
 	ulClient.SetAttribute ("Interval", TimeValue (MilliSeconds(interPacketInterval)));
+	// MaxPackets: Número máximo de pacotes que a aplicação vai enviar
 	ulClient.SetAttribute ("MaxPackets", UintegerValue(1000000));
 
 	//UdpClientHelper client (ueIpIface.GetAddress (u), otherPort);
@@ -889,66 +894,130 @@
 	//client.SetAttribute ("MaxPackets", UintegerValue(1000000));
 
 	//clientApps.Add (dlClient.Install (remoteHost));
+	
+	/* Instala aplicações UDP nos usuários
+		ulClient.Install: Instala as aplicações UDP em cada um dos nós dos usuários e retorna essa aplicações sendo uma aplicação por nó de usuário
+		Adiciona essas aplicações no final do contêiner clientApps		
+	*/
 	clientApps.Add (ulClient.Install (ueNodes));
+
+	/* Tempo de início das aplicações
+		Obtém o número aleatório armazenado em startTimeSeconds e transforma para segundo
+		Armazena esse valor no objeto startTime (instanciado a partir da classe Time)
+	*/
 	Time startTime = Seconds (startTimeSeconds->GetValue ());
+	// Start(Time start): indica o tempo de início das aplicações de acordo com o parâmetro do tipo Time fornecido.
 	serverApps.Start (startTime);
 	clientApps.Start (startTime);
+	// Indica o tempo (s) de parada das aplicações de clientes contidas no contêiner clientApps
 	clientApps.Stop (Seconds (simTime));
 		 
 
+//-----------------------------------------------------OpenFLow
+	// Cria um ponteiro da classe FlowMonitor
 	Ptr<FlowMonitor> flowmon;
+	// Helper para habilitar o monitoramento de fluxo IP em um conjunto de nós.
 	FlowMonitorHelper flowmonHelper;
-	flowmon = flowmonHelper.InstallAll (); 
+
+	// Habilita o monitoramento do fluxo em todos os nós
+	flowmon = flowmonHelper.InstallAll ();
+
+	// Executa caso a variável trace esteja com valor True
 	if (trace)
 	{
+		// Habilita os rastreamentos de pcap no canal OpenFlow entre o controlador e os switches.
 		ofMyCtrlHelper->EnableOpenFlowPcap ("openflow");
+		// Habilita as estatísticas do OpenFlow datapath em dispositivos de switch OpenFlow configurados por este assistente (ofMyCtrlHelper).
+		// Prefixo do nome de arquivo a ser usado para arquivos de estatísticas.
 		ofMyCtrlHelper->EnableDatapathStats ("switch-stats");
+
+		// Habilita a saída pcap em cada dispositivo no contêiner
+		// csmaHelper.EnablePcap (prefixo do nome do arquivo para usar nos arquivos pcap, contêiner de dispositivos do tipo ns3::CsmaNetDevice)
 		csmaHelper.EnablePcap ("mainswitch", mainswitchC);
 		csmaHelper.EnablePcap ("topswitch", topswitchC);
 		csmaHelper.EnablePcap ("midswitch", midswitch);
 		csmaHelper.EnablePcap ("server", hostDevices);
 		//lteHelper->EnableTraces ();
+
+		// Habilita trace sinks para a camada PHY 
 		lteHelper->EnablePhyTraces ();
+		// Habilita trace sinks para a camada MAC
 		lteHelper->EnableMacTraces ();
+		// Habilita trace sinks para a camada RLC
 		lteHelper->EnableRlcTraces ();
+		// Habilita trace sinks para a camada PDCP
 		lteHelper->EnablePdcpTraces ();
 	}
-		 
+
+	// Cria interface para o network animator. 
 	AnimationInterface anim ("animation.xml");
+
+	// Indica o tempo (s) de parada do simulador
 	Simulator::Stop(Seconds(simTime));
 	// AnimationInterface anim ("cran.xml");
+
+	// Defina o máximo de pacotes por arquivo de rastreamento
 	anim.SetMaxPktsPerTraceFile (999999);
 
 //-----------------------------------------------------Handover
-	// Add X2 inteface
+
+	/* Configura interface X2 entre as eNBs
+		Cria uma interface X2 entre todos os eNBs fornecidas.
+		X2: é a interface de interconexão entre dois eNodeBs na rede LTE
+	*/
 	lteHelper->AddX2Interface (enbNodes);
+
 	// X2-based Handover
 	//lteHelper->HandoverRequest (Seconds (3.0), ueLteDevs[1].Get (0), enbLteDevs.Get (1), enbLteDevs.Get (2));
 
 		//Config::Connect ("/NodeList/*/DeviceList/*/LteEnbRrc/ConnectionEstablished",
 		//               MakeCallback (&MapearUE));
+
+		/* 
+			Config::Connect - Esta função tentará encontrar todas as fontes de rastreamento que correspondam ao caminho de entrada informado no primeiro parâmetro e
+			conectará a callback de entrada a elas de forma que a callback receba uma string de contexto extra na notificação do evento de rastreamento
+
+			Config::Connect (caminho para corresponder às origens de rastreamento ou trace sources, Função de callback para se conectar às origens de rastreamento correspondentes)	
+		*/
 		Config::Connect ("/NodeList/*/DeviceList/*/LteUeRrc/ConnectionEstablished",
 									 MakeCallback (&NotifyConnectionEstablishedUe));
 		Config::Connect ("/NodeList/*/DeviceList/*/LteEnbRrc/HandoverEndOk",
 									 MakeCallback (&MyController::Update, MyCtrl));
 
 //-----------------------------------------------------Schedule/Callbacks
-		Simulator::Schedule(Seconds(0.5),&CallMap, epcHelper);
-		Simulator::Schedule(Seconds(1.5),&SendToController, MyCtrl);
-		// std::map <uint64_t, Ipv4Address> mymap = epcHelper->RecvMymap();
-		// for (std::map<uint64_t, Ipv4Address >::iterator it=mymap.begin(); it!=mymap.end(); ++it)
-		// std::cout << it->first << " => " << it->second << '\n';
 
-	 Simulator::Run ();
-	 Simulator::Destroy();
+	// Agenda a função de callback indicada para ocorrer no tempo especificado
+	// Passa os parêmetros necessários da função
+	// * Essas funções foram declaradas antes do main no início desse arquivo
+	Simulator::Schedule(Seconds(0.5),&CallMap, epcHelper);
+	Simulator::Schedule(Seconds(1.5),&SendToController, MyCtrl);
+
+	// std::map <uint64_t, Ipv4Address> mymap = epcHelper->RecvMymap();
+	// for (std::map<uint64_t, Ipv4Address >::iterator it=mymap.begin(); it!=mymap.end(); ++it)
+	// std::cout << it->first << " => " << it->second << '\n';
+	
+	// Executa a simulaçao
+	Simulator::Run ();
+	
+	// Executa os eventos agendados com ScheduleDestroy()
+	// ScheduleDestroy() agenda um evento para ser executado no final da simulação
+	Simulator::Destroy();
 	 
-	 //INICIO FLOW MONITOR
-	  flowmon->SerializeToXmlFile ("scratch/switch_SA_flowmon/switch_SA1.flowmon", false, false);
-	 //FIM FLOW MONITOR
-		Ptr<PacketSink> sink1 = DynamicCast<PacketSink> (serverApps.Get (0));
-		std::cout << "Bytes received by server 1: " << sink1->GetTotalRx () << " ("
+	 /* Serializa os resultados para um std::string no formato XML.
+	 */
+	//INICIO FLOW MONITOR
+	flowmon->SerializeToXmlFile ("scratch/switch_SA_flowmon/switch_SA1.flowmon", false, false);
+	//FIM FLOW MONITOR
+
+	/* PacketSink: Recebe e consume o tráfego gerado para um endereço IP e porta.
+		Nesse caso, está relecionado às aplicações do remoteHost
+	*/
+	Ptr<PacketSink> sink1 = DynamicCast<PacketSink> (serverApps.Get (0));
+
+	// Imprime no terminal o total de bytes recebidos nessa aplicação sink (sink1)  
+	std::cout << "Bytes received by server 1: " << sink1->GetTotalRx () << " ("
 							<< (8. * sink1->GetTotalRx ()) / 1000000 / simTime << " Mbps)"
 							<< std::endl;
-	 return 0;
+	return 0;
 	 
-	}
+}
