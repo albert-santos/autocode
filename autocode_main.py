@@ -9,23 +9,23 @@ print(linha)
 print('AUTOCODE PARA NS-3:'.center(50))
 print(linha)
 while(1):
-    modo = str(input('Indique o algoritmo (Opcões: SA ou HDSO): '))
+    modo = str(input('Indique o modelo de perda de propagação utilizado (Opcões: SUI ou ECC): '))
 
-    #Caminho para as planilhas de usuários e antenas (SA)
-    if modo.strip().upper() == 'SA':
-        planilha_smalls = 'SA_planilhas/SmallPosition.xls'
-        planilha_users = 'SA_planilhas/UserPosition.xls'
+    #Caminho para as planilhas de usuários e antenas (SUI-Matlab)
+    if modo.strip().upper() == 'SUI':
+        planilha_smalls = 'SUI_planilhas/SmallPosition.xls'
+        planilha_users = 'SUI_planilhas/UserPosition.xls'
         #Diretório que será passado para o NS-3
-        diretorio_ns3 = f'./dir_ns3_SA/SA'
+        diretorio_ns3 = f'./dir_ns3_SUI/SUI'
         break
-    elif modo.strip().upper() == 'HDSO':
-        planilha_smalls = 'HDSO_planilhas/SmallPosition_HDSO.xls'
-        planilha_users = 'HDSO_planilhas/UserPosition_HDSO.xls'
+    elif modo.strip().upper() == 'ECC':
+        planilha_smalls = 'ECC_planilhas/SmallPosition_with_JasmineModel.xls'
+        planilha_users = 'ECC_planilhas/UserPosition_with_JasmineModel.xls'
         #Diretório que será passado para o NS-3
-        diretorio_ns3 = f'./dir_ns3_HDSO/HDSO'
+        diretorio_ns3 = f'./dir_ns3_ECC/ECC'
         break
     else:
-        print('\nALGORITMO INCORRETO! TENTE NOVAMENTE.\n')
+        print('\nMODELO INCORRETO! TENTE NOVAMENTE.\n')
 
 
 #Gerando txt formatado para a alocação de usuários e de antenas
@@ -34,6 +34,13 @@ autocode_users(planilha_users)
 
 # Obtem o diretório atual
 cwd = os.getcwd()
+
+#---CONVERTE O ARQUIVO MAIN DE .CC PARA .TXT
+# Caminho do arquivo que serve como base
+src = f'{cwd}/arquivo_base/main.cc'
+# Novos arquivos em formato cc
+dest = f'{cwd}/arquivo_base/main.txt'
+shutil.copy(src, dest)
 
 # Caminho do arquivo que serve como base
 src = f'{cwd}/arquivo_base/main.txt'
@@ -57,13 +64,15 @@ content_users = users.readlines()
 
 for hora in range(1, 25):
 
-    if modo.strip().upper() == 'SA':
+    if modo.strip().upper() == 'SUI':
         # Linha de código do flowmonitor para cada hora
-        texto_flowmon = f'	  flowmon->SerializeToXmlFile ("scratch/switch_SA_flowmon/switch_SA{hora}.flowmon", false, false);\n'
+        texto_flowmon = f'	  flowmon->SerializeToXmlFile ("scratch/switch_SUI_flowmon/switch_SUI_{hora}.flowmon", false, false);\n'
+        texto_animation = f'	  AnimationInterface anim ("scratch/animations/animation_SUI_{hora}.xml");\n'
 
-    if modo.strip().upper() == 'HDSO':
+    if modo.strip().upper() == 'ECC':
         # Linha de código do flowmonitor para cada hora
-        texto_flowmon = f'	  flowmon->SerializeToXmlFile ("scratch/switch_HDSO_flowmon/switch_HDSO{hora}.flowmon", false, false);\n'
+        texto_flowmon = f'	  flowmon->SerializeToXmlFile ("scratch/switch_ECC_flowmon/switch_ECC_{hora}.flowmon", false, false);\n'
+        texto_animation = f'	  AnimationInterface anim ("scratch/animations/animation_ECC_{hora}.xml");\n'
 
     # Passando o caminho de um novo arquivo main para a hora atual
     nova_main = f'{cwd}/arquivos_txt/main_{hora}.txt'
@@ -82,6 +91,65 @@ for hora in range(1, 25):
         # Armazenando todas as linhas do main 
         content_main = arquivo.readlines()
 
+
+
+
+    # ANIMATION
+    # ---REMOVE LINHAS JÁ EXISTENTES DE ANIMATION---
+
+    #Percorrendo as linhas do arquivo main
+    for linha in range(len(content_main)):
+        if '//AUTOCODE ANIMATION INICIO' in content_main[linha].strip(): #Demarcador da linha de inicio da alocação de usuários
+            inicio_animation = linha # armazena a linha de inicio da alocação dos usuários
+            # print(linha)
+
+        if '//AUTOCODE ANIMATION FIM' in content_main[linha].strip(): #Demarcador da linha final da alocação de usuários
+            fim_animation = linha # armazena a linha final da alocação dos usuários
+            # print(linha)
+
+    print(f'Linha inicial do animaton: {inicio_animation}')
+    print(f'Linha final do animation: {fim_animation}')
+
+    # Percorrendo somente as linhas de alocação dos usuários
+    for linha in range((inicio_animation + 1), fim_animation):
+        # Removendo as linhas de alocação que já existem
+        content_main.remove(content_main[(inicio_animation + 1)])
+
+    # Limpando o arquivo main atual
+    with open(arq,'w') as f:
+        pass
+
+    #Percorrendo as linhas do arquivo main
+    for linha in range(len(content_main)):
+        # Abre o aquivo main atual
+        with open(arq, 'a') as arquivo:
+
+            # Escrevendo cada linha do content_main (sem as linhas de alocação) para o main.txt
+            arquivo.write(content_main[linha])
+
+
+
+
+    # ANIMATION
+    # ----ADICIONA LINHAS DE ANIMATION---
+
+    # Armazena cada linha de alocação do txt de usuários para a hora
+    texto = texto_animation
+    # Insere a linha de alocação acima no content_main
+    content_main.insert((inicio_animation+1), texto)
+
+    # Limpando  o arquivo main atual
+    with open(arq,'w') as f:
+        pass
+
+    #Percorrendo as linhas do arquivo main
+    for linha in range(len(content_main)):
+
+        # Abri o arquivo main atual
+        with open(arq, 'a') as arquivo:
+
+            # Escreve cada linha do content_main no main.txt
+            arquivo.write(content_main[linha])
     
 
     # SMALLS
