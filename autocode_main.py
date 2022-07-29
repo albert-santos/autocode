@@ -66,13 +66,13 @@ for hora in range(1, 25):
 
     if modo.strip().upper() == 'SUI':
         # Linha de código do flowmonitor para cada hora
-        texto_flowmon = f'	  flowmon->SerializeToXmlFile ("scratch/switch_SUI_flowmon/switch_SUI_{hora}.flowmon", false, false);\n'
-        texto_animation = f'	  AnimationInterface anim ("scratch/animations/animation_SUI_{hora}.xml");\n'
+        texto_flowmon = f'	  flowmon->SerializeToXmlFile ("switch_SUI_flowmon/switch_SUI_{hora}.flowmon", false, false);\n'
+        texto_animation = f'	  AnimationInterface anim ("animations/animation_SUI_{hora}.xml");\n'
 
     if modo.strip().upper() == 'ECC':
         # Linha de código do flowmonitor para cada hora
-        texto_flowmon = f'	  flowmon->SerializeToXmlFile ("scratch/switch_ECC_flowmon/switch_ECC_{hora}.flowmon", false, false);\n'
-        texto_animation = f'	  AnimationInterface anim ("scratch/animations/animation_ECC_{hora}.xml");\n'
+        texto_flowmon = f'	  flowmon->SerializeToXmlFile ("switch_ECC_flowmon/switch_ECC_{hora}.flowmon", false, false);\n'
+        texto_animation = f'	  AnimationInterface anim ("animations/animation_ECC_{hora}.xml");\n'
 
     # Passando o caminho de um novo arquivo main para a hora atual
     nova_main = f'{cwd}/arquivos_txt/main_{hora}.txt'
