@@ -120,7 +120,7 @@
 	BBU 5 = 175
 	BBU 6 = 180
 	*/
-	double simTime = 20.0;
+	double simTime = 5.0;
 	double distance = 5000.0;
 	double interPacketInterval = 50;
 	bool trace = true;
@@ -1627,7 +1627,7 @@
 	 /* Serializa os resultados para um std::string no formato XML.
 	 */
 	//INICIO FLOW MONITOR
-	  flowmon->SerializeToXmlFile ("switch_SUI_flowmon/switch_SUI_19.flowmon", false, false);
+	  flowmon->SerializeToXmlFile ("flowmon-results/switch_SUI_flowmon/switch_SUI_19.flowmon", false, false);
 	//FIM FLOW MONITOR
 
 	/* PacketSink: Recebe e consume o tráfego gerado para um endereço IP e porta.

@@ -120,7 +120,7 @@
 	BBU 5 = 175
 	BBU 6 = 180
 	*/
-	double simTime = 20.0;
+	double simTime = 5.0;
 	double distance = 5000.0;
 	double interPacketInterval = 50;
 	bool trace = true;
