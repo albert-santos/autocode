@@ -380,6 +380,7 @@ MyController::Allocation (std::map <uint64_t, Ipv4Address> mymap,std::map <uint6
   m_mymap = mymap;
   m_mymap2 = mymap2;
 
+  //AUTOCODE CONNECT_RRHS INICIO
   uint32_t connect_RRH_1 = 0;
   uint32_t connect_RRH_2 = 0;
   uint32_t connect_RRH_3 = 0;
@@ -399,14 +400,18 @@ MyController::Allocation (std::map <uint64_t, Ipv4Address> mymap,std::map <uint6
   uint32_t connect_RRH_17 = 0;
   uint32_t connect_RRH_18 = 0;
   uint32_t connect_RRH_19 = 0;
+  //AUTOCODE CONNECT_RRHS FIM
 
+
+  //AUTOCODE CONNECT_BBUS INICIO
   static uint32_t connect_bbu_1 = 0;
   static uint32_t connect_bbu_2 = 0;
   static uint32_t connect_bbu_3 = 0;
   static uint32_t connect_bbu_4 = 0;
   static uint32_t connect_bbu_5 = 0;
   static uint32_t connect_bbu_6 = 0;
-
+  //AUTOCODE CONNECT_BBUS FIM
+  
   //std::cout<<"teste"<<std::endl;
   
 
@@ -417,6 +422,8 @@ MyController::Allocation (std::map <uint64_t, Ipv4Address> mymap,std::map <uint6
     //Associando cada antena a uma BBU de acordo com a alocação teste
     switch (it->second)
     {
+
+      //AUTOCODE ALLOCATION INICIO
       case 1:
         connect_RRH_1++;
         mymap3[m_mymap[it->first]]= 3;
@@ -531,6 +538,8 @@ MyController::Allocation (std::map <uint64_t, Ipv4Address> mymap,std::map <uint6
         connect_bbu_6++;
         //std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl; 
         break;
+
+      //AUTOCODE ALLOCATION FIM
       default:
         mymap3[m_mymap[it->first]]= 7;
         //std::cout<<"ip: "<<m_mymap[it->first]<<" não associado"<<std::endl; 
