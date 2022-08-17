@@ -120,7 +120,7 @@
 	BBU 5 = 175
 	BBU 6 = 180
 	*/
-	double simTime = 20.0;
+	double simTime = 5.0;
 	double distance = 5000.0;
 	double interPacketInterval = 50;
 	bool trace = true;
@@ -469,10 +469,10 @@
 		A macro possui 4 nós que devem estar na mesma posição (250,  250, 0).
 		A macro possui 4 nós porque cada nó terá uma antena que apontará para uma direção para poder cobrir um espaço de 360°
 	*/
-	positionAllocMacro->Add (Vector (  250,  250, 0));
-	positionAllocMacro->Add (Vector (  250,  250, 0));
-	positionAllocMacro->Add (Vector (  250,  250, 0));
-	positionAllocMacro->Add (Vector (  250,  250, 0));
+	positionAllocMacro->Add (Vector (  500,  500, 0));
+	positionAllocMacro->Add (Vector (  500,  500, 0));
+	positionAllocMacro->Add (Vector (  500,  500, 0));
+	positionAllocMacro->Add (Vector (  500,  500, 0));
 
 	// Indica as posições para o helper de mobilidade
 	mob.SetPositionAllocator(positionAllocMacro);

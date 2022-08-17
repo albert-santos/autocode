@@ -1,5 +1,6 @@
 import shutil # biblioteca para copiar arquivos txt
 import os #biblioteca para obter informações do sistema
+from pathlib import Path
 from autocode_smalls import autocode_smalls
 from autocode_users import autocode_users
 
@@ -9,7 +10,7 @@ print(linha)
 print('AUTOCODE PARA NS-3:'.center(50))
 print(linha)
 while(1):
-    modo = str(input('Indique o modelo de perda de propagação utilizado (Opcões: SUI ou ECC): '))
+    modo = str(input('Indique o cenário utilizado (Opcões: SUI ou ECC): '))
 
     #Caminho para as planilhas de usuários e antenas (SUI-Matlab)
     if modo.strip().upper() == 'SUI':
@@ -25,7 +26,10 @@ while(1):
         diretorio_ns3 = f'./dir_ns3_ECC/ECC'
         break
     else:
-        print('\nMODELO INCORRETO! TENTE NOVAMENTE.\n')
+        print('\nCENÁRIO INCORRETO! TENTE NOVAMENTE.\n')
+
+
+quantidade_arquivos_flowmon = int(input('Indique a quantidade de arquivos flowmon: '))
 
 
 #Gerando txt formatado para a alocação de usuários e de antenas
@@ -62,17 +66,17 @@ users = open(f'{users_txt}.txt')
 content_users = users.readlines()
 
 
-for hora in range(1, 25):
+for hora in range(1, quantidade_arquivos_flowmon + 1):
 
     if modo.strip().upper() == 'SUI':
         # Linha de código do flowmonitor para cada hora
-        texto_flowmon = f'	  flowmon->SerializeToXmlFile ("scratch/switch_SUI_flowmon/switch_SUI_{hora}.flowmon", false, false);\n'
-        texto_animation = f'	  AnimationInterface anim ("scratch/animations/animation_SUI_{hora}.xml");\n'
+        texto_flowmon = f'	  flowmon->SerializeToXmlFile ("flowmon-results/switch_SUI_flowmon/switch_SUI_{hora}.flowmon", false, false);\n'
+        texto_animation = f'	  AnimationInterface anim ("animations/animation_SUI_{hora}.xml");\n'
 
     if modo.strip().upper() == 'ECC':
         # Linha de código do flowmonitor para cada hora
-        texto_flowmon = f'	  flowmon->SerializeToXmlFile ("scratch/switch_ECC_flowmon/switch_ECC_{hora}.flowmon", false, false);\n'
-        texto_animation = f'	  AnimationInterface anim ("scratch/animations/animation_ECC_{hora}.xml");\n'
+        texto_flowmon = f'	  flowmon->SerializeToXmlFile ("flowmon-results/switch_ECC_flowmon/switch_ECC_{hora}.flowmon", false, false);\n'
+        texto_animation = f'	  AnimationInterface anim ("animations/animation_ECC_{hora}.xml");\n'
 
     # Passando o caminho de um novo arquivo main para a hora atual
     nova_main = f'{cwd}/arquivos_txt/main_{hora}.txt'

@@ -120,7 +120,7 @@
 	BBU 5 = 175
 	BBU 6 = 180
 	*/
-	double simTime = 20.0;
+	double simTime = 5.0;
 	double distance = 5000.0;
 	double interPacketInterval = 50;
 	bool trace = true;
@@ -469,10 +469,10 @@
 		A macro possui 4 nós que devem estar na mesma posição (250,  250, 0).
 		A macro possui 4 nós porque cada nó terá uma antena que apontará para uma direção para poder cobrir um espaço de 360°
 	*/
-	positionAllocMacro->Add (Vector (  250,  250, 0));
-	positionAllocMacro->Add (Vector (  250,  250, 0));
-	positionAllocMacro->Add (Vector (  250,  250, 0));
-	positionAllocMacro->Add (Vector (  250,  250, 0));
+	positionAllocMacro->Add (Vector (  500,  500, 0));
+	positionAllocMacro->Add (Vector (  500,  500, 0));
+	positionAllocMacro->Add (Vector (  500,  500, 0));
+	positionAllocMacro->Add (Vector (  500,  500, 0));
 
 	// Indica as posições para o helper de mobilidade
 	mob.SetPositionAllocator(positionAllocMacro);
@@ -1605,7 +1605,7 @@
 
 	// Cria interface para o network animator.
 	//AUTOCODE ANIMATION INICIO
-	  AnimationInterface anim ("scratch/animations/animation_SUI_1.xml");
+	  AnimationInterface anim ("animations/animation_SUI_1.xml");
 	//AUTOCODE ANIMATION FIM
 	
 	// Indica o tempo (s) de parada do simulador
@@ -1662,7 +1662,7 @@
 	 /* Serializa os resultados para um std::string no formato XML.
 	 */
 	//INICIO FLOW MONITOR
-	  flowmon->SerializeToXmlFile ("scratch/switch_SUI_flowmon/switch_SUI_1.flowmon", false, false);
+	  flowmon->SerializeToXmlFile ("flowmon-results/switch_SUI_flowmon/switch_SUI_1.flowmon", false, false);
 	//FIM FLOW MONITOR
 
 	/* PacketSink: Recebe e consume o tráfego gerado para um endereço IP e porta.
