@@ -1,17 +1,34 @@
 
 INICIO HORA 1
-FIM HORA 1
+    uint32_t connect_RRH_1 = 0;
+    uint32_t connect_RRH_2 = 0;
+    uint32_t connect_RRH_3 = 0;
+    uint32_t connect_RRH_4 = 0;
+    uint32_t connect_RRH_5 = 0;
+    uint32_t connect_RRH_6 = 0;
+    uint32_t connect_RRH_7 = 0;
+    uint32_t connect_RRH_8 = 0;
+    uint32_t connect_RRH_9 = 0;
+    uint32_t connect_RRH_10 = 0;
+    uint32_t connect_RRH_11 = 0;
+    uint32_t connect_RRH_12 = 0;
+    uint32_t connect_RRH_13 = 0;
+    uint32_t connect_RRH_14 = 0;
+    uint32_t connect_RRH_15 = 0;
+    uint32_t connect_RRH_16 = 0;
+    uint32_t connect_RRH_17 = 0;
+    uint32_t connect_RRH_18 = 0;
+    uint32_t connect_RRH_19 = 0;
+    uint32_t connect_RRH_20 = 0;
+    uint32_t connect_RRH_21 = 0;
+    uint32_t connect_RRH_22 = 0;
+    uint32_t connect_RRH_23 = 0;
+    uint32_t connect_RRH_24 = 0;
+    uint32_t connect_RRH_25 = 0;
 
-INICIO HORA 2
-FIM HORA 2
-
-INICIO HORA 3
-FIM HORA 3
-
-INICIO HORA 4
-FIM HORA 4
-
-INICIO HORA 5
-FIM HORA 5
-
-INICIO HORA 6
+    uint32_t connect_bbu_1 = 0;
+    uint32_t connect_bbu_2 = 0;
+    uint32_t connect_bbu_3 = 0;
+    uint32_t connect_bbu_4 = 0;
+    uint32_t connect_bbu_5 = 0;
+    uint32_t connect_bbu_6 = 0;

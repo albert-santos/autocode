@@ -380,6 +380,7 @@ MyController::Allocation (std::map <uint64_t, Ipv4Address> mymap,std::map <uint6
   m_mymap = mymap;
   m_mymap2 = mymap2;
 
+  // AUTOCODE ALLOCATION INICIO
   uint32_t connect_RRH_1 = 0;
   uint32_t connect_RRH_2 = 0;
   uint32_t connect_RRH_3 = 0;
