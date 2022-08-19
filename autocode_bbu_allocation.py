@@ -30,7 +30,7 @@ def autocode_bbu_allocation(planilha_bbu_allocation, planilha_rrhs_status, numbe
         with open(f"{arquivo_txt}.txt", 'a') as arquivo:
                 arquivo.write(f'\nINICIO HORA {hora}\n')
         
-        # -------------- Implementa Variáveis de conexão das RRHs --------
+        # -------------- IMPLEMENTA VARIÁVEIS DE CONEXÃO DAS RRHS --------
         #
         #  Ex: uint32_t connect_RRH_{ ID da RRH } = 0;
 
@@ -42,9 +42,9 @@ def autocode_bbu_allocation(planilha_bbu_allocation, planilha_rrhs_status, numbe
             
             if   status == 1:
                 # print(f'continue: {bbu_allocation_matrix[hora-1, rrh_indice]}')
-                print(f'    uint32_t connect_RRH_{rrh_counter} = 0;')
+                print(f'\tuint32_t connect_RRH_{rrh_counter} = 0;')
                 with open(f"{arquivo_txt}.txt", 'a') as arquivo:
-                        arquivo.write(f'    uint32_t connect_RRH_{rrh_counter} = 0;\n')
+                        arquivo.write(f'\tuint32_t connect_RRH_{rrh_counter} = 0;\n')
 
                 rrh_counter += 1
 
@@ -56,18 +56,123 @@ def autocode_bbu_allocation(planilha_bbu_allocation, planilha_rrhs_status, numbe
         
 
 
-        # -------------- Implementa Variáveis de conexão das BBUs --------
+
+        # -------------- IMPLEMENTA VARIÁVEIS DE CONEXÃO DAS BBUS --------
         #
         # Ex: uint32_t connect_bbu_{ ID da BBU } = 0;
 
         # Percorre todas BBUs e cria variáveis necessárias para o ns-3 nomeadas:
         # uint32_t connect_BBU_{Id da rrh}
         for bbu_indice in range(1, number_of_bbus + 1):
-            print(f'    uint32_t connect_bbu_{bbu_indice} = 0;')
+            print(f'\tuint32_t connect_bbu_{bbu_indice} = 0;')
             with open(f"{arquivo_txt}.txt", 'a') as arquivo:
-                    arquivo.write(f'    uint32_t connect_bbu_{bbu_indice} = 0;\n')
+                    arquivo.write(f'\tuint32_t connect_bbu_{bbu_indice} = 0;\n')
+
+        #-----------------------------------------------------------------------------
 
 
+
+        # -------------- INICÍCIO DA ALOCAÇÃO RRH-BBU --------
+        
+        # Inicio do for
+        print('\n\tfor (std::map<uint64_t, uint64_t >::iterator it=m_mymap2.begin(); it!=m_mymap2.end(); ++it) \n\t{\n')
+        with open(f"{arquivo_txt}.txt", 'a') as arquivo:
+                    arquivo.write('\n\tfor (std::map<uint64_t, uint64_t >::iterator it=m_mymap2.begin(); it!=m_mymap2.end(); ++it) \n\t{\n')
+        
+        # Comentário do código
+        with open(f"{arquivo_txt}.txt", 'a') as arquivo:
+                    arquivo.write('\n\t\t//Associando cada antena a uma BBU de acordo com a alocação teste\n')
+        
+        # Início do Switch case
+        print('\n\t\tswitch (it->second)\n\t\t{\n')
+        with open(f"{arquivo_txt}.txt", 'a') as arquivo:
+                    arquivo.write('\n\t\tswitch (it->second)\n\t\t{\n')
+
+
+        rrh_counter = 1
+        # Percorre todas RRHs e realiza a alocação
+        for rrh_indice in range(np.size(bbu_allocation_matrix, 1)):  
+
+            status = rrh_status_matrix[hora-1, rrh_indice]
+            
+            if   status == 1:
+                with open(f"{arquivo_txt}.txt", 'a') as arquivo:
+                    arquivo.write(f'\t\t\tcase {rrh_counter}:\n')
+                    arquivo.write(f'\t\t\t\tconnect_RRH_{rrh_counter}++;\n')
+                    arquivo.write(f'\t\t\t\tmymap3[m_mymap[it->first]]= {bbu_allocation_matrix[hora-1, rrh_indice]};\n')
+                    arquivo.write(f'\t\t\t\tconnect_bbu_{bbu_allocation_matrix[hora-1, rrh_indice]}++;\n')
+                    arquivo.write(f'\t\t\t\t//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: {bbu_allocation_matrix[hora-1, rrh_indice]}"<<std::endl;\n')
+                    arquivo.write('\t\t\t\tbreak;\n')
+
+                rrh_counter += 1
+
+
+        # Fim do switch case e do for
+        with open(f"{arquivo_txt}.txt", 'a') as arquivo:
+                    arquivo.write('\t\t\tdefault:\n')
+                    arquivo.write(f'\t\t\t\tmymap3[m_mymap[it->first]]= {number_of_bbus+1};\n')
+                    arquivo.write('\t\t\t\t//std::cout<<"ip: "<<m_mymap[it->first]<<" não associado"<<std::endl;\n')
+                    arquivo.write('\t\t\t\tbreak;\n')
+                    arquivo.write('\t\t}\n')
+                    arquivo.write('\t}\n')
+
+
+
+        # Código para exibir os mapas de alocação
+        with open(f"{arquivo_txt}.txt", 'a') as arquivo:
+
+
+            arquivo.write('\n\tstd::cout <<" MAPA 1: IMSI X IP" << std::endl;\n')
+            arquivo.write('\tfor (std::map<uint64_t, Ipv4Address>::iterator it=m_mymap.begin(); it!=m_mymap.end(); ++it)\n')
+            arquivo.write('\t\tstd::cout <<"imsi: "<< it->first << " ip address: " << it->second << std::endl;\n\n')
+
+            arquivo.write('\tstd::cout <<" MAPA 2: IMSI X RRH_ID"<< std::endl;\n')
+            arquivo.write('\tfor (std::map<uint64_t, uint64_t>::iterator it=m_mymap2.begin(); it!=m_mymap2.end(); ++it)\n')
+            arquivo.write('\t\tstd::cout <<"imsi: "<< it->first << " connected to cellid: " << it->second << std::endl; \n\n')
+
+            arquivo.write('\tstd::cout <<" MAPA 3: IP X BBU"<< std::endl;\n')
+            arquivo.write('\tfor (std::map<Ipv4Address, uint64_t >::iterator it=mymap3.begin(); it!=mymap3.end(); ++it)\n')
+            arquivo.write('\t\tstd::cout <<"ip address: "<< it->first << " bbu: " << it->second << std::endl; \n\n')
+            
+
+
+        # Código para exibir a quantidade de usuários em cada RRH
+        with open(f"{arquivo_txt}.txt", 'a') as arquivo:
+                    arquivo.write('\tstd::cout << " " << std::endl;\n')
+                    arquivo.write('\tstd::cout <<" Qtd de Usuários por RRH"<< std::endl;\n')
+
+        rrh_counter = 1
+        for rrh_indice in range(np.size(bbu_allocation_matrix, 1)):  
+
+            status = rrh_status_matrix[hora-1, rrh_indice]
+            
+            if status == 1:
+                with open(f"{arquivo_txt}.txt", 'a') as arquivo:
+                    arquivo.write(f'\tstd::cout <<"RRH {rrh_counter}: " << connect_RRH_{rrh_counter} << " usuários << std::endl";\n')
+
+
+                rrh_counter += 1
+
+        
+        # Código para exibir a quantidade de usuários por BBU
+        with open(f"{arquivo_txt}.txt", 'a') as arquivo:
+                    arquivo.write('\n\tstd::cout << " " << std::endl;\n')
+
+        for bbu_indice in range(1, number_of_bbus + 1):
+            print(f'\tuint32_t connect_bbu_{bbu_indice} = 0;')
+            with open(f"{arquivo_txt}.txt", 'a') as arquivo:
+                    arquivo.write(f'\tstd::cout <<"BBU {bbu_indice}: " << connect_bbu_{bbu_indice} << " usuários" << std::endl;\n')
+	    
+
+    
+
+    
+    
+    
+	    
+
+         
+        
         # ------------------------------------------------------------------------------
         
         
