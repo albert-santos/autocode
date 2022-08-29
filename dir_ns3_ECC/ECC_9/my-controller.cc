@@ -16,27 +16,19 @@
  * Author: Luciano Chaves <luciano@lrc.ic.unicamp.br>
  */
 
-/* ifndef - caso não esteja definido
-  Trata-se de um mecanismo do C++ para evitar um biblioteca ou arquivo seja declarado mais de uma vez. Caso haja mais de uma declaração ocorrerá erro
-  Dessa forma, todo o código abaixo de ifndef só será incluso caso ainda não tenha sido definido
-*/
 #ifdef NS3_OFSWITCH13
 
 #include "my-controller.h"
 #include <ns3/network-module.h>
 #include <ns3/internet-module.h>
 
-// Definição de um componente logging: Cria um identificador de string exclusivo (geralmente baseado no nome do arquivo e/ou classe definido no arquivo) e 
-// registra-o com uma chamada de macro como a seguir:
 NS_LOG_COMPONENT_DEFINE ("MyController");
 
 namespace ns3 {
 
-
 NS_OBJECT_ENSURE_REGISTERED (MyController);
 
 /********** Public methods ***********/
-
 MyController::MyController ()
 {
   NS_LOG_FUNCTION (this);
@@ -76,7 +68,6 @@ MyController::HandlePacketIn (
   //PORT 2==INPUT PORT
   //PORT 1==OUTPUT PORT
   //uint32_t outPort = OFPP_FLOOD;
-
   static uint64_t swt1=1;
   uint16_t bbu=0;
   static uint32_t connect_bbu_1 = 0;
@@ -98,12 +89,10 @@ MyController::HandlePacketIn (
   //enum ofp_packet_in_reason reason = msg->reason;
   static uint32_t connectionCounter = 0;
   //static uint32_t aux = 3;
-
   char *msgStr =
     ofl_structs_match_to_string ((struct ofl_match_header*)msg->match, 0);
   NS_LOG_DEBUG ("Packet in match: " << msgStr);
   free (msgStr);
-
   // Get Ethernet frame type
   uint16_t ethType;
   struct ofl_match_tlv *tlv;
@@ -158,9 +147,7 @@ MyController::HandlePacketIn (
 	BBU 5 = 4,5,8,9 = 45+60+60+65 = 230
 	BBU 6 = 10,11,15,16,19 = 50+45+60+45+50 = 250
 	Balanceado
-	BBU 1 = 170
-	BBU 2 = 180
-	BBU 3 = 165
+	BBU 1 = 170s_status_with_JasmineModel.xls', number_of_bbus = 6)
 	BBU 4 = 160
 	BBU 5 = 175
 	BBU 6 = 180
@@ -362,7 +349,7 @@ void MyController::NotifyHandoverStartUe (std::string context, uint64_t imsi, ui
   std::cout << Simulator::Now ().GetSeconds () << " " << context
             << " UE IMSI " << imsi
             << ": previously connected to CellId " << cellid
-            << " with RNTI (Radio Network Temporary Identifier) " << rnti
+            << " with RNTI " << rnti
             << ", doing handover to CellId " << targetCellId
             << std::endl;
 }
@@ -371,6 +358,10 @@ void
 MyController::Allocation (std::map <uint64_t, Ipv4Address> mymap,std::map <uint64_t, uint64_t> mymap2)
 {
   /*
+  Metodo de alocação, este método toma como argumento dois objetos do tipo map,
+  relacionando imsi a IP e imsi a cellid, respectivamente.
+  O objetivo desta função é relacionar UE, ENB e BBU,
+  através da construção de um map relacionando ip a bbu antes de começar o tráfego de dados.
 
   Alocação de teste:
   BBU 1 = 7,12
@@ -387,6 +378,7 @@ MyController::Allocation (std::map <uint64_t, Ipv4Address> mymap,std::map <uint6
   m_mymap = mymap;
   m_mymap2 = mymap2;
 
+  //AUTOCODE ALLOCATION INICIO
   uint32_t connect_RRH_1 = 0;
   uint32_t connect_RRH_2 = 0;
   uint32_t connect_RRH_3 = 0;
@@ -407,13 +399,14 @@ MyController::Allocation (std::map <uint64_t, Ipv4Address> mymap,std::map <uint6
   uint32_t connect_RRH_18 = 0;
   uint32_t connect_RRH_19 = 0;
 
+
   static uint32_t connect_bbu_1 = 0;
   static uint32_t connect_bbu_2 = 0;
   static uint32_t connect_bbu_3 = 0;
   static uint32_t connect_bbu_4 = 0;
   static uint32_t connect_bbu_5 = 0;
   static uint32_t connect_bbu_6 = 0;
-
+  
   //std::cout<<"teste"<<std::endl;
   
 
@@ -421,17 +414,15 @@ MyController::Allocation (std::map <uint64_t, Ipv4Address> mymap,std::map <uint6
   {
     //std::cout<<"teste2"<<std::endl;
     
-    /*Associando cada antena a uma BBU de acordo com a alocação teste
-       MAPA 1: IMSI X IP
-       MAPA 2: IMSI X RRH_ID
-       MAPA 3: IP X BBU
-    */
-    switch (it->second) // it->second obtém o CellID da RRH 
+    //Associando cada antena a uma BBU de acordo com a alocação teste
+    switch (it->second)
     {
+
+      
       case 1:
-        connect_RRH_1++; // incrementa a a quantidade de usuários nessa RRH
-        mymap3[m_mymap[it->first]] = 3; // Associa o IP com o a BBU 
-        connect_bbu_3++; // incrementa a quantidade de usuários nesse BBU
+        connect_RRH_1++;
+        mymap3[m_mymap[it->first]]= 3;
+        connect_bbu_3++;
         //std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 3"<<std::endl; 
         break;
       case 2:
@@ -542,6 +533,8 @@ MyController::Allocation (std::map <uint64_t, Ipv4Address> mymap,std::map <uint6
         connect_bbu_6++;
         //std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl; 
         break;
+
+      //AUTOCODE ALLOCATION FIM
       default:
         mymap3[m_mymap[it->first]]= 7;
         //std::cout<<"ip: "<<m_mymap[it->first]<<" não associado"<<std::endl; 
@@ -589,59 +582,37 @@ MyController::Allocation (std::map <uint64_t, Ipv4Address> mymap,std::map <uint6
   std::cout <<"BBU 4: " << connect_bbu_4 << " usuários\n";
   std::cout <<"BBU 5: " << connect_bbu_5 << " usuários\n";
   std::cout <<"BBU 6: " << connect_bbu_6 << " usuários\n";
+  //AUTOCODE ALLOCATION FIM
 
-
-  // laço que percorre o mymap3 (MAPA 3: IP X BBU)
   for (std::map<Ipv4Address, uint64_t >::iterator it2=mymap3.begin(); it2!=mymap3.end(); ++it2)
   {
-    //Classe de fluxo de saída para operar em strings.
     std::ostringstream flowCmd;
-
-    // Atribuindo valores à string que servirá de comando para o switch
     flowCmd << "flow-mod cmd=add,prio=100,table=0, eth_type=0x0800,"
-            << "ip_src=" << it2->first // informa o ip do usuário
+            << "ip_src=" << it2->first
            << ",in_port=7 apply:output=" << it2->second;
-
-    /* Executa o comando para o switch
-      DPCTL: Administer OpenFlow datapaths
-      DpctlExecute (ID do dataph, comando em texto)
-    */
     DpctlExecute (swt1, flowCmd.str ());
-
-    //Classe de fluxo de saída para operar em strings.
     std::ostringstream flowCmd2;
-
-    // Atribuindo valores à string que servirá de comando para o switch
     flowCmd2 << "flow-mod cmd=add,prio=100,table=0, eth_type=0x0800,"
-           << "ip_dst=" << it2->first // informa o ip do usuário
+           << "ip_dst=" << it2->first
            << ",in_port=1 apply:output=2";
-    
-    /* Executa o comando para o switch
-      DPCTL: Administer OpenFlow datapaths
-      DpctlExecute (ID do dataph, comando em texto)
-    */
     DpctlExecute (swt2, flowCmd2.str ());
   }
 
 }
-
 void
 MyController::Update (std::string context, uint64_t imsi, uint16_t cellid, uint16_t rnti)
 { 
-  //ID do switch 1
   static uint64_t swt1=1;
-  //ID do switch 2
   static uint64_t swt2=2;
   static uint64_t prio=100;
   prio++;
 
-  // Informa o momento em que houve o handover, o IMSI do usuário e para qual RRH ele migrou
   std::cout << Simulator::Now ().GetSeconds () << " "
             << " UE IMSI " << imsi
             << ", realizou handover para rrh:  " << cellid
             << std::endl;
 
-  // Realoca o usuário para a BBU que está alocada para a nova RRH em que o usuário está conectado
+  //AUTOCODE UPDATE INICIO
   switch (cellid)
     {
       case 1:
@@ -696,10 +667,7 @@ MyController::Update (std::string context, uint64_t imsi, uint16_t cellid, uint1
         mymap3[m_mymap[imsi]]= 4;
         std::cout<<"ip: "<<m_mymap[imsi]<<" associado à BBU: 4 (Handover)"<<std::endl; 
         break;
-      case 14:
-        mymap3[m_mymap[imsi]]= 4;
-        std::cout<<"ip: "<<m_mymap[imsi]<<" associado à BBU: 4 (Handover)"<<std::endl; 
-        break;
+      case 14://AUTOCODE UPDATE FIM
       case 15:
         mymap3[m_mymap[imsi]]= 6;
         std::cout<<"ip: "<<m_mymap[imsi]<<" associado à BBU: 6 (Handover)"<<std::endl; 
@@ -725,6 +693,8 @@ MyController::Update (std::string context, uint64_t imsi, uint16_t cellid, uint1
         std::cout<<"ip: "<<m_mymap[imsi]<<" não associado"<<std::endl; 
         break;
     }
+
+    //AUTOCODE UPDATE FIM
 
   for (std::map<Ipv4Address, uint64_t >::iterator it2=mymap3.begin(); it2!=mymap3.end(); ++it2)
   {

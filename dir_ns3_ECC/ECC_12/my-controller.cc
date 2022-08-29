@@ -147,9 +147,7 @@ MyController::HandlePacketIn (
 	BBU 5 = 4,5,8,9 = 45+60+60+65 = 230
 	BBU 6 = 10,11,15,16,19 = 50+45+60+45+50 = 250
 	Balanceado
-	BBU 1 = 170
-	BBU 2 = 180
-	BBU 3 = 165
+	BBU 1 = 170s_status_with_JasmineModel.xls', number_of_bbus = 6)
 	BBU 4 = 160
 	BBU 5 = 175
 	BBU 6 = 180
@@ -380,6 +378,7 @@ MyController::Allocation (std::map <uint64_t, Ipv4Address> mymap,std::map <uint6
   m_mymap = mymap;
   m_mymap2 = mymap2;
 
+  //AUTOCODE ALLOCATION INICIO
   uint32_t connect_RRH_1 = 0;
   uint32_t connect_RRH_2 = 0;
   uint32_t connect_RRH_3 = 0;
@@ -400,13 +399,14 @@ MyController::Allocation (std::map <uint64_t, Ipv4Address> mymap,std::map <uint6
   uint32_t connect_RRH_18 = 0;
   uint32_t connect_RRH_19 = 0;
 
+
   static uint32_t connect_bbu_1 = 0;
   static uint32_t connect_bbu_2 = 0;
   static uint32_t connect_bbu_3 = 0;
   static uint32_t connect_bbu_4 = 0;
   static uint32_t connect_bbu_5 = 0;
   static uint32_t connect_bbu_6 = 0;
-
+  
   //std::cout<<"teste"<<std::endl;
   
 
@@ -417,6 +417,8 @@ MyController::Allocation (std::map <uint64_t, Ipv4Address> mymap,std::map <uint6
     //Associando cada antena a uma BBU de acordo com a alocação teste
     switch (it->second)
     {
+
+      
       case 1:
         connect_RRH_1++;
         mymap3[m_mymap[it->first]]= 3;
@@ -531,6 +533,8 @@ MyController::Allocation (std::map <uint64_t, Ipv4Address> mymap,std::map <uint6
         connect_bbu_6++;
         //std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl; 
         break;
+
+      //AUTOCODE ALLOCATION FIM
       default:
         mymap3[m_mymap[it->first]]= 7;
         //std::cout<<"ip: "<<m_mymap[it->first]<<" não associado"<<std::endl; 
@@ -578,6 +582,7 @@ MyController::Allocation (std::map <uint64_t, Ipv4Address> mymap,std::map <uint6
   std::cout <<"BBU 4: " << connect_bbu_4 << " usuários\n";
   std::cout <<"BBU 5: " << connect_bbu_5 << " usuários\n";
   std::cout <<"BBU 6: " << connect_bbu_6 << " usuários\n";
+  //AUTOCODE ALLOCATION FIM
 
   for (std::map<Ipv4Address, uint64_t >::iterator it2=mymap3.begin(); it2!=mymap3.end(); ++it2)
   {
@@ -607,6 +612,7 @@ MyController::Update (std::string context, uint64_t imsi, uint16_t cellid, uint1
             << ", realizou handover para rrh:  " << cellid
             << std::endl;
 
+  //AUTOCODE UPDATE INICIO
   switch (cellid)
     {
       case 1:
@@ -661,10 +667,7 @@ MyController::Update (std::string context, uint64_t imsi, uint16_t cellid, uint1
         mymap3[m_mymap[imsi]]= 4;
         std::cout<<"ip: "<<m_mymap[imsi]<<" associado à BBU: 4 (Handover)"<<std::endl; 
         break;
-      case 14:
-        mymap3[m_mymap[imsi]]= 4;
-        std::cout<<"ip: "<<m_mymap[imsi]<<" associado à BBU: 4 (Handover)"<<std::endl; 
-        break;
+      case 14://AUTOCODE UPDATE FIM
       case 15:
         mymap3[m_mymap[imsi]]= 6;
         std::cout<<"ip: "<<m_mymap[imsi]<<" associado à BBU: 6 (Handover)"<<std::endl; 
@@ -690,6 +693,8 @@ MyController::Update (std::string context, uint64_t imsi, uint16_t cellid, uint1
         std::cout<<"ip: "<<m_mymap[imsi]<<" não associado"<<std::endl; 
         break;
     }
+
+    //AUTOCODE UPDATE FIM
 
   for (std::map<Ipv4Address, uint64_t >::iterator it2=mymap3.begin(); it2!=mymap3.end(); ++it2)
   {

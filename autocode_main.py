@@ -3,6 +3,7 @@ import os #biblioteca para obter informações do sistema
 from pathlib import Path
 from autocode_smalls import autocode_smalls
 from autocode_users import autocode_users
+from autocode_bbu_allocation import  autocode_bbu_allocation
 
 print('\n')
 linha = '-'*50
@@ -22,15 +23,20 @@ while(1):
     elif modo.strip().upper() == 'ECC':
         planilha_smalls = 'ECC_planilhas/SmallPosition_with_JasmineModel.xls'
         planilha_users = 'ECC_planilhas/UserPosition_with_JasmineModel.xls'
+        planilha_bbu_allocation = 'ECC_planilhas/mapping_rrh_bbu_sectors_with_JasmineModel.xls'
+        planilha_status_rrh = 'ECC_planilhas/rrhs_status_with_JasmineModel.xls'
         #Diretório que será passado para o NS-3
         diretorio_ns3 = f'./dir_ns3_ECC/ECC'
         break
     else:
         print('\nCENÁRIO INCORRETO! TENTE NOVAMENTE.\n')
 
+number_of_bbus = 6
 
 quantidade_arquivos_flowmon = int(input('Indique a quantidade de arquivos flowmon: '))
 
+#Gerando txt formatado para a alocação RRH-BBU
+autocode_bbu_allocation(planilha_bbu_allocation, planilha_status_rrh, number_of_bbus)
 
 #Gerando txt formatado para a alocação de usuários e de antenas
 autocode_smalls (planilha_smalls)
@@ -39,21 +45,36 @@ autocode_users(planilha_users)
 # Obtem o diretório atual
 cwd = os.getcwd()
 
+
 #---CONVERTE O ARQUIVO MAIN DE .CC PARA .TXT
 # Caminho do arquivo que serve como base
 src = f'{cwd}/arquivo_base/main.cc'
 # Novos arquivos em formato cc
 dest = f'{cwd}/arquivo_base/main.txt'
 shutil.copy(src, dest)
-
 # Caminho do arquivo que serve como base
-src = f'{cwd}/arquivo_base/main.txt'
+src_main = f'{cwd}/arquivo_base/main.txt'
+
+
+#---CONVERTE O ARQUIVO MY-CONTROLLER DE .CC PARA .TXT
+# Caminho do arquivo que serve como base
+src = f'{cwd}/arquivo_base/my-controller.cc'
+# Novos arquivos em formato cc
+dest = f'{cwd}/arquivo_base/my-controller.txt'
+shutil.copy(src, dest)
+# Caminho do arquivo txt do my-controller
+src_mycontroller = f'{cwd}/arquivo_base/my-controller.txt'
+
+
+
+
+
+
 
 # Abrindo o arquivo com as antenas
 smalls_txt = planilha_smalls.split('.')
 smalls_txt = smalls_txt[0]
 smalls = open(f'{smalls_txt}.txt')
-
 # Armazenando todas as linhas do arquivo de antenas
 content_smalls = smalls.readlines()
 
@@ -61,9 +82,16 @@ content_smalls = smalls.readlines()
 users_txt = planilha_users.split('.')
 users_txt = users_txt[0]
 users = open(f'{users_txt}.txt')
-
 # Armazenando todas as linhas do arquivo de usuários
 content_users = users.readlines()
+
+
+# Abrindo o arquivo com a alocação RRH-BBU 
+allocation_txt = planilha_bbu_allocation.split('.')
+allocation_txt = allocation_txt[0]
+allocation = open(f'{allocation_txt}.txt')
+# Armazenando todas as linhas do arquivo de antenas
+content_allocation = allocation.readlines()
 
 
 for hora in range(1, quantidade_arquivos_flowmon + 1):
@@ -80,20 +108,36 @@ for hora in range(1, quantidade_arquivos_flowmon + 1):
 
     # Passando o caminho de um novo arquivo main para a hora atual
     nova_main = f'{cwd}/arquivos_txt/main_{hora}.txt'
-
     # Copiando o conteudo do arquivo base para a main da hora atual
     dest = nova_main
-    shutil.copy(src, dest)
+    shutil.copy(src_main, dest)
 
     #Abrindo o arquivo main do ns-3 no formato txt
     arq = f'arquivos_txt/main_{hora}.txt'
     # main = open(arq, 'a')
     with open(arq, 'a') as arquivo:
         arquivo.write(f'')
-
     with open(arq, 'r') as arquivo:
         # Armazenando todas as linhas do main 
         content_main = arquivo.readlines()
+
+    # Passando o caminho de um novo arquivo mycontroller para a hora atual
+    new_mycontroller = f'{cwd}/arquivos_txt/my-controller-{hora}.txt'
+    # Copiando o conteudo do arquivo base para a main da hora atual
+    dest = new_mycontroller
+    shutil.copy(src_mycontroller, dest)
+
+    #Abrindo o arquivo mycontroller do ns-3 no formato txt
+    arq_mycontroller = f'arquivos_txt/my-controller-{hora}.txt'
+    # main = open(arq, 'a')
+    with open(arq_mycontroller, 'a') as arquivo:
+        arquivo.write(f'')
+    with open(arq_mycontroller, 'r') as arquivo:
+        # Armazenando todas as linhas do 
+        content_mycontroller = arquivo.readlines()
+
+
+    
 
 
 
@@ -328,6 +372,103 @@ for hora in range(1, quantidade_arquivos_flowmon + 1):
 
 
 
+    
+
+
+
+
+
+
+
+
+    # ALLOCATION
+    # ---REMOVE LINHAS JÁ EXISTENTES DE ALOCAÇÃO DE RRH-BBU---
+
+    #Percorrendo as linhas do arquivo main
+    for linha in range(len(content_mycontroller)):
+        if '//AUTOCODE ALLOCATION INICIO' in content_mycontroller[linha].strip(): #Demarcador da linha de inicio da alocação das antenas
+            inicio_allocation = linha # armazena a linha de inicio da alocação das antenas
+            print(linha)
+
+        if '//AUTOCODE ALLOCATION FIM' in content_mycontroller[linha].strip(): #Demarcador da linha final da alocação das antenas
+            fim_allocation = linha # armazena a linha de fim da alocação das antenas
+            # print(linha)
+
+    print(f'Linha inicial da alocação das smalls: {inicio_allocation}')
+    print(f'Linha final da alocação das smalls: {fim_allocation}')
+
+    # Percorrendo somente as linhas de alocação
+    for linha in range((inicio_allocation + 2), fim_allocation):
+
+        # Removendo as linhas de alocação que já existem
+        content_mycontroller.remove(content_mycontroller[(inicio_allocation + 2)])
+
+    # Limpando o arquivo mycontroller atual
+    with open(arq_mycontroller,'w') as f:
+        pass
+
+    #Percorrendo as linhas do arquivo mycontroller
+    for linha in range(len(content_mycontroller)):
+
+        # Abrindo o arquivo mycontroller atual
+        with open(arq_mycontroller, 'a') as arquivo:
+
+            # Escrevendo cada linha do content_mycontroller (sem as linhas de alocação) para o main.txt
+            arquivo.write(content_mycontroller[linha])
+
+
+
+    
+    # ALLOCATION
+    # ----ADICIONA LINHAS DE ALOCAÇÃO DE RRH-BBU DE ACORDO COM A PLANILHA DE ALOCAÇÃO---
+
+
+    #Percorrendo as linhas do arquivo
+    for linha in range(len(content_allocation)):
+
+        #Demarcador da linha de inicio da locação dos usuários da hora 
+        if f'INICIO ALLOCATION {hora}.0' in content_allocation[linha]:
+
+            # Armazena a linha de inicio de alocação da hora
+            inicio_hora_allocation = linha
+
+        #Demarcador da linha final da locação da hora    
+        if f'FIM ALLOCATION {hora}.0' in content_allocation[linha]:
+
+            # Armazena a linha de inicio de alocação da hora
+            fim_hora_allocation = linha
+            
+    print(f'Inicio da hora para alocação: {inicio_hora_allocation}')
+    print(f'Fim da hora para alocação: {fim_hora_allocation}')
+
+    quantidade_rrh = 0
+    # Percorre a quantidade de linhas de alocação de usuários da hora 
+    for linha in range((fim_hora_allocation-1), inicio_hora_allocation):
+
+        # Armazena cada linha de alocação do txt de usuários para a hora
+        texto = content_allocation[linha]
+        # Insere a linha de alocação acima no content_mycontroller
+        content_mycontroller.insert((inicio_allocation+1), texto)
+
+        # Contador para armazenar a quantidade de usuários
+        quantidade_rrh += 1
+
+    print(f'Quantidade de rrhs da hora {hora}: {quantidade_rrh+1}')
+
+    # Limpando  o arquivo mycontroller atual
+    with open(arq_mycontroller,'w') as f:
+        pass
+
+    #Percorrendo as linhas do arquivo mycontroller
+    for linha in range(len(content_mycontroller)):
+
+        # Abri o arquivo mycontroller atual
+        with open(arq_mycontroller, 'a') as arquivo:
+
+            arquivo.write(content_mycontroller[linha])
+
+
+
 
 
 
@@ -476,9 +617,14 @@ for i in range(1, 25):
 
     # Caminho do arquivo que serve como base
     src = f'{cwd}/arquivos_txt/main_{i}.txt'
-
     # Novos arquivos em formato cc
     dest = f'{cwd}/arquivos_cc/main_{i}.cc'
+    shutil.copy(src, dest)
+
+    # Caminho do arquivo que serve como base
+    src = f'{cwd}/arquivos_txt/my-controller-{i}.txt'
+    # Novos arquivos em formato cc
+    dest = f'{cwd}/arquivos_cc/my-controller-{i}.cc'
     shutil.copy(src, dest)
 
 

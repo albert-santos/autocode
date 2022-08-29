@@ -25,10 +25,14 @@ def autocode_bbu_allocation(planilha_bbu_allocation, planilha_rrhs_status, numbe
     
     for hora in range(1, np.size(bbu_allocation_matrix, 0) + 1): # Número de linhas que representa as horas
         
-        
-        print(f'Hora {hora}')
+
+        print(f'Hora {float(hora)}')
         with open(f"{arquivo_txt}.txt", 'a') as arquivo:
-                arquivo.write(f'\nINICIO HORA {hora}\n')
+                arquivo.write(f'\nINICIO HORA {float(hora)}\n')
+
+        print(f'ALLOCATION {float(hora)}')
+        with open(f"{arquivo_txt}.txt", 'a') as arquivo:
+                arquivo.write(f'\n\tINICIO ALLOCATION {float(hora)}\n\n')
         
         # -------------- IMPLEMENTA VARIÁVEIS DE CONEXÃO DAS RRHS --------
         #
@@ -37,7 +41,7 @@ def autocode_bbu_allocation(planilha_bbu_allocation, planilha_rrhs_status, numbe
         rrh_counter = 1
         # Percorre todas RRHs
         for rrh_indice in range(np.size(bbu_allocation_matrix, 1)):  
-
+            
             status = rrh_status_matrix[hora-1, rrh_indice]
             
             if   status == 1:
@@ -164,14 +168,58 @@ def autocode_bbu_allocation(planilha_bbu_allocation, planilha_rrhs_status, numbe
                     arquivo.write(f'\tstd::cout <<"BBU {bbu_indice}: " << connect_bbu_{bbu_indice} << " usuários" << std::endl;\n')
 	    
 
+        # Fim do método allocation
+        print(f'FIM ALLOCATION {float(hora)}\n')
+        with open(f"{arquivo_txt}.txt", 'a') as arquivo:
+                    arquivo.write(f'\n\tFIM ALLOCATION {float(hora)}\n\n')
+
+
+        # -------------- FIM DA ALOCAÇÃO RRH-BBU --------
+    
+    
     
 
-    
-    
-    
-	    
+	    # -------------- INÍCIO DO MÉTODO UPDATE PARA ALOCAÇÃO RRH-BBU --------
+        # Esse método atualiza a alocação caso ocorra handover
 
-         
+        print(f'\n\tINICIO UPDATE {float(hora)}\n\n')
+        with open(f"{arquivo_txt}.txt", 'a') as arquivo:
+                    arquivo.write(f'\tINICIO UPDATE {float(hora)}\n')
+
+        # Início do Switch case
+        with open(f"{arquivo_txt}.txt", 'a') as arquivo:
+                    arquivo.write('\n\tswitch (cellid)\n\t\t{\n')
+
+
+        rrh_counter = 1
+        # Percorre todas RRHs e realiza a alocação
+        for rrh_indice in range(np.size(bbu_allocation_matrix, 1)):  
+
+            status = rrh_status_matrix[hora-1, rrh_indice]
+            
+            if   status == 1:
+                with open(f"{arquivo_txt}.txt", 'a') as arquivo:
+                    arquivo.write(f'\t\t\tcase {rrh_counter}:\n')
+                    arquivo.write(f'\t\t\t\tmymap3[m_mymap[imsi]]= {bbu_allocation_matrix[hora-1, rrh_indice]};\n')
+                    arquivo.write(f'\t\t\t\t//std::cout<<"ip: "<<m_mymap[imsi]<<" associado à BBU: {bbu_allocation_matrix[hora-1, rrh_indice]} (Handover)"<<std::endl;\n')
+                    arquivo.write('\t\t\t\tbreak;\n')
+
+                rrh_counter += 1
+
+
+        
+        # Fim do switch case e do for
+        with open(f"{arquivo_txt}.txt", 'a') as arquivo:
+                    arquivo.write('\t\t\tdefault:\n')
+                    arquivo.write(f'\t\t\t\tmymap3[m_mymap[imsi]]= {number_of_bbus+1};\n')
+                    arquivo.write('\t\t\t\tstd::cout<<"ip: "<<m_mymap[imsi]<<" não associado"<<std::endl;\n')
+                    arquivo.write('\t\t\t\tbreak;\n')
+                    arquivo.write('\t\t}\n')
+
+
+
+        with open(f"{arquivo_txt}.txt", 'a') as arquivo:
+                    arquivo.write(f'\tFIM UPDATE {float(hora)}\n\n') 
         
         # ------------------------------------------------------------------------------
         
@@ -180,13 +228,7 @@ def autocode_bbu_allocation(planilha_bbu_allocation, planilha_rrhs_status, numbe
         
         
         
-        
         print(f'FIM HORA {hora}\n')
         with open(f"{arquivo_txt}.txt", 'a') as arquivo:
-                    arquivo.write(f'FIM HORA {hora}\n')
+                    arquivo.write(f'FIM HORA {float(hora)}\n')
         hora += 1
-
-
-
-
-autocode_bbu_allocation('ECC_planilhas/mapping_rrh_bbu_sectors_with_JasmineModel.xls', 'ECC_planilhas/rrhs_status_with_JasmineModel.xls', number_of_bbus = 6)
