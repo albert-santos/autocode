@@ -1,3 +1,63 @@
+/* -*- Mode:C++; c-file-style:"gnu"; indent-tabs-mode:nil; -*- */
+/*
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation;
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ *
+ * Author: Luciano Chaves <luciano@lrc.ic.unicamp.br>
+ */
+
+#ifdef NS3_OFSWITCH13
+
+#include "my-controller.h"
+#include <ns3/network-module.h>
+#include <ns3/internet-module.h>
+
+NS_LOG_COMPONENT_DEFINE ("MyController");
+
+namespace ns3 {
+
+NS_OBJECT_ENSURE_REGISTERED (MyController);
+
+/********** Public methods ***********/
+MyController::MyController ()
+{
+  NS_LOG_FUNCTION (this);
+}
+
+MyController::~MyController ()
+{
+  NS_LOG_FUNCTION (this);
+}
+
+TypeId
+MyController::GetTypeId (void)
+{
+  static TypeId tid = TypeId ("ns3::MyController")
+    .SetParent<OFSwitch13Controller> ()
+    .SetGroupName ("OFSwitch13")
+    .AddConstructor<MyController> ()
+  ;
+  return tid;
+}
+
+void
+MyController::DoDispose ()
+{
+  NS_LOG_FUNCTION (this);
+
+  m_learnedInfo.clear ();
+  OFSwitch13Controller::DoDispose ();
+}
 
 void
 MyController::Allocation (std::map <uint64_t, Ipv4Address> mymap,std::map <uint64_t, uint64_t> mymap2)
@@ -43,18 +103,18 @@ MyController::Allocation (std::map <uint64_t, Ipv4Address> mymap,std::map <uint6
   uint32_t connect_RRH_17 = 0;
   uint32_t connect_RRH_18 = 0;
   uint32_t connect_RRH_19 = 0;
-
-
+  //
+  //
   static uint32_t connect_bbu_1 = 0;
   static uint32_t connect_bbu_2 = 0;
   static uint32_t connect_bbu_3 = 0;
   static uint32_t connect_bbu_4 = 0;
   static uint32_t connect_bbu_5 = 0;
   static uint32_t connect_bbu_6 = 0;
-  
+  //
   //std::cout<<"teste"<<std::endl;
-  
-
+  //
+  //
   for (std::map<uint64_t, uint64_t >::iterator it=m_mymap2.begin(); it!=m_mymap2.end(); ++it)
   {
     //std::cout<<"teste2"<<std::endl;
@@ -62,8 +122,6 @@ MyController::Allocation (std::map <uint64_t, Ipv4Address> mymap,std::map <uint6
     //Associando cada antena a uma BBU de acordo com a alocação teste
     switch (it->second)
     {
-
-      
       case 1:
         connect_RRH_1++;
         mymap3[m_mymap[it->first]]= 3;
@@ -178,27 +236,25 @@ MyController::Allocation (std::map <uint64_t, Ipv4Address> mymap,std::map <uint6
         connect_bbu_6++;
         //std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl; 
         break;
-
-      //AUTOCODE ALLOCATION FIM
       default:
         mymap3[m_mymap[it->first]]= 7;
         //std::cout<<"ip: "<<m_mymap[it->first]<<" não associado"<<std::endl; 
         break;
     }
   }
-
+  //
   std::cout <<"\n MAPA 1: IMSI X IP"<< '\n';
   for (std::map<uint64_t, Ipv4Address>::iterator it=m_mymap.begin(); it!=m_mymap.end(); ++it)
 		std::cout <<"imsi: "<< it->first << " ip address: " << it->second << '\n';
-
+  
   std::cout <<"\n MAPA 2: IMSI X RRH_ID"<< '\n';
   for (std::map<uint64_t, uint64_t>::iterator it=m_mymap2.begin(); it!=m_mymap2.end(); ++it)
 		std::cout <<"imsi: "<< it->first << " connected to cellid: " << it->second << '\n';
-
+  //
   std::cout <<"\n MAPA 3: IP X BBU"<< '\n';
   for (std::map<Ipv4Address, uint64_t >::iterator it=mymap3.begin(); it!=mymap3.end(); ++it)
 		std::cout <<"ip address: "<< it->first << " bbu: " << it->second << '\n';
-
+  //
   std::cout <<"\n Qtd de Usuários por RRH"<< '\n';
   std::cout <<"RRH 1: " << connect_RRH_1 << " usuários\n";
   std::cout <<"RRH 2: " << connect_RRH_2 << " usuários\n";
@@ -219,7 +275,7 @@ MyController::Allocation (std::map <uint64_t, Ipv4Address> mymap,std::map <uint6
   std::cout <<"RRH 17: " << connect_RRH_17 << " usuários\n";
   std::cout <<"RRH 18: " << connect_RRH_18 << " usuários\n";
   std::cout <<"RRH 19: " << connect_RRH_19 << " usuários\n";
-
+  //
   std::cout <<"\n Qtd de Usuários por BBU"<< '\n';
   std::cout <<"BBU 1: " << connect_bbu_1 << " usuários\n";
   std::cout <<"BBU 2: " << connect_bbu_2 << " usuários\n";
@@ -256,7 +312,6 @@ MyController::Update (std::string context, uint64_t imsi, uint16_t cellid, uint1
             << " UE IMSI " << imsi
             << ", realizou handover para rrh:  " << cellid
             << std::endl;
-
   //AUTOCODE UPDATE INICIO
   switch (cellid)
     {
@@ -338,7 +393,6 @@ MyController::Update (std::string context, uint64_t imsi, uint16_t cellid, uint1
         std::cout<<"ip: "<<m_mymap[imsi]<<" não associado"<<std::endl; 
         break;
     }
-
     //AUTOCODE UPDATE FIM
 
   for (std::map<Ipv4Address, uint64_t >::iterator it2=mymap3.begin(); it2!=mymap3.end(); ++it2)
@@ -356,6 +410,303 @@ MyController::Update (std::string context, uint64_t imsi, uint16_t cellid, uint1
   }
 
 }
+
+ofl_err
+MyController::HandlePacketIn (
+  struct ofl_msg_packet_in *msg, Ptr<const RemoteSwitch> swtch,
+  uint32_t xid)
+{
+  NS_LOG_FUNCTION (this << swtch << xid);
+  //PORT 2==INPUT PORT
+  //PORT 1==OUTPUT PORT
+  //uint32_t outPort = OFPP_FLOOD;
+  static uint64_t swt1=1;
+  uint16_t bbu=0;
+  static uint32_t connect_bbu_1 = 0;
+  static uint32_t connect_bbu_2 = 0;
+  static uint32_t connect_bbu_3 = 0;
+  static uint32_t connect_bbu_4 = 0;
+  static uint32_t connect_bbu_5 = 0;
+  static uint32_t connect_bbu_6 = 0;
+  bool access_bbu1= true;
+  bool access_bbu2= true;
+  bool access_bbu3= true;
+  bool access_bbu4= true;
+  bool access_bbu5= true;
+  bool access_bbu6= true;
+
+  uint64_t swt2=2;
+  //static int prio = 100;
+  uint64_t dpId = swtch->GetDpId ();
+  //enum ofp_packet_in_reason reason = msg->reason;
+  static uint32_t connectionCounter = 0;
+  //static uint32_t aux = 3;
+  char *msgStr =
+    ofl_structs_match_to_string ((struct ofl_match_header*)msg->match, 0);
+  NS_LOG_DEBUG ("Packet in match: " << msgStr);
+  free (msgStr);
+  // Get Ethernet frame type
+  uint16_t ethType;
+  struct ofl_match_tlv *tlv;
+  tlv = oxm_match_lookup (OXM_OF_ETH_TYPE, (struct ofl_match*)msg->match);
+  memcpy (&ethType, tlv->value, OXM_LENGTH (OXM_OF_ETH_TYPE));
+  Ipv4Address srcIp, dstIp;
+
+  uint32_t inPort;
+  size_t portLen = OXM_LENGTH (OXM_OF_IN_PORT); // (Always 4 bytes)
+  struct ofl_match_tlv *input =
+  oxm_match_lookup (OXM_OF_IN_PORT, (struct ofl_match*)msg->match);
+  memcpy (&inPort, input->value, portLen);
+
+  if (ethType == Ipv4L3Protocol::PROT_NUMBER)
+    {
+        srcIp = ExtractIpv4Address (OXM_OF_IPV4_SRC, (struct ofl_match*)msg->match);
+        dstIp = ExtractIpv4Address (OXM_OF_IPV4_DST, (struct ofl_match*)msg->match);
+        //std::cout<<srcIp<<std::endl;
+        //std::cout<<dstIp<<std::endl;
+      }
+   if (ethType == ArpL3Protocol::PROT_NUMBER)
+        {
+          // ARP packet
+          std::cout<<"-------------------------arp-----------------------------"<<std::endl;
+        }
+
+   if(connect_bbu_1>=200){
+    access_bbu1=false;
+  }
+  if(connect_bbu_2>=200){
+    access_bbu2=false;
+  }
+  if(connect_bbu_3>=200){
+    access_bbu3=false;
+  }
+  if(connect_bbu_4>=200){
+    access_bbu4=false;
+  }
+  if(connect_bbu_5>=200){
+    access_bbu5=false;
+  }
+  if(connect_bbu_6>=200){
+    access_bbu6=false;
+  }
+
+  /*
+	Não-balanceado
+	BBU 1 = 7,12= 65+65 = 130
+	BBU 2 = 3,6 = 50+55 = 105
+	BBU 3 = 1,2 = 70+45 = 115
+	BBU 4 = 13,14,17,18 = 60+45+45+50 = 200
+	BBU 5 = 4,5,8,9 = 45+60+60+65 = 230
+	BBU 6 = 10,11,15,16,19 = 50+45+60+45+50 = 250
+	Balanceado
+	BBU 1 = 170s_status_with_JasmineModel.xls', number_of_bbus = 6)
+	BBU 4 = 160
+	BBU 5 = 175
+	BBU 6 = 180
+  */
+
+
+  // if(connectionCounter<130 && access_bbu1){
+  //   connect_bbu_1++;
+  //   bbu=1;
+  // }else if(connectionCounter<235 && access_bbu2){
+  //   connect_bbu_2++;
+  //   bbu=2;
+  // }else if(connectionCounter<350 && access_bbu3){
+  //   connect_bbu_3++;
+  //   bbu=3;
+  // }else if(connectionCounter<550 && access_bbu4){
+  //   connect_bbu_4++;
+  //   bbu=4;
+  // }else if(connectionCounter<780 && access_bbu5){
+  //   connect_bbu_5++;
+  //   bbu=5;
+  // }else if(connectionCounter<=1030 && access_bbu6){
+  //   connect_bbu_6++;
+  //   bbu=6;
+  // }else{
+  // 	std::cout<<"-------------------------limite alcançado------------------------------------"<<std::endl;
+  //   bbu=10;
+  // }
+
+
+if(connectionCounter<170 && access_bbu1){
+    connect_bbu_1++;
+    bbu=1;
+  }else if(connectionCounter<350 && access_bbu2){
+    connect_bbu_2++;
+    bbu=2;
+  }else if(connectionCounter<515 && access_bbu3){
+    connect_bbu_3++;
+    bbu=3;
+  }else if(connectionCounter<675 && access_bbu4){
+    connect_bbu_4++;
+    bbu=4;
+  }else if(connectionCounter<850 && access_bbu5){
+    connect_bbu_5++;
+    bbu=5;
+  }else if(connectionCounter<=1030 && access_bbu6){
+    connect_bbu_6++;
+    bbu=6;
+  }else{
+  	std::cout<<"-------------------------limite alcançado------------------------------------"<<std::endl;
+    bbu=10;}
+
+
+//#####################Cenário com cargas diferentes########### 
+  //  if(connectionCounter<130 && access_bbu1){
+  //   connect_bbu_1++;
+  //   bbu=1;
+  // }else if(connectionCounter<235 && access_bbu2){
+  //   connect_bbu_2++;
+  //   bbu=2;
+  // }else if(connectionCounter<350 && access_bbu3){
+  //   connect_bbu_3++;
+  //   bbu=3;
+  // }else if(connectionCounter<550 && access_bbu4){
+  //   connect_bbu_4++;
+  //   bbu=4;
+  // }else if(connectionCounter<780 && access_bbu5){
+  //   connect_bbu_5++;
+  //   bbu=5;
+  // }else if(connectionCounter<=1030 && access_bbu6){
+  //   connect_bbu_6++;
+  //   bbu=6;
+  // }else{
+  // 	std::cout<<"-------------------------limite alcançado------------------------------------"<<std::endl;
+  //   bbu=10;
+  // }
+  std::cout<<"shit "<<std::endl;
+  if(dpId==1 && !(bbu==10)){
+  connectionCounter++;
+  std::ostringstream flowCmd;
+  flowCmd << "flow-mod cmd=add,prio=100,table=0, eth_type=0x0800,"
+          << "ip_src=" << srcIp
+          << ",in_port=7 apply:output=" << bbu;
+   DpctlExecute (swt1, flowCmd.str ());
+  std::ostringstream flowCmd2;
+  flowCmd2 << "flow-mod cmd=add,prio=100,table=0, eth_type=0x0800,"
+          << "ip_dst=" << srcIp
+          << ",in_port=1 apply:output=" << bbu+1;
+   DpctlExecute (swt2, flowCmd2.str ());
+   //std::cout<<"connect:"<<connectionCounter<<std::endl;
+ }
+ if(dpId==2){
+ 	// std::cout<<"----------------------------------switch2-----------------------------"<<std::endl;
+  //std::cout<<"dpId 2, connect:"<<connectionCounter<<std::endl;
+  //std::cout<<"aux:"<<aux<<std::endl;
+  // std::ostringstream flowCmd;
+  // flowCmd << "flow-mod cmd=add,prio=100,table=0, eth_type=0x0800,"
+  //         << "ip_dst=" << dstIp
+  //         << " apply:output=" << bbu+1;
+  //  DpctlExecute (swt2, flowCmd.str ());
+   //std::cout<<"dpId 2, bbu:"<<bbu<<std::endl;
+ }
+  // if(dpId==2){
+  //   DpctlExecute (swtch, "flow-mod cmd=add,table=0, eth_type=0x800,ip_dst=7.0.0.2,"
+  //               "in_port=1 apply:output=2");
+  //   DpctlExecute (swtch, "flow-mod cmd=add,table=0, eth_type=0x806,arp_tpa=7.0.0.2,"
+  //               "in_port=1 apply:output=2");
+  //   DpctlExecute (swtch, "flow-mod cmd=add,table=0, eth_type=0x800,ip_dst=7.0.0.3,"
+  //               "in_port=1 apply:output=3");
+  //   DpctlExecute (swtch, "flow-mod cmd=add,table=0, eth_type=0x806,arp_tpa=7.0.0.3,"
+  //               "in_port=1 apply:output=3");
+  //  }
+//Se utilizando TCP, descomentar essas linhas!!
+  // All handlers must free the message when everything is ok
+ // Lets send the packet out to switch.
+  //     struct ofl_msg_packet_out reply;
+  //     reply.header.tzype = OFPT_PACKET_OUT;
+  //     reply.buffer_id = msg->buffer_id;
+  //     reply.in_port = inPort;
+  //     reply.data_length = 0;
+  //     reply.data = 0;
+
+  //     if (msg->buffer_id == NO_BUFFER)
+  //       {
+  //         // No packet buffer. Send data back to switch
+  //         reply.data_length = msg->data_length;
+  //         reply.data = msg->data;
+  //       }
+
+  //     // Create output action
+  //     struct ofl_action_output *a =
+  //       (struct ofl_action_output*)xmalloc (sizeof (struct ofl_action_output));
+  //     a->header.type = OFPAT_OUTPUT;
+  //     a->port = outPort;
+  //     a->max_len = 0;
+
+  //     reply.actions_num = 1;
+  //     reply.actions = (struct ofl_action_header**)&a;
+
+  //     SendToSwitch (swtch, (struct ofl_msg_header*)&reply, xid);
+  //     free (a);
+
+  // ofl_msg_free ((struct ofl_msg_header*)msg, 0);
+  return 0;
+}
+Ipv4Address
+MyController::ExtractIpv4Address (uint32_t oxm_of, struct ofl_match* match)
+{
+  switch (oxm_of)
+    {
+    case OXM_OF_ARP_SPA:
+    case OXM_OF_ARP_TPA:
+    case OXM_OF_IPV4_DST:
+    case OXM_OF_IPV4_SRC:
+      {
+        uint32_t ip;
+        int size = OXM_LENGTH (oxm_of);
+        struct ofl_match_tlv *tlv = oxm_match_lookup (oxm_of, match);
+        memcpy (&ip, tlv->value, size);
+        return Ipv4Address (ntohl (ip));
+      }
+    default:
+      NS_FATAL_ERROR ("Invalid IP field.");
+    }
+}
+
+ofl_err
+MyController::HandleFlowRemoved (
+  struct ofl_msg_flow_removed *msg, Ptr<const RemoteSwitch> swtch,
+  uint32_t xid)
+{
+  NS_LOG_FUNCTION (this << swtch << xid);
+
+  NS_LOG_DEBUG ( "Flow entry expired. Removing from L2 switch table.");
+  uint64_t dpId = swtch->GetDpId ();
+  DatapathMap_t::iterator it = m_learnedInfo.find (dpId);
+  if (it != m_learnedInfo.end ())
+    {
+      Mac48Address mac48;
+      struct ofl_match_tlv *ethSrc =
+        oxm_match_lookup (OXM_OF_ETH_DST, (struct ofl_match*)msg->stats->match);
+      mac48.CopyFrom (ethSrc->value);
+
+      L2Table_t *l2Table = &it->second;
+      L2Table_t::iterator itSrc = l2Table->find (mac48);
+      if (itSrc != l2Table->end ())
+        {
+          l2Table->erase (itSrc);
+        }
+    }
+
+  // All handlers must free the message when everything is ok
+  ofl_msg_free_flow_removed (msg, true, 0);
+  return 0;
+}
+
+void MyController::NotifyHandoverStartUe (std::string context, uint64_t imsi, uint16_t cellid, uint16_t rnti, uint16_t targetCellId)
+{
+  std::cout << Simulator::Now ().GetSeconds () << " " << context
+            << " UE IMSI " << imsi
+            << ": previously connected to CellId " << cellid
+            << " with RNTI " << rnti
+            << ", doing handover to CellId " << targetCellId
+            << std::endl;
+}
+
+
 /********** Private methods **********/
 void
 MyController::HandshakeSuccessful (
