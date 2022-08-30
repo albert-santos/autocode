@@ -398,10 +398,10 @@ for hora in range(1, quantidade_arquivos_flowmon + 1):
     print(f'Linha final da alocação das smalls: {fim_allocation}')
 
     # Percorrendo somente as linhas de alocação
-    for linha in range((inicio_allocation + 2), fim_allocation):
+    for linha in range((inicio_allocation + 1), fim_allocation):
 
         # Removendo as linhas de alocação que já existem
-        content_mycontroller.remove(content_mycontroller[(inicio_allocation + 2)])
+        content_mycontroller.remove(content_mycontroller[(inicio_allocation + 1)])
 
     # Limpando o arquivo mycontroller atual
     with open(arq_mycontroller,'w') as f:
@@ -443,7 +443,7 @@ for hora in range(1, quantidade_arquivos_flowmon + 1):
 
     quantidade_rrh = 0
     # Percorre a quantidade de linhas de alocação de usuários da hora 
-    for linha in range((fim_hora_allocation-1), inicio_hora_allocation):
+    for linha in range((fim_hora_allocation-1), inicio_hora_allocation, -1):
 
         # Armazena cada linha de alocação do txt de usuários para a hora
         texto = content_allocation[linha]
@@ -466,6 +466,103 @@ for hora in range(1, quantidade_arquivos_flowmon + 1):
         with open(arq_mycontroller, 'a') as arquivo:
 
             arquivo.write(content_mycontroller[linha])
+
+
+
+
+
+
+
+
+
+    # UPDATE ALLOCATION
+    # ---REMOVE LINHAS JÁ EXISTENTES DE ALOCAÇÃO DE RRH-BBU NO MÉTODO UPDATE---
+
+    #Percorrendo as linhas do arquivo main
+    for linha in range(len(content_mycontroller)):
+        if '//AUTOCODE UPDATE INICIO' in content_mycontroller[linha].strip(): #Demarcador da linha de inicio da alocação das antenas
+            inicio_update = linha # armazena a linha de inicio da alocação das antenas
+            print(linha)
+
+        if '//AUTOCODE UPDATE FIM' in content_mycontroller[linha].strip(): #Demarcador da linha final da alocação das antenas
+            fim_update = linha # armazena a linha de fim da alocação das antenas
+            # print(linha)
+
+    print(f'Linha inicial da alocação das smalls: {inicio_update}')
+    print(f'Linha final da alocação das smalls: {fim_update}')
+
+    # Percorrendo somente as linhas de alocação
+    for linha in range((inicio_update + 1), fim_update):
+
+        # Removendo as linhas de alocação que já existem
+        content_mycontroller.remove(content_mycontroller[(inicio_update + 1)])
+
+    # Limpando o arquivo mycontroller atual
+    with open(arq_mycontroller,'w') as f:
+        pass
+
+    #Percorrendo as linhas do arquivo mycontroller
+    for linha in range(len(content_mycontroller)):
+
+        # Abrindo o arquivo mycontroller atual
+        with open(arq_mycontroller, 'a') as arquivo:
+
+            # Escrevendo cada linha do content_mycontroller (sem as linhas de alocação) para o main.txt
+            arquivo.write(content_mycontroller[linha])
+
+
+
+    
+    # UPDATE ALLOCATION
+    # ----ADICIONA LINHAS DE ALOCAÇÃO DE RRH-BBU DE ACORDO COM A PLANILHA DE ALOCAÇÃO---
+
+
+    #Percorrendo as linhas do arquivo
+    for linha in range(len(content_allocation)):
+
+        #Demarcador da linha de inicio da locação dos usuários da hora 
+        if f'INICIO UPDATE {hora}.0' in content_allocation[linha]:
+
+            # Armazena a linha de inicio de alocação da hora
+            inicio_update_allocation = linha
+
+        #Demarcador da linha final da locação da hora    
+        if f'FIM UPDATE {hora}.0' in content_allocation[linha]:
+
+            # Armazena a linha de inicio de alocação da hora
+            fim_update_allocation = linha
+            
+    print(f'Inicio da hora para alocação: {inicio_update_allocation}')
+    print(f'Fim da hora para alocação: {fim_update_allocation}')
+
+    quantidade_rrh = 0
+    # Percorre a quantidade de linhas de alocação de usuários da hora 
+    for linha in range((fim_update_allocation-1), inicio_update_allocation, -1):
+
+        # Armazena cada linha de alocação do txt de usuários para a hora
+        texto = content_allocation[linha]
+        # Insere a linha de alocação acima no content_mycontroller
+        content_mycontroller.insert((inicio_update+1), texto)
+
+        # Contador para armazenar a quantidade de usuários
+        quantidade_rrh += 1
+
+    print(f'Quantidade de rrhs da hora {hora}: {quantidade_rrh+1}')
+
+    # Limpando  o arquivo mycontroller atual
+    with open(arq_mycontroller,'w') as f:
+        pass
+
+    #Percorrendo as linhas do arquivo mycontroller
+    for linha in range(len(content_mycontroller)):
+
+        # Abri o arquivo mycontroller atual
+        with open(arq_mycontroller, 'a') as arquivo:
+
+            arquivo.write(content_mycontroller[linha])
+
+
+
 
 
 
