@@ -710,7 +710,7 @@ for hora in range(1, quantidade_arquivos_flowmon + 1):
 
 
 # --- CONVERTER ARQUIVOS TXT PARA CC ---
-for i in range(1, quantidade_arquivos_flowmon):
+for i in range(1, quantidade_arquivos_flowmon+1):
 
     # Caminho do arquivo que serve como base
     src = f'{cwd}/arquivos_txt/main_{i}.txt'
@@ -725,20 +725,10 @@ for i in range(1, quantidade_arquivos_flowmon):
     shutil.copy(src, dest)
 
 
-# --- CRIAR my-controller.h PARA CADA DIRETÓRIO ---
-for i in range(1, quantidade_arquivos_flowmon):
-
-    # Caminho do arquivo que serve como base
-    src = f'{cwd}/biblioteca_ns3/my-controller.h'
-    # Novos arquivos em formato cc
-    dest = f'{cwd}/arquivos_cc/my-controller-{i}.h'
-    shutil.copy(src, dest)
-
-
 
 # ORGANIZAR OS DIRETÓRIOS PARA O NS-3
 # --- DIRETÓRIOS PARA O NS-3 ---
-for i in range(1, quantidade_arquivos_flowmon):
+for i in range(1, quantidade_arquivos_flowmon+1):
     # Criando diretórios para armazenar os arquivos necessários para executar no NS-3
     try:
         diretorio = f'{diretorio_ns3}_{i}'
@@ -761,9 +751,8 @@ for i in range(1, quantidade_arquivos_flowmon):
     shutil.copy(src, dest)
 
     # Caminho do arquivo cc que será copiado
-    src = f'arquivos_cc/my-controller-{i}.h'
+    src = f'biblioteca_ns3/my-controller.h'
     # Caminho de destino da cópia do arquivo cc
     dest = diretorio
     # Copiando o arquivo
     shutil.copy(src, dest)
-    
