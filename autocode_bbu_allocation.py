@@ -152,7 +152,7 @@ def autocode_bbu_allocation(planilha_bbu_allocation, planilha_rrhs_status, numbe
             
             if status == 1:
                 with open(f"{arquivo_txt}.txt", 'a') as arquivo:
-                    arquivo.write(f'\tstd::cout <<"RRH {rrh_counter}: " << connect_RRH_{rrh_counter} << " usuários << std::endl";\n')
+                    arquivo.write(f'\tstd::cout <<"RRH {rrh_counter}: " << connect_RRH_{rrh_counter} << " usuários" << std::endl;\n')
 
 
                 rrh_counter += 1
@@ -172,7 +172,7 @@ def autocode_bbu_allocation(planilha_bbu_allocation, planilha_rrhs_status, numbe
         print(f'FIM ALLOCATION {float(hora)}\n')
         with open(f"{arquivo_txt}.txt", 'a') as arquivo:
                     arquivo.write(f'\n\tFIM ALLOCATION {float(hora)}\n\n')
-
+                    
 
         # -------------- FIM DA ALOCAÇÃO RRH-BBU --------
     
@@ -222,9 +222,6 @@ def autocode_bbu_allocation(planilha_bbu_allocation, planilha_rrhs_status, numbe
                     arquivo.write(f'\tFIM UPDATE {float(hora)}\n\n') 
         
         # ------------------------------------------------------------------------------
-        
-        
-        # Implementar código que vai para o NS-3 ------------
         
         
         
