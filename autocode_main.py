@@ -15,8 +15,10 @@ while(1):
 
     #Caminho para as planilhas de usuários e antenas (SUI-Matlab)
     if modo.strip().upper() == 'SUI':
-        planilha_smalls = 'SUI_planilhas/SmallPosition.xls'
-        planilha_users = 'SUI_planilhas/UserPosition.xls'
+        planilha_smalls = 'SUI_planilhas/SmallPosition_with_SUIModel.xls'
+        planilha_users = 'SUI_planilhas/UserPosition_with_SUIModel.xls'
+        planilha_bbu_allocation = 'SUI_planilhas/mapping_rrh_bbu_sectors_with_SUIModel.xls'
+        planilha_status_rrh = 'SUI_planilhas/rrhs_status_with_SUIModel.xls'
         #Diretório que será passado para o NS-3
         diretorio_ns3 = f'./dir_ns3_SUI/SUI'
         break
