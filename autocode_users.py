@@ -11,7 +11,7 @@ def autocode_users(planilha_users):
 
     user_position = planilha_users
 
-    df_usuarios = pd.read_excel(user_position)
+    df_usuarios = pd.read_excel(user_position, header=None)
 
     user_matrix = df_usuarios.to_numpy()
     print(user_matrix.shape)

@@ -93,14 +93,14 @@
 	//LogComponentEnable ("EvalvidServer", LOG_LEVEL_INFO);
 	//uint16_t numberOfRrhs = 19;
 	//AUTOCODE NUMBEROFRRHS INICIO
-	  uint16_t numberOfRrhs = 43;
+	  uint16_t numberOfRrhs = 44;
 	//AUTOCODE NUMBEROFRRHS FIM
 	//uint16_t numberOfNodes[19] = {70,45,50,45,60,55,65,60,65,45,60,65,50,45,45,50,45,60,50};
 	//uint16_t backNodes[19] = {50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50};
 	//uint16_t numberOfNodes[19] = {7,4,5,4,6,5,6,6,6,4,6,6,5,4,4,5,4,6,5};
 	//uint16_t numberOfNodes[7] = {7,4,5,4,6,5,6};
 	//AUTOCODE NUMBEROFUSERS INICIO
-	  uint16_t numberOfNodes = 111;
+	  uint16_t numberOfNodes = 112;
 	//AUTOCODE NUMBEROFUSERS FIM
 	//98
 	//uint16_t numberOfNodes[19] = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
@@ -590,6 +590,7 @@
     positionAlloc->Add (Vector (150.0,616.6666666666667, 0.0));
     positionAlloc->Add (Vector (150.0,538.8888888888889, 0.0));
     positionAlloc->Add (Vector (150.0,461.1111111111111, 0.0));
+    positionAlloc->Add (Vector (150.0,227.77777777777777, 0.0));
 	//AUTOCODE SMALLS FIM
 	// Passa a lista de posições para o assistente de mobilidade
 	mobility.SetPositionAllocator(positionAlloc);
@@ -781,6 +782,7 @@
     positionAlloc4->Add (Vector(468.77643367355853,512.6107442359638, 0.0));
     positionAlloc4->Add (Vector(163.98105280461968,560.6212161831922, 0.0));
     positionAlloc4->Add (Vector(250.71330877284612,156.0333018142462, 0.0));
+    positionAlloc4->Add (Vector(434.74162400040365,683.6528495950209, 0.0));
 	//AUTOCODE USERS FIM
 
 	// Define o modelo de mobilidade (constante)

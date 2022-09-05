@@ -93,14 +93,14 @@
 	//LogComponentEnable ("EvalvidServer", LOG_LEVEL_INFO);
 	//uint16_t numberOfRrhs = 19;
 	//AUTOCODE NUMBEROFRRHS INICIO
-	  uint16_t numberOfRrhs = 8;
+	  uint16_t numberOfRrhs = 44;
 	//AUTOCODE NUMBEROFRRHS FIM
 	//uint16_t numberOfNodes[19] = {70,45,50,45,60,55,65,60,65,45,60,65,50,45,45,50,45,60,50};
 	//uint16_t backNodes[19] = {50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50};
 	//uint16_t numberOfNodes[19] = {7,4,5,4,6,5,6,6,6,4,6,6,5,4,4,5,4,6,5};
 	//uint16_t numberOfNodes[7] = {7,4,5,4,6,5,6};
 	//AUTOCODE NUMBEROFUSERS INICIO
-	  uint16_t numberOfNodes = 111;
+	  uint16_t numberOfNodes = 112;
 	//AUTOCODE NUMBEROFUSERS FIM
 	//98
 	//uint16_t numberOfNodes[19] = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
@@ -547,14 +547,50 @@
 	
 	// Indica as posições das eNBs
 	//AUTOCODE SMALLS INICIO
-    positionAlloc->Add (Vector (772.2222222222222,461.1111111111111, 0.0));
-    positionAlloc->Add (Vector (461.1111111111111,538.8888888888889, 0.0));
-    positionAlloc->Add (Vector (461.1111111111111,461.1111111111111, 0.0));
-    positionAlloc->Add (Vector (461.1111111111111,383.33333333333337, 0.0));
-    positionAlloc->Add (Vector (383.33333333333337,538.8888888888889, 0.0));
+    positionAlloc->Add (Vector (850.0,538.8888888888889, 0.0));
+    positionAlloc->Add (Vector (850.0,383.33333333333337, 0.0));
+    positionAlloc->Add (Vector (772.2222222222222,694.4444444444445, 0.0));
+    positionAlloc->Add (Vector (772.2222222222222,616.6666666666667, 0.0));
+    positionAlloc->Add (Vector (772.2222222222222,227.77777777777777, 0.0));
+    positionAlloc->Add (Vector (694.4444444444445,772.2222222222222, 0.0));
+    positionAlloc->Add (Vector (694.4444444444445,694.4444444444445, 0.0));
+    positionAlloc->Add (Vector (694.4444444444445,616.6666666666667, 0.0));
+    positionAlloc->Add (Vector (694.4444444444445,461.1111111111111, 0.0));
+    positionAlloc->Add (Vector (694.4444444444445,305.55555555555554, 0.0));
+    positionAlloc->Add (Vector (616.6666666666667,772.2222222222222, 0.0));
+    positionAlloc->Add (Vector (616.6666666666667,694.4444444444445, 0.0));
+    positionAlloc->Add (Vector (616.6666666666667,305.55555555555554, 0.0));
+    positionAlloc->Add (Vector (616.6666666666667,227.77777777777777, 0.0));
+    positionAlloc->Add (Vector (616.6666666666667,150.0, 0.0));
+    positionAlloc->Add (Vector (538.8888888888889,850.0, 0.0));
+    positionAlloc->Add (Vector (538.8888888888889,772.2222222222222, 0.0));
+    positionAlloc->Add (Vector (538.8888888888889,227.77777777777777, 0.0));
+    positionAlloc->Add (Vector (461.1111111111111,850.0, 0.0));
+    positionAlloc->Add (Vector (461.1111111111111,772.2222222222222, 0.0));
+    positionAlloc->Add (Vector (461.1111111111111,305.55555555555554, 0.0));
+    positionAlloc->Add (Vector (461.1111111111111,227.77777777777777, 0.0));
+    positionAlloc->Add (Vector (383.33333333333337,850.0, 0.0));
     positionAlloc->Add (Vector (383.33333333333337,150.0, 0.0));
+    positionAlloc->Add (Vector (305.55555555555554,850.0, 0.0));
     positionAlloc->Add (Vector (305.55555555555554,694.4444444444445, 0.0));
+    positionAlloc->Add (Vector (305.55555555555554,616.6666666666667, 0.0));
     positionAlloc->Add (Vector (305.55555555555554,461.1111111111111, 0.0));
+    positionAlloc->Add (Vector (305.55555555555554,383.33333333333337, 0.0));
+    positionAlloc->Add (Vector (305.55555555555554,305.55555555555554, 0.0));
+    positionAlloc->Add (Vector (305.55555555555554,227.77777777777777, 0.0));
+    positionAlloc->Add (Vector (227.77777777777777,850.0, 0.0));
+    positionAlloc->Add (Vector (227.77777777777777,772.2222222222222, 0.0));
+    positionAlloc->Add (Vector (227.77777777777777,616.6666666666667, 0.0));
+    positionAlloc->Add (Vector (227.77777777777777,538.8888888888889, 0.0));
+    positionAlloc->Add (Vector (227.77777777777777,383.33333333333337, 0.0));
+    positionAlloc->Add (Vector (227.77777777777777,305.55555555555554, 0.0));
+    positionAlloc->Add (Vector (227.77777777777777,227.77777777777777, 0.0));
+    positionAlloc->Add (Vector (227.77777777777777,150.0, 0.0));
+    positionAlloc->Add (Vector (150.0,772.2222222222222, 0.0));
+    positionAlloc->Add (Vector (150.0,616.6666666666667, 0.0));
+    positionAlloc->Add (Vector (150.0,538.8888888888889, 0.0));
+    positionAlloc->Add (Vector (150.0,461.1111111111111, 0.0));
+    positionAlloc->Add (Vector (150.0,227.77777777777777, 0.0));
 	//AUTOCODE SMALLS FIM
 	// Passa a lista de posições para o assistente de mobilidade
 	mobility.SetPositionAllocator(positionAlloc);
@@ -746,6 +782,7 @@
     positionAlloc4->Add (Vector(468.77643367355853,512.6107442359638, 0.0));
     positionAlloc4->Add (Vector(163.98105280461968,560.6212161831922, 0.0));
     positionAlloc4->Add (Vector(250.71330877284612,156.0333018142462, 0.0));
+    positionAlloc4->Add (Vector(434.74162400040365,683.6528495950209, 0.0));
 	//AUTOCODE USERS FIM
 
 	// Define o modelo de mobilidade (constante)
@@ -973,7 +1010,7 @@
 
 	// Cria interface para o network animator.
 	//AUTOCODE ANIMATION INICIO
-	  AnimationInterface anim ("animations/animation_SUI_9.xml");
+	  AnimationInterface anim ("animations/animation_ECC_9.xml");
 	//AUTOCODE ANIMATION FIM
 	
 	// Indica o tempo (s) de parada do simulador
@@ -1030,7 +1067,7 @@
 	 /* Serializa os resultados para um std::string no formato XML.
 	 */
 	//INICIO FLOW MONITOR
-	  flowmon->SerializeToXmlFile ("flowmon-results/switch_SUI_flowmon/switch_SUI_9.flowmon", false, false);
+	  flowmon->SerializeToXmlFile ("flowmon-results/switch_ECC_flowmon/switch_ECC_9.flowmon", false, false);
 	//FIM FLOW MONITOR
 
 	/* PacketSink: Recebe e consume o tráfego gerado para um endereço IP e porta.

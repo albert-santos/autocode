@@ -11,7 +11,7 @@ def autocode_smalls (planilha_small):
 
     small_position = planilha_small
 
-    df_small = pd.read_excel(small_position)
+    df_small = pd.read_excel(small_position, header=None)
     print(df_small)
     small_matrix = df_small.to_numpy()
     print(small_matrix)
