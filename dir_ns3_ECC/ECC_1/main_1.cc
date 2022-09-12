@@ -175,6 +175,14 @@
 
 	ConfigStore inputConfig;
 	inputConfig.ConfigureDefaults();
+  Config::SetDefault ("ns3::LteEnbNetDevice::UlBandwidth", UintegerValue (50));
+  Config::SetDefault ("ns3::LteEnbNetDevice::DlBandwidth", UintegerValue (50));
+  Config::SetDefault ("ns3::LteEnbNetDevice::DlEarfcn", UintegerValue (7000));
+  Config::SetDefault ("ns3::LteEnbNetDevice::UlEarfcn", UintegerValue (18100));
+  Config::SetDefault ("ns3::LteEnbPhy::TxPower", UintegerValue (33));
+
+
+
 
 	/* GlobalValue::Bind realiza uma busca em todas variáveis globais para encontrar a variável indicada ("ChecksumEnabled")
 		Ao encontrar, configura o seu valor de acordo com o que foi passado (BooleanValue (true))
