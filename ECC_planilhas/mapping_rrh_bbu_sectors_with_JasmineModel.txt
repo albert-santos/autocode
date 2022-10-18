@@ -606,6 +606,26 @@ INICIO HORA 1.0
 				connect_bbu_4++;
 				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 4"<<std::endl;
 				break;
+			case 85:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 86:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 87:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 88:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
 			default:
 				mymap3[m_mymap[it->first]]= 7;
 				//std::cout<<"ip: "<<m_mymap[it->first]<<" não associado"<<std::endl;
@@ -1650,6 +1670,26 @@ INICIO HORA 2.0
 				connect_bbu_6++;
 				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
 				break;
+			case 81:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 82:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 83:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 84:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
 			default:
 				mymap3[m_mymap[it->first]]= 7;
 				//std::cout<<"ip: "<<m_mymap[it->first]<<" não associado"<<std::endl;
@@ -2597,6 +2637,26 @@ INICIO HORA 3.0
 				connect_bbu_5++;
 				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 5"<<std::endl;
 				break;
+			case 70:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 71:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 72:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 73:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
 			default:
 				mymap3[m_mymap[it->first]]= 7;
 				//std::cout<<"ip: "<<m_mymap[it->first]<<" não associado"<<std::endl;
@@ -3461,6 +3521,26 @@ INICIO HORA 4.0
 				connect_bbu_5++;
 				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 5"<<std::endl;
 				break;
+			case 66:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 67:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 68:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 69:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
 			default:
 				mymap3[m_mymap[it->first]]= 7;
 				//std::cout<<"ip: "<<m_mymap[it->first]<<" não associado"<<std::endl;
@@ -4305,6 +4385,26 @@ INICIO HORA 5.0
 				connect_bbu_2++;
 				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 2"<<std::endl;
 				break;
+			case 66:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 67:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 68:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 69:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
 			default:
 				mymap3[m_mymap[it->first]]= 7;
 				//std::cout<<"ip: "<<m_mymap[it->first]<<" não associado"<<std::endl;
@@ -5072,6 +5172,26 @@ INICIO HORA 6.0
 				connect_bbu_1++;
 				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 1"<<std::endl;
 				break;
+			case 55:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 56:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 57:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 58:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
 			default:
 				mymap3[m_mymap[it->first]]= 7;
 				//std::cout<<"ip: "<<m_mymap[it->first]<<" não associado"<<std::endl;
@@ -5749,6 +5869,26 @@ INICIO HORA 7.0
 				connect_bbu_2++;
 				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 2"<<std::endl;
 				break;
+			case 50:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 51:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 52:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 53:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
 			default:
 				mymap3[m_mymap[it->first]]= 7;
 				//std::cout<<"ip: "<<m_mymap[it->first]<<" não associado"<<std::endl;
@@ -6387,6 +6527,26 @@ INICIO HORA 8.0
 				connect_bbu_6++;
 				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
 				break;
+			case 48:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 49:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 50:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 51:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
 			default:
 				mymap3[m_mymap[it->first]]= 7;
 				//std::cout<<"ip: "<<m_mymap[it->first]<<" não associado"<<std::endl;
@@ -6993,6 +7153,26 @@ INICIO HORA 9.0
 				mymap3[m_mymap[it->first]]= 5;
 				connect_bbu_5++;
 				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 5"<<std::endl;
+				break;
+			case 45:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 46:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 47:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 48:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
 				break;
 			default:
 				mymap3[m_mymap[it->first]]= 7;
@@ -7655,6 +7835,26 @@ INICIO HORA 10.0
 				mymap3[m_mymap[it->first]]= 1;
 				connect_bbu_1++;
 				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 1"<<std::endl;
+				break;
+			case 55:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 56:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 57:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 58:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
 				break;
 			default:
 				mymap3[m_mymap[it->first]]= 7;
@@ -8388,6 +8588,26 @@ INICIO HORA 11.0
 				mymap3[m_mymap[it->first]]= 2;
 				connect_bbu_2++;
 				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 2"<<std::endl;
+				break;
+			case 58:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 59:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 60:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 61:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
 				break;
 			default:
 				mymap3[m_mymap[it->first]]= 7;
@@ -9262,6 +9482,26 @@ INICIO HORA 12.0
 				mymap3[m_mymap[it->first]]= 4;
 				connect_bbu_4++;
 				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 4"<<std::endl;
+				break;
+			case 76:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 77:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 78:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 79:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
 				break;
 			default:
 				mymap3[m_mymap[it->first]]= 7;
@@ -10268,6 +10508,26 @@ INICIO HORA 13.0
 				mymap3[m_mymap[it->first]]= 1;
 				connect_bbu_1++;
 				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 1"<<std::endl;
+				break;
+			case 82:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 83:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 84:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 85:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
 				break;
 			default:
 				mymap3[m_mymap[it->first]]= 7;
@@ -11353,6 +11613,26 @@ INICIO HORA 14.0
 				mymap3[m_mymap[it->first]]= 3;
 				connect_bbu_3++;
 				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 3"<<std::endl;
+				break;
+			case 89:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 90:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 91:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 92:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
 				break;
 			default:
 				mymap3[m_mymap[it->first]]= 7;
@@ -12446,6 +12726,26 @@ INICIO HORA 15.0
 				connect_bbu_2++;
 				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 2"<<std::endl;
 				break;
+			case 85:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 86:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 87:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 88:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
 			default:
 				mymap3[m_mymap[it->first]]= 7;
 				//std::cout<<"ip: "<<m_mymap[it->first]<<" não associado"<<std::endl;
@@ -13412,6 +13712,26 @@ INICIO HORA 16.0
 				mymap3[m_mymap[it->first]]= 4;
 				connect_bbu_4++;
 				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 4"<<std::endl;
+				break;
+			case 70:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 71:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 72:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 73:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
 				break;
 			default:
 				mymap3[m_mymap[it->first]]= 7;
@@ -14423,6 +14743,26 @@ INICIO HORA 17.0
 				mymap3[m_mymap[it->first]]= 3;
 				connect_bbu_3++;
 				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 3"<<std::endl;
+				break;
+			case 87:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 88:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 89:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 90:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
 				break;
 			default:
 				mymap3[m_mymap[it->first]]= 7;
@@ -15491,6 +15831,26 @@ INICIO HORA 18.0
 				mymap3[m_mymap[it->first]]= 4;
 				connect_bbu_4++;
 				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 4"<<std::endl;
+				break;
+			case 83:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 84:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 85:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 86:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
 				break;
 			default:
 				mymap3[m_mymap[it->first]]= 7;
@@ -16561,6 +16921,26 @@ INICIO HORA 19.0
 				connect_bbu_4++;
 				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 4"<<std::endl;
 				break;
+			case 86:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 87:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 88:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 89:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
 			default:
 				mymap3[m_mymap[it->first]]= 7;
 				//std::cout<<"ip: "<<m_mymap[it->first]<<" não associado"<<std::endl;
@@ -17624,6 +18004,26 @@ INICIO HORA 20.0
 				connect_bbu_2++;
 				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 2"<<std::endl;
 				break;
+			case 83:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 84:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 85:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 86:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
 			default:
 				mymap3[m_mymap[it->first]]= 7;
 				//std::cout<<"ip: "<<m_mymap[it->first]<<" não associado"<<std::endl;
@@ -18657,6 +19057,26 @@ INICIO HORA 21.0
 				mymap3[m_mymap[it->first]]= 4;
 				connect_bbu_4++;
 				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 4"<<std::endl;
+				break;
+			case 81:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 82:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 83:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 84:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
 				break;
 			default:
 				mymap3[m_mymap[it->first]]= 7;
@@ -19695,6 +20115,26 @@ INICIO HORA 22.0
 				mymap3[m_mymap[it->first]]= 4;
 				connect_bbu_4++;
 				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 4"<<std::endl;
+				break;
+			case 83:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 84:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 85:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 86:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
 				break;
 			default:
 				mymap3[m_mymap[it->first]]= 7;
@@ -20769,6 +21209,26 @@ INICIO HORA 23.0
 			case 86:
 				connect_RRH_86++;
 				mymap3[m_mymap[it->first]]= 6;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 87:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 88:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 89:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 90:
+				mymap3[m_mymap[it->first]]= 6 ;
 				connect_bbu_6++;
 				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
 				break;
@@ -21874,6 +22334,26 @@ INICIO HORA 24.0
 				mymap3[m_mymap[it->first]]= 1;
 				connect_bbu_1++;
 				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 1"<<std::endl;
+				break;
+			case 88:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 89:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 90:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 91:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
 				break;
 			default:
 				mymap3[m_mymap[it->first]]= 7;

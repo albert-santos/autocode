@@ -110,6 +110,19 @@ def autocode_bbu_allocation(planilha_bbu_allocation, planilha_rrhs_status, numbe
 
                 rrh_counter += 1
 
+            
+        # Alocação da Macro. Uma macro é representada por quatro eBn com antenas direcionadas de forma diferente
+        for rrh_indice in range(4): 
+                with open(f"{arquivo_txt}.txt", 'a') as arquivo:
+                    arquivo.write(f'\t\t\tcase {rrh_counter}:\n')
+                    arquivo.write(f'\t\t\t\tmymap3[m_mymap[it->first]]= 6 ;\n')
+                    arquivo.write(f'\t\t\t\tconnect_bbu_6++;\n')
+                    arquivo.write(f'\t\t\t\t//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;\n')
+                    arquivo.write('\t\t\t\tbreak;\n')
+
+                rrh_counter += 1
+
+
 
         # Fim do switch case e do for
         with open(f"{arquivo_txt}.txt", 'a') as arquivo:

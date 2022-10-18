@@ -688,6 +688,26 @@ MyController::Allocation (std::map <uint64_t, Ipv4Address> mymap,std::map <uint6
 				connect_bbu_4++;
 				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 4"<<std::endl;
 				break;
+			case 85:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 86:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 87:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 88:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
 			default:
 				mymap3[m_mymap[it->first]]= 7;
 				//std::cout<<"ip: "<<m_mymap[it->first]<<" não associado"<<std::endl;
