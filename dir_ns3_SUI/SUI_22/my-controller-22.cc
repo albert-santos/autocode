@@ -119,7 +119,6 @@ MyController::Allocation (std::map <uint64_t, Ipv4Address> mymap,std::map <uint6
 	uint32_t connect_RRH_32 = 0;
 	uint32_t connect_RRH_33 = 0;
 	uint32_t connect_RRH_34 = 0;
-	uint32_t connect_RRH_35 = 0;
 
 	uint32_t connect_bbu_1 = 0;
 	uint32_t connect_bbu_2 = 0;
@@ -143,9 +142,9 @@ MyController::Allocation (std::map <uint64_t, Ipv4Address> mymap,std::map <uint6
 				break;
 			case 2:
 				connect_RRH_2++;
-				mymap3[m_mymap[it->first]]= 6;
-				connect_bbu_6++;
-				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				mymap3[m_mymap[it->first]]= 5;
+				connect_bbu_5++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 5"<<std::endl;
 				break;
 			case 3:
 				connect_RRH_3++;
@@ -155,9 +154,9 @@ MyController::Allocation (std::map <uint64_t, Ipv4Address> mymap,std::map <uint6
 				break;
 			case 4:
 				connect_RRH_4++;
-				mymap3[m_mymap[it->first]]= 1;
-				connect_bbu_1++;
-				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 1"<<std::endl;
+				mymap3[m_mymap[it->first]]= 3;
+				connect_bbu_3++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 3"<<std::endl;
 				break;
 			case 5:
 				connect_RRH_5++;
@@ -173,39 +172,39 @@ MyController::Allocation (std::map <uint64_t, Ipv4Address> mymap,std::map <uint6
 				break;
 			case 7:
 				connect_RRH_7++;
+				mymap3[m_mymap[it->first]]= 5;
+				connect_bbu_5++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 5"<<std::endl;
+				break;
+			case 8:
+				connect_RRH_8++;
+				mymap3[m_mymap[it->first]]= 5;
+				connect_bbu_5++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 5"<<std::endl;
+				break;
+			case 9:
+				connect_RRH_9++;
+				mymap3[m_mymap[it->first]]= 5;
+				connect_bbu_5++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 5"<<std::endl;
+				break;
+			case 10:
+				connect_RRH_10++;
 				mymap3[m_mymap[it->first]]= 4;
 				connect_bbu_4++;
 				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 4"<<std::endl;
 				break;
-			case 8:
-				connect_RRH_8++;
-				mymap3[m_mymap[it->first]]= 1;
-				connect_bbu_1++;
-				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 1"<<std::endl;
-				break;
-			case 9:
-				connect_RRH_9++;
-				mymap3[m_mymap[it->first]]= 2;
-				connect_bbu_2++;
-				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 2"<<std::endl;
-				break;
-			case 10:
-				connect_RRH_10++;
+			case 11:
+				connect_RRH_11++;
 				mymap3[m_mymap[it->first]]= 3;
 				connect_bbu_3++;
 				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 3"<<std::endl;
-				break;
-			case 11:
-				connect_RRH_11++;
-				mymap3[m_mymap[it->first]]= 1;
-				connect_bbu_1++;
-				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 1"<<std::endl;
 				break;
 			case 12:
 				connect_RRH_12++;
-				mymap3[m_mymap[it->first]]= 3;
-				connect_bbu_3++;
-				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 3"<<std::endl;
+				mymap3[m_mymap[it->first]]= 2;
+				connect_bbu_2++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 2"<<std::endl;
 				break;
 			case 13:
 				connect_RRH_13++;
@@ -215,9 +214,9 @@ MyController::Allocation (std::map <uint64_t, Ipv4Address> mymap,std::map <uint6
 				break;
 			case 14:
 				connect_RRH_14++;
-				mymap3[m_mymap[it->first]]= 1;
-				connect_bbu_1++;
-				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 1"<<std::endl;
+				mymap3[m_mymap[it->first]]= 2;
+				connect_bbu_2++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 2"<<std::endl;
 				break;
 			case 15:
 				connect_RRH_15++;
@@ -227,63 +226,63 @@ MyController::Allocation (std::map <uint64_t, Ipv4Address> mymap,std::map <uint6
 				break;
 			case 16:
 				connect_RRH_16++;
-				mymap3[m_mymap[it->first]]= 6;
-				connect_bbu_6++;
-				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				mymap3[m_mymap[it->first]]= 1;
+				connect_bbu_1++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 1"<<std::endl;
 				break;
 			case 17:
 				connect_RRH_17++;
-				mymap3[m_mymap[it->first]]= 3;
-				connect_bbu_3++;
-				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 3"<<std::endl;
+				mymap3[m_mymap[it->first]]= 4;
+				connect_bbu_4++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 4"<<std::endl;
 				break;
 			case 18:
 				connect_RRH_18++;
-				mymap3[m_mymap[it->first]]= 3;
-				connect_bbu_3++;
-				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 3"<<std::endl;
+				mymap3[m_mymap[it->first]]= 1;
+				connect_bbu_1++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 1"<<std::endl;
 				break;
 			case 19:
 				connect_RRH_19++;
+				mymap3[m_mymap[it->first]]= 4;
+				connect_bbu_4++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 4"<<std::endl;
+				break;
+			case 20:
+				connect_RRH_20++;
 				mymap3[m_mymap[it->first]]= 3;
 				connect_bbu_3++;
 				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 3"<<std::endl;
 				break;
-			case 20:
-				connect_RRH_20++;
-				mymap3[m_mymap[it->first]]= 2;
-				connect_bbu_2++;
-				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 2"<<std::endl;
-				break;
 			case 21:
 				connect_RRH_21++;
-				mymap3[m_mymap[it->first]]= 5;
-				connect_bbu_5++;
-				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 5"<<std::endl;
+				mymap3[m_mymap[it->first]]= 1;
+				connect_bbu_1++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 1"<<std::endl;
 				break;
 			case 22:
 				connect_RRH_22++;
-				mymap3[m_mymap[it->first]]= 6;
-				connect_bbu_6++;
-				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				mymap3[m_mymap[it->first]]= 1;
+				connect_bbu_1++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 1"<<std::endl;
 				break;
 			case 23:
 				connect_RRH_23++;
-				mymap3[m_mymap[it->first]]= 2;
-				connect_bbu_2++;
-				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 2"<<std::endl;
-				break;
-			case 24:
-				connect_RRH_24++;
 				mymap3[m_mymap[it->first]]= 5;
 				connect_bbu_5++;
 				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 5"<<std::endl;
 				break;
+			case 24:
+				connect_RRH_24++;
+				mymap3[m_mymap[it->first]]= 3;
+				connect_bbu_3++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 3"<<std::endl;
+				break;
 			case 25:
 				connect_RRH_25++;
-				mymap3[m_mymap[it->first]]= 6;
-				connect_bbu_6++;
-				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				mymap3[m_mymap[it->first]]= 2;
+				connect_bbu_2++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 2"<<std::endl;
 				break;
 			case 26:
 				connect_RRH_26++;
@@ -293,45 +292,45 @@ MyController::Allocation (std::map <uint64_t, Ipv4Address> mymap,std::map <uint6
 				break;
 			case 27:
 				connect_RRH_27++;
-				mymap3[m_mymap[it->first]]= 2;
-				connect_bbu_2++;
-				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 2"<<std::endl;
-				break;
-			case 28:
-				connect_RRH_28++;
-				mymap3[m_mymap[it->first]]= 2;
-				connect_bbu_2++;
-				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 2"<<std::endl;
-				break;
-			case 29:
-				connect_RRH_29++;
-				mymap3[m_mymap[it->first]]= 3;
-				connect_bbu_3++;
-				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 3"<<std::endl;
-				break;
-			case 30:
-				connect_RRH_30++;
-				mymap3[m_mymap[it->first]]= 4;
-				connect_bbu_4++;
-				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 4"<<std::endl;
-				break;
-			case 31:
-				connect_RRH_31++;
 				mymap3[m_mymap[it->first]]= 6;
 				connect_bbu_6++;
 				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
 				break;
-			case 32:
-				connect_RRH_32++;
+			case 28:
+				connect_RRH_28++;
 				mymap3[m_mymap[it->first]]= 5;
 				connect_bbu_5++;
 				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 5"<<std::endl;
 				break;
+			case 29:
+				connect_RRH_29++;
+				mymap3[m_mymap[it->first]]= 2;
+				connect_bbu_2++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 2"<<std::endl;
+				break;
+			case 30:
+				connect_RRH_30++;
+				mymap3[m_mymap[it->first]]= 2;
+				connect_bbu_2++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 2"<<std::endl;
+				break;
+			case 31:
+				connect_RRH_31++;
+				mymap3[m_mymap[it->first]]= 3;
+				connect_bbu_3++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 3"<<std::endl;
+				break;
+			case 32:
+				connect_RRH_32++;
+				mymap3[m_mymap[it->first]]= 6;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
 			case 33:
 				connect_RRH_33++;
-				mymap3[m_mymap[it->first]]= 5;
-				connect_bbu_5++;
-				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 5"<<std::endl;
+				mymap3[m_mymap[it->first]]= 6;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
 				break;
 			case 34:
 				connect_RRH_34++;
@@ -340,8 +339,22 @@ MyController::Allocation (std::map <uint64_t, Ipv4Address> mymap,std::map <uint6
 				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
 				break;
 			case 35:
-				connect_RRH_35++;
-				mymap3[m_mymap[it->first]]= 6;
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 36:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 37:
+				mymap3[m_mymap[it->first]]= 6 ;
+				connect_bbu_6++;
+				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
+				break;
+			case 38:
+				mymap3[m_mymap[it->first]]= 6 ;
 				connect_bbu_6++;
 				//std::cout<<"ip: "<<m_mymap[it->first]<<" associado à BBU: 6"<<std::endl;
 				break;
@@ -400,7 +413,6 @@ MyController::Allocation (std::map <uint64_t, Ipv4Address> mymap,std::map <uint6
 	std::cout <<"RRH 32: " << connect_RRH_32 << " usuários" << std::endl;
 	std::cout <<"RRH 33: " << connect_RRH_33 << " usuários" << std::endl;
 	std::cout <<"RRH 34: " << connect_RRH_34 << " usuários" << std::endl;
-	std::cout <<"RRH 35: " << connect_RRH_35 << " usuários" << std::endl;
 
 	std::cout << " " << std::endl;
 	std::cout <<"BBU 1: " << connect_bbu_1 << " usuários" << std::endl;
@@ -448,16 +460,16 @@ MyController::Update (std::string context, uint64_t imsi, uint16_t cellid, uint1
 				//std::cout<<"ip: "<<m_mymap[imsi]<<" associado à BBU: 4 (Handover)"<<std::endl;
 				break;
 			case 2:
-				mymap3[m_mymap[imsi]]= 6;
-				//std::cout<<"ip: "<<m_mymap[imsi]<<" associado à BBU: 6 (Handover)"<<std::endl;
+				mymap3[m_mymap[imsi]]= 5;
+				//std::cout<<"ip: "<<m_mymap[imsi]<<" associado à BBU: 5 (Handover)"<<std::endl;
 				break;
 			case 3:
 				mymap3[m_mymap[imsi]]= 2;
 				//std::cout<<"ip: "<<m_mymap[imsi]<<" associado à BBU: 2 (Handover)"<<std::endl;
 				break;
 			case 4:
-				mymap3[m_mymap[imsi]]= 1;
-				//std::cout<<"ip: "<<m_mymap[imsi]<<" associado à BBU: 1 (Handover)"<<std::endl;
+				mymap3[m_mymap[imsi]]= 3;
+				//std::cout<<"ip: "<<m_mymap[imsi]<<" associado à BBU: 3 (Handover)"<<std::endl;
 				break;
 			case 5:
 				mymap3[m_mymap[imsi]]= 4;
@@ -468,118 +480,114 @@ MyController::Update (std::string context, uint64_t imsi, uint16_t cellid, uint1
 				//std::cout<<"ip: "<<m_mymap[imsi]<<" associado à BBU: 3 (Handover)"<<std::endl;
 				break;
 			case 7:
+				mymap3[m_mymap[imsi]]= 5;
+				//std::cout<<"ip: "<<m_mymap[imsi]<<" associado à BBU: 5 (Handover)"<<std::endl;
+				break;
+			case 8:
+				mymap3[m_mymap[imsi]]= 5;
+				//std::cout<<"ip: "<<m_mymap[imsi]<<" associado à BBU: 5 (Handover)"<<std::endl;
+				break;
+			case 9:
+				mymap3[m_mymap[imsi]]= 5;
+				//std::cout<<"ip: "<<m_mymap[imsi]<<" associado à BBU: 5 (Handover)"<<std::endl;
+				break;
+			case 10:
 				mymap3[m_mymap[imsi]]= 4;
 				//std::cout<<"ip: "<<m_mymap[imsi]<<" associado à BBU: 4 (Handover)"<<std::endl;
 				break;
-			case 8:
-				mymap3[m_mymap[imsi]]= 1;
-				//std::cout<<"ip: "<<m_mymap[imsi]<<" associado à BBU: 1 (Handover)"<<std::endl;
-				break;
-			case 9:
-				mymap3[m_mymap[imsi]]= 2;
-				//std::cout<<"ip: "<<m_mymap[imsi]<<" associado à BBU: 2 (Handover)"<<std::endl;
-				break;
-			case 10:
+			case 11:
 				mymap3[m_mymap[imsi]]= 3;
 				//std::cout<<"ip: "<<m_mymap[imsi]<<" associado à BBU: 3 (Handover)"<<std::endl;
-				break;
-			case 11:
-				mymap3[m_mymap[imsi]]= 1;
-				//std::cout<<"ip: "<<m_mymap[imsi]<<" associado à BBU: 1 (Handover)"<<std::endl;
 				break;
 			case 12:
-				mymap3[m_mymap[imsi]]= 3;
-				//std::cout<<"ip: "<<m_mymap[imsi]<<" associado à BBU: 3 (Handover)"<<std::endl;
+				mymap3[m_mymap[imsi]]= 2;
+				//std::cout<<"ip: "<<m_mymap[imsi]<<" associado à BBU: 2 (Handover)"<<std::endl;
 				break;
 			case 13:
 				mymap3[m_mymap[imsi]]= 1;
 				//std::cout<<"ip: "<<m_mymap[imsi]<<" associado à BBU: 1 (Handover)"<<std::endl;
 				break;
 			case 14:
-				mymap3[m_mymap[imsi]]= 1;
-				//std::cout<<"ip: "<<m_mymap[imsi]<<" associado à BBU: 1 (Handover)"<<std::endl;
+				mymap3[m_mymap[imsi]]= 2;
+				//std::cout<<"ip: "<<m_mymap[imsi]<<" associado à BBU: 2 (Handover)"<<std::endl;
 				break;
 			case 15:
 				mymap3[m_mymap[imsi]]= 4;
 				//std::cout<<"ip: "<<m_mymap[imsi]<<" associado à BBU: 4 (Handover)"<<std::endl;
 				break;
 			case 16:
-				mymap3[m_mymap[imsi]]= 6;
-				//std::cout<<"ip: "<<m_mymap[imsi]<<" associado à BBU: 6 (Handover)"<<std::endl;
+				mymap3[m_mymap[imsi]]= 1;
+				//std::cout<<"ip: "<<m_mymap[imsi]<<" associado à BBU: 1 (Handover)"<<std::endl;
 				break;
 			case 17:
-				mymap3[m_mymap[imsi]]= 3;
-				//std::cout<<"ip: "<<m_mymap[imsi]<<" associado à BBU: 3 (Handover)"<<std::endl;
+				mymap3[m_mymap[imsi]]= 4;
+				//std::cout<<"ip: "<<m_mymap[imsi]<<" associado à BBU: 4 (Handover)"<<std::endl;
 				break;
 			case 18:
-				mymap3[m_mymap[imsi]]= 3;
-				//std::cout<<"ip: "<<m_mymap[imsi]<<" associado à BBU: 3 (Handover)"<<std::endl;
+				mymap3[m_mymap[imsi]]= 1;
+				//std::cout<<"ip: "<<m_mymap[imsi]<<" associado à BBU: 1 (Handover)"<<std::endl;
 				break;
 			case 19:
+				mymap3[m_mymap[imsi]]= 4;
+				//std::cout<<"ip: "<<m_mymap[imsi]<<" associado à BBU: 4 (Handover)"<<std::endl;
+				break;
+			case 20:
 				mymap3[m_mymap[imsi]]= 3;
 				//std::cout<<"ip: "<<m_mymap[imsi]<<" associado à BBU: 3 (Handover)"<<std::endl;
 				break;
-			case 20:
-				mymap3[m_mymap[imsi]]= 2;
-				//std::cout<<"ip: "<<m_mymap[imsi]<<" associado à BBU: 2 (Handover)"<<std::endl;
-				break;
 			case 21:
-				mymap3[m_mymap[imsi]]= 5;
-				//std::cout<<"ip: "<<m_mymap[imsi]<<" associado à BBU: 5 (Handover)"<<std::endl;
+				mymap3[m_mymap[imsi]]= 1;
+				//std::cout<<"ip: "<<m_mymap[imsi]<<" associado à BBU: 1 (Handover)"<<std::endl;
 				break;
 			case 22:
-				mymap3[m_mymap[imsi]]= 6;
-				//std::cout<<"ip: "<<m_mymap[imsi]<<" associado à BBU: 6 (Handover)"<<std::endl;
+				mymap3[m_mymap[imsi]]= 1;
+				//std::cout<<"ip: "<<m_mymap[imsi]<<" associado à BBU: 1 (Handover)"<<std::endl;
 				break;
 			case 23:
-				mymap3[m_mymap[imsi]]= 2;
-				//std::cout<<"ip: "<<m_mymap[imsi]<<" associado à BBU: 2 (Handover)"<<std::endl;
-				break;
-			case 24:
 				mymap3[m_mymap[imsi]]= 5;
 				//std::cout<<"ip: "<<m_mymap[imsi]<<" associado à BBU: 5 (Handover)"<<std::endl;
 				break;
+			case 24:
+				mymap3[m_mymap[imsi]]= 3;
+				//std::cout<<"ip: "<<m_mymap[imsi]<<" associado à BBU: 3 (Handover)"<<std::endl;
+				break;
 			case 25:
-				mymap3[m_mymap[imsi]]= 6;
-				//std::cout<<"ip: "<<m_mymap[imsi]<<" associado à BBU: 6 (Handover)"<<std::endl;
+				mymap3[m_mymap[imsi]]= 2;
+				//std::cout<<"ip: "<<m_mymap[imsi]<<" associado à BBU: 2 (Handover)"<<std::endl;
 				break;
 			case 26:
 				mymap3[m_mymap[imsi]]= 5;
 				//std::cout<<"ip: "<<m_mymap[imsi]<<" associado à BBU: 5 (Handover)"<<std::endl;
 				break;
 			case 27:
-				mymap3[m_mymap[imsi]]= 2;
-				//std::cout<<"ip: "<<m_mymap[imsi]<<" associado à BBU: 2 (Handover)"<<std::endl;
+				mymap3[m_mymap[imsi]]= 6;
+				//std::cout<<"ip: "<<m_mymap[imsi]<<" associado à BBU: 6 (Handover)"<<std::endl;
 				break;
 			case 28:
+				mymap3[m_mymap[imsi]]= 5;
+				//std::cout<<"ip: "<<m_mymap[imsi]<<" associado à BBU: 5 (Handover)"<<std::endl;
+				break;
+			case 29:
 				mymap3[m_mymap[imsi]]= 2;
 				//std::cout<<"ip: "<<m_mymap[imsi]<<" associado à BBU: 2 (Handover)"<<std::endl;
 				break;
-			case 29:
+			case 30:
+				mymap3[m_mymap[imsi]]= 2;
+				//std::cout<<"ip: "<<m_mymap[imsi]<<" associado à BBU: 2 (Handover)"<<std::endl;
+				break;
+			case 31:
 				mymap3[m_mymap[imsi]]= 3;
 				//std::cout<<"ip: "<<m_mymap[imsi]<<" associado à BBU: 3 (Handover)"<<std::endl;
 				break;
-			case 30:
-				mymap3[m_mymap[imsi]]= 4;
-				//std::cout<<"ip: "<<m_mymap[imsi]<<" associado à BBU: 4 (Handover)"<<std::endl;
-				break;
-			case 31:
+			case 32:
 				mymap3[m_mymap[imsi]]= 6;
 				//std::cout<<"ip: "<<m_mymap[imsi]<<" associado à BBU: 6 (Handover)"<<std::endl;
-				break;
-			case 32:
-				mymap3[m_mymap[imsi]]= 5;
-				//std::cout<<"ip: "<<m_mymap[imsi]<<" associado à BBU: 5 (Handover)"<<std::endl;
 				break;
 			case 33:
-				mymap3[m_mymap[imsi]]= 5;
-				//std::cout<<"ip: "<<m_mymap[imsi]<<" associado à BBU: 5 (Handover)"<<std::endl;
-				break;
-			case 34:
 				mymap3[m_mymap[imsi]]= 6;
 				//std::cout<<"ip: "<<m_mymap[imsi]<<" associado à BBU: 6 (Handover)"<<std::endl;
 				break;
-			case 35:
+			case 34:
 				mymap3[m_mymap[imsi]]= 6;
 				//std::cout<<"ip: "<<m_mymap[imsi]<<" associado à BBU: 6 (Handover)"<<std::endl;
 				break;

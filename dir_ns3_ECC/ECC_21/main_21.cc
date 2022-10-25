@@ -93,7 +93,7 @@
 	//LogComponentEnable ("EvalvidServer", LOG_LEVEL_INFO);
 	//uint16_t numberOfRrhs = 19;
 	//AUTOCODE NUMBEROFRRHS INICIO
-	  uint16_t numberOfRrhs = 38;
+	  uint16_t numberOfRrhs = 56;
 	//AUTOCODE NUMBEROFRRHS FIM
 	//uint16_t numberOfNodes[19] = {70,45,50,45,60,55,65,60,65,45,60,65,50,45,45,50,45,60,50};
 	//uint16_t backNodes[19] = {50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50};
@@ -180,11 +180,11 @@
   	Config::SetDefault ("ns3::LteEnbNetDevice::UlBandwidth", UintegerValue (50));
   	Config::SetDefault ("ns3::LteEnbNetDevice::DlBandwidth", UintegerValue (50));
   	// DlEarfcn e UlEarfcn são códigos que indica a frência que será utilizada. Para saber os valores correspondentes acesse: https://www.sqimway.com/lte_band.php
-  	Config::SetDefault ("ns3::LteEnbNetDevice::DlEarfcn", UintegerValue (3100));
-  	Config::SetDefault ("ns3::LteEnbNetDevice::UlEarfcn", UintegerValue (21100));
-  	Config::SetDefault ("ns3::LteUeNetDevice::DlEarfcn", UintegerValue (3100));
+  	Config::SetDefault ("ns3::LteEnbNetDevice::DlEarfcn", UintegerValue (1575));
+  	Config::SetDefault ("ns3::LteEnbNetDevice::UlEarfcn", UintegerValue (19575));
+  	Config::SetDefault ("ns3::LteUeNetDevice::DlEarfcn", UintegerValue (1575));
   	// Potência de transmissão da eNb em dBm
-  	Config::SetDefault ("ns3::LteEnbPhy::TxPower", UintegerValue (33));
+  	Config::SetDefault ("ns3::LteEnbPhy::TxPower", DoubleValue (49));
 
 	/* GlobalValue::Bind realiza uma busca em todas variáveis globais para encontrar a variável indicada ("ChecksumEnabled")
 		Ao encontrar, configura o seu valor de acordo com o que foi passado (BooleanValue (true))
@@ -457,7 +457,10 @@
 //-----------------------------------------------------Macro BS (Base Station)
 	// Para simular uma macro é necessário criar quatro eNBs sendo que cada eNB terá uma antena. Cada antena terá uma direção diferente
 
-	// Cria um contêiner para os nós da Macro
+	Config::SetDefault ("ns3::LteEnbNetDevice::UlBandwidth", UintegerValue (100));
+  Config::SetDefault ("ns3::LteEnbNetDevice::DlBandwidth", UintegerValue (100));
+	
+  // Cria um contêiner para os nós da Macro
 	NodeContainer enbMacroNodes;
 	// Indica a quantidade de nós do contêiner
 	enbMacroNodes.Create(4);
@@ -557,27 +560,38 @@
 	
 	// Indica as posições das eNBs
 	//AUTOCODE SMALLS INICIO
+    positionAlloc->Add (Vector (444.44444444444446,444.44444444444446, 0.0));
     positionAlloc->Add (Vector (444.44444444444446,388.8888888888889, 0.0));
-    positionAlloc->Add (Vector (444.44444444444446,333.3333333333333, 0.0));
     positionAlloc->Add (Vector (444.44444444444446,277.77777777777777, 0.0));
     positionAlloc->Add (Vector (444.44444444444446,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,111.11111111111111, 0.0));
     positionAlloc->Add (Vector (444.44444444444446,55.55555555555556, 0.0));
     positionAlloc->Add (Vector (388.8888888888889,500.0, 0.0));
     positionAlloc->Add (Vector (388.8888888888889,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,333.3333333333333, 0.0));
     positionAlloc->Add (Vector (388.8888888888889,277.77777777777777, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,222.22222222222223, 0.0));
     positionAlloc->Add (Vector (388.8888888888889,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (333.3333333333333,500.0, 0.0));
+    positionAlloc->Add (Vector (333.3333333333333,444.44444444444446, 0.0));
     positionAlloc->Add (Vector (333.3333333333333,388.8888888888889, 0.0));
     positionAlloc->Add (Vector (333.3333333333333,333.3333333333333, 0.0));
     positionAlloc->Add (Vector (333.3333333333333,277.77777777777777, 0.0));
     positionAlloc->Add (Vector (333.3333333333333,111.11111111111111, 0.0));
     positionAlloc->Add (Vector (333.3333333333333,55.55555555555556, 0.0));
     positionAlloc->Add (Vector (277.77777777777777,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (277.77777777777777,388.8888888888889, 0.0));
     positionAlloc->Add (Vector (277.77777777777777,333.3333333333333, 0.0));
+    positionAlloc->Add (Vector (277.77777777777777,277.77777777777777, 0.0));
     positionAlloc->Add (Vector (277.77777777777777,222.22222222222223, 0.0));
+    positionAlloc->Add (Vector (277.77777777777777,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (277.77777777777777,111.11111111111111, 0.0));
     positionAlloc->Add (Vector (222.22222222222223,444.44444444444446, 0.0));
     positionAlloc->Add (Vector (222.22222222222223,388.8888888888889, 0.0));
     positionAlloc->Add (Vector (222.22222222222223,277.77777777777777, 0.0));
     positionAlloc->Add (Vector (222.22222222222223,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (222.22222222222223,111.11111111111111, 0.0));
     positionAlloc->Add (Vector (222.22222222222223,55.55555555555556, 0.0));
     positionAlloc->Add (Vector (166.66666666666666,444.44444444444446, 0.0));
     positionAlloc->Add (Vector (166.66666666666666,388.8888888888889, 0.0));
@@ -588,10 +602,17 @@
     positionAlloc->Add (Vector (166.66666666666666,111.11111111111111, 0.0));
     positionAlloc->Add (Vector (166.66666666666666,55.55555555555556, 0.0));
     positionAlloc->Add (Vector (111.11111111111111,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,277.77777777777777, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,166.66666666666666, 0.0));
     positionAlloc->Add (Vector (111.11111111111111,111.11111111111111, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,55.55555555555556, 0.0));
     positionAlloc->Add (Vector (111.11111111111111,0.0, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,500.0, 0.0));
     positionAlloc->Add (Vector (55.55555555555556,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,388.8888888888889, 0.0));
     positionAlloc->Add (Vector (55.55555555555556,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,111.11111111111111, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,55.55555555555556, 0.0));
     positionAlloc->Add (Vector (0.0,388.8888888888889, 0.0));
     positionAlloc->Add (Vector (0.0,333.3333333333333, 0.0));
     positionAlloc->Add (Vector (0.0,222.22222222222223, 0.0));
