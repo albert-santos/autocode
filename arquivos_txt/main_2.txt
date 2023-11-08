@@ -220,7 +220,6 @@
 	//Indica a quantidade nós que o contêiner vai ter
 	mainswitchC.Create (1);
 	topswitchC.Create (1);
-	
 	//Obtém o ponteiro do primeiro nó no contêiner
 	Ptr<Node> topswitch = topswitchC.Get(0);
 	Ptr<Node> mainswitch = mainswitchC.Get(0);
@@ -972,9 +971,43 @@
 	}
 
 	// Cria interface para o network animator.
+
 	//AUTOCODE ANIMATION INICIO
+	
 	  AnimationInterface anim ("animations/animation_SA_2.xml");
-	//AUTOCODE ANIMATION FIM
+  //AUTOCODE ANIMATION FIM
+  
+  // Adiciona imagens ao nós
+
+	for (uint32_t i = 0; i < ueNodes.GetN(); ++i) {
+    uint32_t resourceId1 = anim.AddResource("/home/lpo_albert/repos/ns-3-allinone/ns-3.28/UEnode.png");
+		Ptr<Node> nodeAnim = ueNodes.Get(i);
+    uint32_t nodeAnimId = nodeAnim->GetId();
+
+    anim.UpdateNodeImage(nodeAnimId, resourceId1);
+		anim.UpdateNodeSize(nodeAnimId, 13,0);
+
+  }
+
+	for (uint32_t i = 0; i < enbMacroNodes.GetN(); ++i) {
+    uint32_t resourceId2 = anim.AddResource("/home/lpo_albert/repos/ns-3-allinone/ns-3.28/Macro.png");
+	  Ptr<Node> nodeAnimMacro = enbMacroNodes.Get(i);
+    uint32_t nodeAnimMacroId = nodeAnimMacro->GetId();
+    anim.UpdateNodeImage(nodeAnimMacroId, resourceId2);
+	  anim.UpdateNodeSize(nodeAnimMacroId, 35,0);
+
+  	}
+
+	for (uint32_t i = 0; i < enbNodes.GetN(); ++i) {
+    uint32_t resourceId3 = anim.AddResource("/home/lpo_albert/repos/ns-3-allinone/ns-3.28/Micro.png");
+	  Ptr<Node> nodeAnimMicro = enbNodes.Get(i);
+    uint32_t nodeAnimMicroId = nodeAnimMicro->GetId();
+    anim.UpdateNodeImage(nodeAnimMicroId, resourceId3);
+	  anim.UpdateNodeSize(nodeAnimMicroId, 23,0);
+
+  	}
+
+
 	
 	// Indica o tempo (s) de parada do simulador
 	Simulator::Stop(Seconds(simTime));

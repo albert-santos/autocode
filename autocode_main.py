@@ -11,7 +11,7 @@ print(linha)
 print('AUTOCODE PARA NS-3:'.center(50))
 print(linha)
 while(1):
-    modo = str(input('Indique o cenário utilizado (Opcões: SA(Simulated Annealing) ou ECC): '))
+    modo = str(input('Indique o cenário utilizado (SA ou ECC): '))
 
     #Caminho para as planilhas de usuários e antenas (SA-Matlab)
     if modo.strip().upper() == 'SA':
