@@ -1,0 +1,734 @@
+
+INICIO HORA 1.0
+    positionAlloc->Add (Vector (0.0,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (0.0,277.77777777777777, 0.0));
+    positionAlloc->Add (Vector (0.0,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,111.11111111111111, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,222.22222222222223, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,500.0, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,222.22222222222223, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,333.3333333333333, 0.0));
+    positionAlloc->Add (Vector (166.66666666666666,0.0, 0.0));
+    positionAlloc->Add (Vector (166.66666666666666,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (166.66666666666666,111.11111111111111, 0.0));
+    positionAlloc->Add (Vector (166.66666666666666,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (166.66666666666666,500.0, 0.0));
+    positionAlloc->Add (Vector (222.22222222222223,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (222.22222222222223,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (277.77777777777777,111.11111111111111, 0.0));
+    positionAlloc->Add (Vector (277.77777777777777,333.3333333333333, 0.0));
+    positionAlloc->Add (Vector (333.3333333333333,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,111.11111111111111, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,222.22222222222223, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,277.77777777777777, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,111.11111111111111, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (500.0,111.11111111111111, 0.0));
+    positionAlloc->Add (Vector (500.0,388.8888888888889, 0.0));
+FIM HORA 1.0
+
+INICIO HORA 2.0
+    positionAlloc->Add (Vector (0.0,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,277.77777777777777, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,111.11111111111111, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,277.77777777777777, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (166.66666666666666,0.0, 0.0));
+    positionAlloc->Add (Vector (166.66666666666666,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (166.66666666666666,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (166.66666666666666,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (222.22222222222223,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (222.22222222222223,500.0, 0.0));
+    positionAlloc->Add (Vector (277.77777777777777,0.0, 0.0));
+    positionAlloc->Add (Vector (277.77777777777777,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (277.77777777777777,111.11111111111111, 0.0));
+    positionAlloc->Add (Vector (333.3333333333333,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (333.3333333333333,111.11111111111111, 0.0));
+    positionAlloc->Add (Vector (333.3333333333333,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (333.3333333333333,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (333.3333333333333,500.0, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,111.11111111111111, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,277.77777777777777, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,333.3333333333333, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,500.0, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,333.3333333333333, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,500.0, 0.0));
+FIM HORA 2.0
+
+INICIO HORA 3.0
+    positionAlloc->Add (Vector (0.0,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (0.0,277.77777777777777, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,222.22222222222223, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,277.77777777777777, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,333.3333333333333, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,222.22222222222223, 0.0));
+    positionAlloc->Add (Vector (166.66666666666666,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (166.66666666666666,111.11111111111111, 0.0));
+    positionAlloc->Add (Vector (166.66666666666666,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (166.66666666666666,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (166.66666666666666,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (166.66666666666666,500.0, 0.0));
+    positionAlloc->Add (Vector (222.22222222222223,0.0, 0.0));
+    positionAlloc->Add (Vector (222.22222222222223,111.11111111111111, 0.0));
+    positionAlloc->Add (Vector (222.22222222222223,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (277.77777777777777,333.3333333333333, 0.0));
+    positionAlloc->Add (Vector (277.77777777777777,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (277.77777777777777,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (333.3333333333333,0.0, 0.0));
+    positionAlloc->Add (Vector (333.3333333333333,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (333.3333333333333,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (333.3333333333333,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (333.3333333333333,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,0.0, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,222.22222222222223, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,277.77777777777777, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,333.3333333333333, 0.0));
+    positionAlloc->Add (Vector (500.0,222.22222222222223, 0.0));
+    positionAlloc->Add (Vector (500.0,277.77777777777777, 0.0));
+    positionAlloc->Add (Vector (500.0,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (500.0,444.44444444444446, 0.0));
+FIM HORA 3.0
+
+INICIO HORA 4.0
+    positionAlloc->Add (Vector (0.0,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (0.0,222.22222222222223, 0.0));
+    positionAlloc->Add (Vector (0.0,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,222.22222222222223, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,277.77777777777777, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,333.3333333333333, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,500.0, 0.0));
+    positionAlloc->Add (Vector (166.66666666666666,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (166.66666666666666,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (222.22222222222223,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (277.77777777777777,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (277.77777777777777,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (277.77777777777777,500.0, 0.0));
+    positionAlloc->Add (Vector (333.3333333333333,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (333.3333333333333,277.77777777777777, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,277.77777777777777, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,500.0, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,222.22222222222223, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (500.0,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (500.0,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (500.0,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (500.0,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (500.0,500.0, 0.0));
+FIM HORA 4.0
+
+INICIO HORA 5.0
+    positionAlloc->Add (Vector (55.55555555555556,0.0, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,333.3333333333333, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (222.22222222222223,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (222.22222222222223,111.11111111111111, 0.0));
+    positionAlloc->Add (Vector (222.22222222222223,500.0, 0.0));
+    positionAlloc->Add (Vector (277.77777777777777,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (277.77777777777777,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (333.3333333333333,111.11111111111111, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,333.3333333333333, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,500.0, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,111.11111111111111, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,222.22222222222223, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,500.0, 0.0));
+    positionAlloc->Add (Vector (500.0,277.77777777777777, 0.0));
+FIM HORA 5.0
+
+INICIO HORA 6.0
+    positionAlloc->Add (Vector (0.0,111.11111111111111, 0.0));
+    positionAlloc->Add (Vector (0.0,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,111.11111111111111, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,222.22222222222223, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (166.66666666666666,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (222.22222222222223,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (222.22222222222223,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (277.77777777777777,111.11111111111111, 0.0));
+    positionAlloc->Add (Vector (277.77777777777777,333.3333333333333, 0.0));
+    positionAlloc->Add (Vector (277.77777777777777,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (333.3333333333333,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,222.22222222222223, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,444.44444444444446, 0.0));
+FIM HORA 6.0
+
+INICIO HORA 7.0
+    positionAlloc->Add (Vector (55.55555555555556,222.22222222222223, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,277.77777777777777, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (166.66666666666666,277.77777777777777, 0.0));
+    positionAlloc->Add (Vector (166.66666666666666,500.0, 0.0));
+    positionAlloc->Add (Vector (222.22222222222223,111.11111111111111, 0.0));
+    positionAlloc->Add (Vector (222.22222222222223,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (222.22222222222223,500.0, 0.0));
+    positionAlloc->Add (Vector (277.77777777777777,111.11111111111111, 0.0));
+    positionAlloc->Add (Vector (277.77777777777777,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,111.11111111111111, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,277.77777777777777, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (500.0,444.44444444444446, 0.0));
+FIM HORA 7.0
+
+INICIO HORA 8.0
+    positionAlloc->Add (Vector (55.55555555555556,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,500.0, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,333.3333333333333, 0.0));
+    positionAlloc->Add (Vector (166.66666666666666,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (166.66666666666666,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (222.22222222222223,222.22222222222223, 0.0));
+    positionAlloc->Add (Vector (277.77777777777777,0.0, 0.0));
+    positionAlloc->Add (Vector (277.77777777777777,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (333.3333333333333,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,111.11111111111111, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,277.77777777777777, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,500.0, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,111.11111111111111, 0.0));
+    positionAlloc->Add (Vector (500.0,444.44444444444446, 0.0));
+FIM HORA 8.0
+
+INICIO HORA 9.0
+    positionAlloc->Add (Vector (55.55555555555556,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (166.66666666666666,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (222.22222222222223,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (222.22222222222223,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (333.3333333333333,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,277.77777777777777, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,333.3333333333333, 0.0));
+FIM HORA 9.0
+
+INICIO HORA 10.0
+    positionAlloc->Add (Vector (55.55555555555556,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,222.22222222222223, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,277.77777777777777, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (222.22222222222223,500.0, 0.0));
+    positionAlloc->Add (Vector (333.3333333333333,333.3333333333333, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,388.8888888888889, 0.0));
+FIM HORA 10.0
+
+INICIO HORA 11.0
+    positionAlloc->Add (Vector (0.0,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (0.0,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,111.11111111111111, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,222.22222222222223, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,222.22222222222223, 0.0));
+    positionAlloc->Add (Vector (166.66666666666666,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (222.22222222222223,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (222.22222222222223,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (277.77777777777777,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (277.77777777777777,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (333.3333333333333,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (333.3333333333333,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,0.0, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,222.22222222222223, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,277.77777777777777, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (500.0,444.44444444444446, 0.0));
+FIM HORA 11.0
+
+INICIO HORA 12.0
+    positionAlloc->Add (Vector (0.0,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (0.0,111.11111111111111, 0.0));
+    positionAlloc->Add (Vector (0.0,222.22222222222223, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,111.11111111111111, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,277.77777777777777, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,0.0, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,111.11111111111111, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,222.22222222222223, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,277.77777777777777, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (166.66666666666666,111.11111111111111, 0.0));
+    positionAlloc->Add (Vector (166.66666666666666,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (166.66666666666666,500.0, 0.0));
+    positionAlloc->Add (Vector (222.22222222222223,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (277.77777777777777,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (333.3333333333333,111.11111111111111, 0.0));
+    positionAlloc->Add (Vector (333.3333333333333,333.3333333333333, 0.0));
+    positionAlloc->Add (Vector (333.3333333333333,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,111.11111111111111, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,222.22222222222223, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,277.77777777777777, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,388.8888888888889, 0.0));
+FIM HORA 12.0
+
+INICIO HORA 13.0
+    positionAlloc->Add (Vector (0.0,277.77777777777777, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,111.11111111111111, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,111.11111111111111, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,222.22222222222223, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,277.77777777777777, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,500.0, 0.0));
+    positionAlloc->Add (Vector (166.66666666666666,111.11111111111111, 0.0));
+    positionAlloc->Add (Vector (166.66666666666666,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (166.66666666666666,333.3333333333333, 0.0));
+    positionAlloc->Add (Vector (166.66666666666666,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (222.22222222222223,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (277.77777777777777,0.0, 0.0));
+    positionAlloc->Add (Vector (333.3333333333333,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (333.3333333333333,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (333.3333333333333,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,111.11111111111111, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,222.22222222222223, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,333.3333333333333, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,0.0, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,222.22222222222223, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,277.77777777777777, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,333.3333333333333, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,500.0, 0.0));
+    positionAlloc->Add (Vector (500.0,111.11111111111111, 0.0));
+    positionAlloc->Add (Vector (500.0,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (500.0,222.22222222222223, 0.0));
+FIM HORA 13.0
+
+INICIO HORA 14.0
+    positionAlloc->Add (Vector (0.0,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (0.0,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (0.0,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,0.0, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,222.22222222222223, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,277.77777777777777, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,333.3333333333333, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,222.22222222222223, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,500.0, 0.0));
+    positionAlloc->Add (Vector (166.66666666666666,333.3333333333333, 0.0));
+    positionAlloc->Add (Vector (166.66666666666666,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (222.22222222222223,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (222.22222222222223,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (277.77777777777777,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (333.3333333333333,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (333.3333333333333,111.11111111111111, 0.0));
+    positionAlloc->Add (Vector (333.3333333333333,333.3333333333333, 0.0));
+    positionAlloc->Add (Vector (333.3333333333333,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (333.3333333333333,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (333.3333333333333,500.0, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,0.0, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,111.11111111111111, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,222.22222222222223, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,277.77777777777777, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,333.3333333333333, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,222.22222222222223, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,333.3333333333333, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (500.0,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (500.0,222.22222222222223, 0.0));
+    positionAlloc->Add (Vector (500.0,500.0, 0.0));
+FIM HORA 14.0
+
+INICIO HORA 15.0
+    positionAlloc->Add (Vector (0.0,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (0.0,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (0.0,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (0.0,500.0, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,0.0, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,111.11111111111111, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,277.77777777777777, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,333.3333333333333, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,500.0, 0.0));
+    positionAlloc->Add (Vector (166.66666666666666,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (166.66666666666666,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (222.22222222222223,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (222.22222222222223,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (277.77777777777777,333.3333333333333, 0.0));
+    positionAlloc->Add (Vector (277.77777777777777,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (333.3333333333333,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (333.3333333333333,333.3333333333333, 0.0));
+    positionAlloc->Add (Vector (333.3333333333333,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,222.22222222222223, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,111.11111111111111, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,222.22222222222223, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,277.77777777777777, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (500.0,0.0, 0.0));
+    positionAlloc->Add (Vector (500.0,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (500.0,111.11111111111111, 0.0));
+    positionAlloc->Add (Vector (500.0,222.22222222222223, 0.0));
+    positionAlloc->Add (Vector (500.0,333.3333333333333, 0.0));
+    positionAlloc->Add (Vector (500.0,500.0, 0.0));
+FIM HORA 15.0
+
+INICIO HORA 16.0
+    positionAlloc->Add (Vector (0.0,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (0.0,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (0.0,333.3333333333333, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,111.11111111111111, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,222.22222222222223, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,277.77777777777777, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,333.3333333333333, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (166.66666666666666,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (166.66666666666666,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (166.66666666666666,277.77777777777777, 0.0));
+    positionAlloc->Add (Vector (166.66666666666666,333.3333333333333, 0.0));
+    positionAlloc->Add (Vector (166.66666666666666,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (222.22222222222223,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (222.22222222222223,333.3333333333333, 0.0));
+    positionAlloc->Add (Vector (277.77777777777777,0.0, 0.0));
+    positionAlloc->Add (Vector (277.77777777777777,111.11111111111111, 0.0));
+    positionAlloc->Add (Vector (277.77777777777777,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (333.3333333333333,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (333.3333333333333,111.11111111111111, 0.0));
+    positionAlloc->Add (Vector (333.3333333333333,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,222.22222222222223, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,277.77777777777777, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,333.3333333333333, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,222.22222222222223, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (500.0,0.0, 0.0));
+    positionAlloc->Add (Vector (500.0,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (500.0,222.22222222222223, 0.0));
+FIM HORA 16.0
+
+INICIO HORA 17.0
+    positionAlloc->Add (Vector (55.55555555555556,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,222.22222222222223, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,333.3333333333333, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,277.77777777777777, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,333.3333333333333, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (166.66666666666666,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (166.66666666666666,333.3333333333333, 0.0));
+    positionAlloc->Add (Vector (166.66666666666666,500.0, 0.0));
+    positionAlloc->Add (Vector (222.22222222222223,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (277.77777777777777,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (277.77777777777777,500.0, 0.0));
+    positionAlloc->Add (Vector (333.3333333333333,111.11111111111111, 0.0));
+    positionAlloc->Add (Vector (333.3333333333333,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,277.77777777777777, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,333.3333333333333, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,111.11111111111111, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,222.22222222222223, 0.0));
+    positionAlloc->Add (Vector (500.0,111.11111111111111, 0.0));
+    positionAlloc->Add (Vector (500.0,277.77777777777777, 0.0));
+    positionAlloc->Add (Vector (500.0,444.44444444444446, 0.0));
+FIM HORA 17.0
+
+INICIO HORA 18.0
+    positionAlloc->Add (Vector (0.0,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (0.0,111.11111111111111, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,0.0, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,111.11111111111111, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,222.22222222222223, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,277.77777777777777, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,500.0, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,277.77777777777777, 0.0));
+    positionAlloc->Add (Vector (166.66666666666666,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (166.66666666666666,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (166.66666666666666,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (222.22222222222223,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (277.77777777777777,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (277.77777777777777,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (333.3333333333333,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (333.3333333333333,111.11111111111111, 0.0));
+    positionAlloc->Add (Vector (333.3333333333333,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (333.3333333333333,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,0.0, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,111.11111111111111, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,222.22222222222223, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,333.3333333333333, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,500.0, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,111.11111111111111, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,500.0, 0.0));
+    positionAlloc->Add (Vector (500.0,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (500.0,222.22222222222223, 0.0));
+    positionAlloc->Add (Vector (500.0,388.8888888888889, 0.0));
+FIM HORA 18.0
+
+INICIO HORA 19.0
+    positionAlloc->Add (Vector (0.0,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (0.0,333.3333333333333, 0.0));
+    positionAlloc->Add (Vector (0.0,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,222.22222222222223, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,333.3333333333333, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,111.11111111111111, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,222.22222222222223, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,277.77777777777777, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,333.3333333333333, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (166.66666666666666,0.0, 0.0));
+    positionAlloc->Add (Vector (166.66666666666666,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (222.22222222222223,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (222.22222222222223,111.11111111111111, 0.0));
+    positionAlloc->Add (Vector (222.22222222222223,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (277.77777777777777,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (277.77777777777777,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (333.3333333333333,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (333.3333333333333,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,222.22222222222223, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,277.77777777777777, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,333.3333333333333, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,500.0, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,0.0, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,111.11111111111111, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,277.77777777777777, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,333.3333333333333, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (500.0,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (500.0,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (500.0,444.44444444444446, 0.0));
+FIM HORA 19.0
+
+INICIO HORA 20.0
+    positionAlloc->Add (Vector (0.0,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (0.0,500.0, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,0.0, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,111.11111111111111, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,333.3333333333333, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,277.77777777777777, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,500.0, 0.0));
+    positionAlloc->Add (Vector (166.66666666666666,111.11111111111111, 0.0));
+    positionAlloc->Add (Vector (166.66666666666666,277.77777777777777, 0.0));
+    positionAlloc->Add (Vector (166.66666666666666,333.3333333333333, 0.0));
+    positionAlloc->Add (Vector (166.66666666666666,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (166.66666666666666,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (222.22222222222223,0.0, 0.0));
+    positionAlloc->Add (Vector (222.22222222222223,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (222.22222222222223,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (222.22222222222223,500.0, 0.0));
+    positionAlloc->Add (Vector (333.3333333333333,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (333.3333333333333,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (333.3333333333333,277.77777777777777, 0.0));
+    positionAlloc->Add (Vector (333.3333333333333,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,0.0, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,222.22222222222223, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,277.77777777777777, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,222.22222222222223, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,277.77777777777777, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (500.0,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (500.0,277.77777777777777, 0.0));
+FIM HORA 20.0
+
+INICIO HORA 21.0
+    positionAlloc->Add (Vector (0.0,0.0, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,111.11111111111111, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,222.22222222222223, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,0.0, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,277.77777777777777, 0.0));
+    positionAlloc->Add (Vector (166.66666666666666,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (222.22222222222223,111.11111111111111, 0.0));
+    positionAlloc->Add (Vector (277.77777777777777,0.0, 0.0));
+    positionAlloc->Add (Vector (277.77777777777777,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (277.77777777777777,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (277.77777777777777,333.3333333333333, 0.0));
+    positionAlloc->Add (Vector (277.77777777777777,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (277.77777777777777,500.0, 0.0));
+    positionAlloc->Add (Vector (333.3333333333333,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (333.3333333333333,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,0.0, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,277.77777777777777, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,222.22222222222223, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,277.77777777777777, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,333.3333333333333, 0.0));
+    positionAlloc->Add (Vector (500.0,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (500.0,166.66666666666666, 0.0));
+FIM HORA 21.0
+
+INICIO HORA 22.0
+    positionAlloc->Add (Vector (0.0,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,0.0, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,500.0, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,500.0, 0.0));
+    positionAlloc->Add (Vector (166.66666666666666,0.0, 0.0));
+    positionAlloc->Add (Vector (166.66666666666666,111.11111111111111, 0.0));
+    positionAlloc->Add (Vector (166.66666666666666,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (166.66666666666666,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (222.22222222222223,0.0, 0.0));
+    positionAlloc->Add (Vector (222.22222222222223,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (222.22222222222223,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (277.77777777777777,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (277.77777777777777,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (277.77777777777777,500.0, 0.0));
+    positionAlloc->Add (Vector (333.3333333333333,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (333.3333333333333,111.11111111111111, 0.0));
+    positionAlloc->Add (Vector (333.3333333333333,333.3333333333333, 0.0));
+    positionAlloc->Add (Vector (333.3333333333333,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (333.3333333333333,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,222.22222222222223, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,333.3333333333333, 0.0));
+    positionAlloc->Add (Vector (500.0,222.22222222222223, 0.0));
+    positionAlloc->Add (Vector (500.0,444.44444444444446, 0.0));
+FIM HORA 22.0
+
+INICIO HORA 23.0
+    positionAlloc->Add (Vector (0.0,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (0.0,111.11111111111111, 0.0));
+    positionAlloc->Add (Vector (0.0,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (0.0,222.22222222222223, 0.0));
+    positionAlloc->Add (Vector (0.0,277.77777777777777, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,111.11111111111111, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,222.22222222222223, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,277.77777777777777, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,333.3333333333333, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,500.0, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,222.22222222222223, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,333.3333333333333, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (166.66666666666666,0.0, 0.0));
+    positionAlloc->Add (Vector (166.66666666666666,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (166.66666666666666,111.11111111111111, 0.0));
+    positionAlloc->Add (Vector (166.66666666666666,333.3333333333333, 0.0));
+    positionAlloc->Add (Vector (166.66666666666666,500.0, 0.0));
+    positionAlloc->Add (Vector (222.22222222222223,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (222.22222222222223,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (277.77777777777777,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (333.3333333333333,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (333.3333333333333,333.3333333333333, 0.0));
+    positionAlloc->Add (Vector (333.3333333333333,500.0, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,222.22222222222223, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,333.3333333333333, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,500.0, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,0.0, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,333.3333333333333, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (500.0,277.77777777777777, 0.0));
+    positionAlloc->Add (Vector (500.0,388.8888888888889, 0.0));
+FIM HORA 23.0
+
+INICIO HORA 24.0
+    positionAlloc->Add (Vector (0.0,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,0.0, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,277.77777777777777, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,500.0, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,0.0, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,333.3333333333333, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (166.66666666666666,111.11111111111111, 0.0));
+    positionAlloc->Add (Vector (166.66666666666666,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (166.66666666666666,333.3333333333333, 0.0));
+    positionAlloc->Add (Vector (166.66666666666666,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (222.22222222222223,0.0, 0.0));
+    positionAlloc->Add (Vector (222.22222222222223,111.11111111111111, 0.0));
+    positionAlloc->Add (Vector (222.22222222222223,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (222.22222222222223,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (277.77777777777777,0.0, 0.0));
+    positionAlloc->Add (Vector (277.77777777777777,111.11111111111111, 0.0));
+    positionAlloc->Add (Vector (277.77777777777777,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (333.3333333333333,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (333.3333333333333,111.11111111111111, 0.0));
+    positionAlloc->Add (Vector (333.3333333333333,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (333.3333333333333,500.0, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,111.11111111111111, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,222.22222222222223, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,333.3333333333333, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,500.0, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,111.11111111111111, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,222.22222222222223, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,500.0, 0.0));
+    positionAlloc->Add (Vector (500.0,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (500.0,111.11111111111111, 0.0));
+    positionAlloc->Add (Vector (500.0,277.77777777777777, 0.0));
+    positionAlloc->Add (Vector (500.0,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (500.0,500.0, 0.0));
+FIM HORA 24.0

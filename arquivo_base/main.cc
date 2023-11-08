@@ -120,9 +120,9 @@
 	BBU 5 = 175
 	BBU 6 = 180
 	*/
-	double simTime = 5.0;
+	double simTime = 10.0;
 	double distance = 5000.0;
-	double interPacketInterval = 50;
+	double interPacketInterval = 5;
 	bool trace = true;
 	ns3::SeedManager::SetSeed(1);
 
@@ -177,10 +177,12 @@
 	ConfigStore inputConfig;
 	inputConfig.ConfigureDefaults();
   	// UlBandwidth e DlBandwidth indicam a largura de banda em quantidade de PRBs (50PRBs = 10Mhz de largura de banda)
-  	Config::SetDefault ("ns3::LteEnbNetDevice::UlBandwidth", UintegerValue (500));
-  	Config::SetDefault ("ns3::LteEnbNetDevice::DlBandwidth", UintegerValue (500));
+  	Config::SetDefault ("ns3::LteEnbNetDevice::UlBandwidth", UintegerValue (100));
+  	Config::SetDefault ("ns3::LteEnbNetDevice::DlBandwidth", UintegerValue (100));
   	// DlEarfcn e UlEarfcn são códigos que indica a frência que será utilizada. Para saber os valores correspondentes acesse: https://www.sqimway.com/lte_band.php
-  	Config::SetDefault ("ns3::LteEnbNetDevice::DlEarfcn", UintegerValue (3100));
+  	// Band	Name	Bandwidth (MHz)	Mode	Earfcn DL	Downlink (MHz)	Earfcn UL	Uplink (MHz)
+    // 7	  2600	70	            FDD	   3100	    2655.00	        21100	 2535.00
+    Config::SetDefault ("ns3::LteEnbNetDevice::DlEarfcn", UintegerValue (3100));
   	Config::SetDefault ("ns3::LteEnbNetDevice::UlEarfcn", UintegerValue (21100));
   	Config::SetDefault ("ns3::LteUeNetDevice::DlEarfcn", UintegerValue (3100));
   	// Potência de transmissão da eNb em dBm
@@ -370,7 +372,6 @@
 		O topswitch por sua vez, se conecta com o remoteHost onde se encontra a parte das aplicações
 		E o Mainswitch está conectado ao PGW do núcle da rede LTE 
 	*/
-Macro
 
 //-----------------------------------------------------Switchs
 	// Create the controller node
@@ -484,10 +485,10 @@ Macro
 		A macro possui 4 nós que devem estar na mesma posição (250,  250, 0).
 		A macro possui 4 nós porque cada nó terá uma antena que apontará para uma direção para poder cobrir um espaço de 360°
 	*/
-	positionAllocMacro->Add (Vector (  500,  500, 0));
-	positionAllocMacro->Add (Vector (  500,  500, 0));
-	positionAllocMacro->Add (Vector (  500,  500, 0));
-	positionAllocMacro->Add (Vector (  500,  500, 0));
+	positionAllocMacro->Add (Vector (  250,  250, 0));
+	positionAllocMacro->Add (Vector (  250,  250, 0));
+	positionAllocMacro->Add (Vector (  250,  250, 0));
+	positionAllocMacro->Add (Vector (  250,  250, 0));
 
 	// Indica as posições para o helper de mobilidade
 	mob.SetPositionAllocator(positionAllocMacro);
@@ -507,7 +508,7 @@ Macro
 	// Beamwidth: determina a intensidade do sinal esperada dada a direção e a distância de radiação de uma antena
 	lteHelper->SetEnbAntennaModelAttribute ("Beamwidth", DoubleValue (60));
 	// Maxgain: O ganho (dB) na mira da antena (a direção do ganho máximo)
-	lteHelper->SetEnbAntennaModelAttribute ("MaxGain", DoubleValue (0.0));
+	lteHelper->SetEnbAntennaModelAttribute ("MaxGain", DoubleValue (7.0));
 	// Instala um dispositivo de rede do tipo LteEnbNetDevice em um nó do contêiner enbMacroNodes
     NetDeviceContainer device1 = lteHelper->InstallEnbDevice (enbMacroNodes.Get(0));
 	// Adiciona o dispositivo no contêiner de dispositivos da macro
@@ -516,21 +517,21 @@ Macro
 	lteHelper->SetEnbAntennaModelType ("ns3::CosineAntennaModel");
 	lteHelper->SetEnbAntennaModelAttribute ("Orientation", DoubleValue (90));
 	lteHelper->SetEnbAntennaModelAttribute ("Beamwidth", DoubleValue (60));
-	lteHelper->SetEnbAntennaModelAttribute ("MaxGain", DoubleValue (0.0));  
+	lteHelper->SetEnbAntennaModelAttribute ("MaxGain", DoubleValue (7.0));  
     NetDeviceContainer device2 = lteHelper->InstallEnbDevice (enbMacroNodes.Get(1));
     enbLteDevsMacro.Add (device2);
 
 	lteHelper->SetEnbAntennaModelType ("ns3::CosineAntennaModel");
 	lteHelper->SetEnbAntennaModelAttribute ("Orientation", DoubleValue (180));
 	lteHelper->SetEnbAntennaModelAttribute ("Beamwidth", DoubleValue (60));
-	lteHelper->SetEnbAntennaModelAttribute ("MaxGain", DoubleValue (0.0));  
+	lteHelper->SetEnbAntennaModelAttribute ("MaxGain", DoubleValue (7.0));  
     NetDeviceContainer device3 = lteHelper->InstallEnbDevice (enbMacroNodes.Get(2));
     enbLteDevsMacro.Add (device3);
 
 	lteHelper->SetEnbAntennaModelType ("ns3::CosineAntennaModel");
 	lteHelper->SetEnbAntennaModelAttribute ("Orientation", DoubleValue (270));
 	lteHelper->SetEnbAntennaModelAttribute ("Beamwidth", DoubleValue (60));
-	lteHelper->SetEnbAntennaModelAttribute ("MaxGain", DoubleValue (0.0));  
+	lteHelper->SetEnbAntennaModelAttribute ("MaxGain", DoubleValue (7.0));  
     NetDeviceContainer device4 = lteHelper->InstallEnbDevice (enbMacroNodes.Get(3));
     enbLteDevsMacro.Add (device4);
 
@@ -1610,6 +1611,8 @@ Macro
 	ulClient.SetAttribute ("Interval", TimeValue (MilliSeconds(interPacketInterval)));
 	// MaxPackets: Número máximo de pacotes que a aplicação vai enviar
 	ulClient.SetAttribute ("MaxPackets", UintegerValue(1000000));
+  // PacketSize: Tamanho do pacote gerado. O mínimo é 12 e o máximo é 1500
+  ulClient.SetAttribute ("PacketSize", UintegerValue(1024));
 
 	//UdpClientHelper client (ueIpIface.GetAddress (u), otherPort);
 	//client.SetAttribute ("Interval", TimeValue (MilliSeconds(interPacketInterval)));

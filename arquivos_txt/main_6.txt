@@ -100,7 +100,7 @@
 	//uint16_t numberOfNodes[19] = {7,4,5,4,6,5,6,6,6,4,6,6,5,4,4,5,4,6,5};
 	//uint16_t numberOfNodes[7] = {7,4,5,4,6,5,6};
 	//AUTOCODE NUMBEROFUSERS INICIO
-	  uint16_t numberOfNodes = 231;
+	  uint16_t numberOfNodes = 28;
 	//AUTOCODE NUMBEROFUSERS FIM
 	//98
 	//uint16_t numberOfNodes[19] = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
@@ -120,9 +120,9 @@
 	BBU 5 = 175
 	BBU 6 = 180
 	*/
-	double simTime = 5.0;
+	double simTime = 10.0;
 	double distance = 5000.0;
-	double interPacketInterval = 50;
+	double interPacketInterval = 5;
 	bool trace = true;
 	ns3::SeedManager::SetSeed(1);
 
@@ -177,14 +177,16 @@
 	ConfigStore inputConfig;
 	inputConfig.ConfigureDefaults();
   	// UlBandwidth e DlBandwidth indicam a largura de banda em quantidade de PRBs (50PRBs = 10Mhz de largura de banda)
-  	Config::SetDefault ("ns3::LteEnbNetDevice::UlBandwidth", UintegerValue (50));
-  	Config::SetDefault ("ns3::LteEnbNetDevice::DlBandwidth", UintegerValue (50));
+  	Config::SetDefault ("ns3::LteEnbNetDevice::UlBandwidth", UintegerValue (100));
+  	Config::SetDefault ("ns3::LteEnbNetDevice::DlBandwidth", UintegerValue (100));
   	// DlEarfcn e UlEarfcn são códigos que indica a frência que será utilizada. Para saber os valores correspondentes acesse: https://www.sqimway.com/lte_band.php
-  	Config::SetDefault ("ns3::LteEnbNetDevice::DlEarfcn", UintegerValue (1575));
-  	Config::SetDefault ("ns3::LteEnbNetDevice::UlEarfcn", UintegerValue (19575));
-  	Config::SetDefault ("ns3::LteUeNetDevice::DlEarfcn", UintegerValue (1575));
+  	// Band	Name	Bandwidth (MHz)	Mode	Earfcn DL	Downlink (MHz)	Earfcn UL	Uplink (MHz)
+    // 7	  2600	70	            FDD	   3100	    2655.00	        21100	 2535.00
+    Config::SetDefault ("ns3::LteEnbNetDevice::DlEarfcn", UintegerValue (3100));
+  	Config::SetDefault ("ns3::LteEnbNetDevice::UlEarfcn", UintegerValue (21100));
+  	Config::SetDefault ("ns3::LteUeNetDevice::DlEarfcn", UintegerValue (3100));
   	// Potência de transmissão da eNb em dBm
-  	Config::SetDefault ("ns3::LteEnbPhy::TxPower", DoubleValue (49));
+  	Config::SetDefault ("ns3::LteEnbPhy::TxPower", DoubleValue (32));
 
 	/* GlobalValue::Bind realiza uma busca em todas variáveis globais para encontrar a variável indicada ("ChecksumEnabled")
 		Ao encontrar, configura o seu valor de acordo com o que foi passado (BooleanValue (true))
@@ -371,7 +373,6 @@
 		E o Mainswitch está conectado ao PGW do núcle da rede LTE 
 	*/
 
-
 //-----------------------------------------------------Switchs
 	// Create the controller node
 	Ptr<Node> controllerNode = CreateObject<Node> ();
@@ -457,6 +458,8 @@
 //-----------------------------------------------------Macro BS (Base Station)
 	// Para simular uma macro é necessário criar quatro eNBs sendo que cada eNB terá uma antena. Cada antena terá uma direção diferente
 
+  // Potência de transmissão da eNb em dBm
+  Config::SetDefault ("ns3::LteEnbPhy::TxPower", DoubleValue (49));
 	Config::SetDefault ("ns3::LteEnbNetDevice::UlBandwidth", UintegerValue (100));
   Config::SetDefault ("ns3::LteEnbNetDevice::DlBandwidth", UintegerValue (100));
 	
@@ -482,10 +485,10 @@
 		A macro possui 4 nós que devem estar na mesma posição (250,  250, 0).
 		A macro possui 4 nós porque cada nó terá uma antena que apontará para uma direção para poder cobrir um espaço de 360°
 	*/
-	positionAllocMacro->Add (Vector (  500,  500, 0));
-	positionAllocMacro->Add (Vector (  500,  500, 0));
-	positionAllocMacro->Add (Vector (  500,  500, 0));
-	positionAllocMacro->Add (Vector (  500,  500, 0));
+	positionAllocMacro->Add (Vector (  250,  250, 0));
+	positionAllocMacro->Add (Vector (  250,  250, 0));
+	positionAllocMacro->Add (Vector (  250,  250, 0));
+	positionAllocMacro->Add (Vector (  250,  250, 0));
 
 	// Indica as posições para o helper de mobilidade
 	mob.SetPositionAllocator(positionAllocMacro);
@@ -505,7 +508,7 @@
 	// Beamwidth: determina a intensidade do sinal esperada dada a direção e a distância de radiação de uma antena
 	lteHelper->SetEnbAntennaModelAttribute ("Beamwidth", DoubleValue (60));
 	// Maxgain: O ganho (dB) na mira da antena (a direção do ganho máximo)
-	lteHelper->SetEnbAntennaModelAttribute ("MaxGain", DoubleValue (0.0));
+	lteHelper->SetEnbAntennaModelAttribute ("MaxGain", DoubleValue (7.0));
 	// Instala um dispositivo de rede do tipo LteEnbNetDevice em um nó do contêiner enbMacroNodes
     NetDeviceContainer device1 = lteHelper->InstallEnbDevice (enbMacroNodes.Get(0));
 	// Adiciona o dispositivo no contêiner de dispositivos da macro
@@ -514,21 +517,21 @@
 	lteHelper->SetEnbAntennaModelType ("ns3::CosineAntennaModel");
 	lteHelper->SetEnbAntennaModelAttribute ("Orientation", DoubleValue (90));
 	lteHelper->SetEnbAntennaModelAttribute ("Beamwidth", DoubleValue (60));
-	lteHelper->SetEnbAntennaModelAttribute ("MaxGain", DoubleValue (0.0));  
+	lteHelper->SetEnbAntennaModelAttribute ("MaxGain", DoubleValue (7.0));  
     NetDeviceContainer device2 = lteHelper->InstallEnbDevice (enbMacroNodes.Get(1));
     enbLteDevsMacro.Add (device2);
 
 	lteHelper->SetEnbAntennaModelType ("ns3::CosineAntennaModel");
 	lteHelper->SetEnbAntennaModelAttribute ("Orientation", DoubleValue (180));
 	lteHelper->SetEnbAntennaModelAttribute ("Beamwidth", DoubleValue (60));
-	lteHelper->SetEnbAntennaModelAttribute ("MaxGain", DoubleValue (0.0));  
+	lteHelper->SetEnbAntennaModelAttribute ("MaxGain", DoubleValue (7.0));  
     NetDeviceContainer device3 = lteHelper->InstallEnbDevice (enbMacroNodes.Get(2));
     enbLteDevsMacro.Add (device3);
 
 	lteHelper->SetEnbAntennaModelType ("ns3::CosineAntennaModel");
 	lteHelper->SetEnbAntennaModelAttribute ("Orientation", DoubleValue (270));
 	lteHelper->SetEnbAntennaModelAttribute ("Beamwidth", DoubleValue (60));
-	lteHelper->SetEnbAntennaModelAttribute ("MaxGain", DoubleValue (0.0));  
+	lteHelper->SetEnbAntennaModelAttribute ("MaxGain", DoubleValue (7.0));  
     NetDeviceContainer device4 = lteHelper->InstallEnbDevice (enbMacroNodes.Get(3));
     enbLteDevsMacro.Add (device4);
 
@@ -560,22 +563,22 @@
 	
 	// Indica as posições das eNBs
 	//AUTOCODE SMALLS INICIO
-    positionAlloc->Add (Vector (356.6666666666667,96.66666666666667, 0.0));
-    positionAlloc->Add (Vector (313.3333333333333,183.33333333333334, 0.0));
-    positionAlloc->Add (Vector (313.3333333333333,96.66666666666667, 0.0));
-    positionAlloc->Add (Vector (313.3333333333333,53.333333333333336, 0.0));
-    positionAlloc->Add (Vector (270.0,400.0, 0.0));
-    positionAlloc->Add (Vector (226.66666666666666,183.33333333333334, 0.0));
-    positionAlloc->Add (Vector (226.66666666666666,140.0, 0.0));
-    positionAlloc->Add (Vector (226.66666666666666,53.333333333333336, 0.0));
-    positionAlloc->Add (Vector (183.33333333333334,53.333333333333336, 0.0));
-    positionAlloc->Add (Vector (183.33333333333334,10.0, 0.0));
-    positionAlloc->Add (Vector (140.0,313.3333333333333, 0.0));
-    positionAlloc->Add (Vector (140.0,53.333333333333336, 0.0));
-    positionAlloc->Add (Vector (140.0,10.0, 0.0));
-    positionAlloc->Add (Vector (96.66666666666667,226.66666666666666, 0.0));
-    positionAlloc->Add (Vector (96.66666666666667,96.66666666666667, 0.0));
-    positionAlloc->Add (Vector (53.333333333333336,53.333333333333336, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,222.22222222222223, 0.0));
+    positionAlloc->Add (Vector (333.3333333333333,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (277.77777777777777,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (277.77777777777777,333.3333333333333, 0.0));
+    positionAlloc->Add (Vector (277.77777777777777,111.11111111111111, 0.0));
+    positionAlloc->Add (Vector (222.22222222222223,388.8888888888889, 0.0));
+    positionAlloc->Add (Vector (222.22222222222223,55.55555555555556, 0.0));
+    positionAlloc->Add (Vector (166.66666666666666,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,222.22222222222223, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,111.11111111111111, 0.0));
+    positionAlloc->Add (Vector (0.0,166.66666666666666, 0.0));
+    positionAlloc->Add (Vector (0.0,111.11111111111111, 0.0));
 	//AUTOCODE SMALLS FIM
 	// Passa a lista de posições para o assistente de mobilidade
 	mobility.SetPositionAllocator(positionAlloc);
@@ -656,237 +659,34 @@
 	Ptr<ListPositionAllocator> positionAlloc4 = CreateObject<ListPositionAllocator> ();
 	// Passa as posições dos usuários
 	//AUTOCODE USERS INICIO
-    positionAlloc4->Add (Vector(255.3873470098208,273.83685407531044, 0.0));
-    positionAlloc4->Add (Vector(41.58624863910991,53.12405535383622, 0.0));
-    positionAlloc4->Add (Vector(328.1827331573457,46.65699502320564, 0.0));
-    positionAlloc4->Add (Vector(166.99213904996247,373.4620945237336, 0.0));
-    positionAlloc4->Add (Vector(143.81586468098243,358.39373909931965, 0.0));
-    positionAlloc4->Add (Vector(164.5944943422375,250.10998354407383, 0.0));
-    positionAlloc4->Add (Vector(153.62194962655616,58.862558176442946, 0.0));
-    positionAlloc4->Add (Vector(233.38502965507658,34.03512118955607, 0.0));
-    positionAlloc4->Add (Vector(71.86559541554018,46.374183740834106, 0.0));
-    positionAlloc4->Add (Vector(196.21949387267375,29.157460914897193, 0.0));
-    positionAlloc4->Add (Vector(230.22914899163868,279.4141125504634, 0.0));
-    positionAlloc4->Add (Vector(182.01781418420953,29.61078819710883, 0.0));
-    positionAlloc4->Add (Vector(61.12673106646174,204.00632258220872, 0.0));
-    positionAlloc4->Add (Vector(374.8979787547819,93.81420547074653, 0.0));
-    positionAlloc4->Add (Vector(158.87125769309483,45.59553895724644, 0.0));
-    positionAlloc4->Add (Vector(216.33995312615468,162.01174415514723, 0.0));
-    positionAlloc4->Add (Vector(360.2368697474943,324.1100100169793, 0.0));
-    positionAlloc4->Add (Vector(250.08591250679012,165.0376341516087, 0.0));
-    positionAlloc4->Add (Vector(100.40271090110839,239.01257369820087, 0.0));
-    positionAlloc4->Add (Vector(337.2720365763061,52.696165973280884, 0.0));
-    positionAlloc4->Add (Vector(260.2342535823779,206.04160275230464, 0.0));
-    positionAlloc4->Add (Vector(225.76704236653185,123.49335271096899, 0.0));
-    positionAlloc4->Add (Vector(186.16145914149635,82.59085329124618, 0.0));
-    positionAlloc4->Add (Vector(373.9342026204855,360.3304243341599, 0.0));
-    positionAlloc4->Add (Vector(224.59988965857875,204.04357697046552, 0.0));
-    positionAlloc4->Add (Vector(33.57060574308335,44.80627329782436, 0.0));
-    positionAlloc4->Add (Vector(399.34328612202637,197.4801747081767, 0.0));
-    positionAlloc4->Add (Vector(313.31794447948846,105.32579511953446, 0.0));
-    positionAlloc4->Add (Vector(287.50161622056686,293.38134262364355, 0.0));
-    positionAlloc4->Add (Vector(265.09520701751313,164.7785740812877, 0.0));
-    positionAlloc4->Add (Vector(94.0323551928909,90.78150684855592, 0.0));
-    positionAlloc4->Add (Vector(396.8114017301786,384.8919181786746, 0.0));
-    positionAlloc4->Add (Vector(185.8050456024663,185.9210073661099, 0.0));
-    positionAlloc4->Add (Vector(158.99659134878635,315.74968852356267, 0.0));
-    positionAlloc4->Add (Vector(244.2835288202627,176.81920478225695, 0.0));
-    positionAlloc4->Add (Vector(336.58388067033076,115.31158938354235, 0.0));
-    positionAlloc4->Add (Vector(85.24314502061902,189.48880470428514, 0.0));
-    positionAlloc4->Add (Vector(341.3151826915809,366.5316865167903, 0.0));
-    positionAlloc4->Add (Vector(173.60922752774943,32.97034358577973, 0.0));
-    positionAlloc4->Add (Vector(82.8572959314628,101.70411343428944, 0.0));
-    positionAlloc4->Add (Vector(121.06200605623667,210.91833097286883, 0.0));
-    positionAlloc4->Add (Vector(161.478645534239,294.65088348290067, 0.0));
-    positionAlloc4->Add (Vector(388.9210350688506,306.9992196397419, 0.0));
-    positionAlloc4->Add (Vector(120.78733284214329,98.5114232494146, 0.0));
-    positionAlloc4->Add (Vector(159.40607044123266,15.567216010196727, 0.0));
-    positionAlloc4->Add (Vector(165.57007768326676,246.2249895956363, 0.0));
-    positionAlloc4->Add (Vector(317.5400233806514,199.43345718863816, 0.0));
-    positionAlloc4->Add (Vector(25.43939955068111,365.1185661983481, 0.0));
-    positionAlloc4->Add (Vector(287.6023849713989,121.05222536584863, 0.0));
-    positionAlloc4->Add (Vector(82.90534462533587,354.2111271178798, 0.0));
-    positionAlloc4->Add (Vector(287.451154288522,258.93325019096187, 0.0));
-    positionAlloc4->Add (Vector(156.03615941351055,302.2362939283518, 0.0));
-    positionAlloc4->Add (Vector(345.72886160936866,244.13848736665068, 0.0));
-    positionAlloc4->Add (Vector(124.00799168413359,63.7883162337646, 0.0));
-    positionAlloc4->Add (Vector(313.7437192163358,290.0185421741477, 0.0));
-    positionAlloc4->Add (Vector(274.053311298425,399.06534450903416, 0.0));
-    positionAlloc4->Add (Vector(328.40708541994206,68.33853604019878, 0.0));
-    positionAlloc4->Add (Vector(166.35544268368446,345.00411875270845, 0.0));
-    positionAlloc4->Add (Vector(198.01226407195122,118.60480035948875, 0.0));
-    positionAlloc4->Add (Vector(18.00390632549562,273.0074530837945, 0.0));
-    positionAlloc4->Add (Vector(379.58272952560554,154.16027981994205, 0.0));
-    positionAlloc4->Add (Vector(115.44223847959812,215.5215860859657, 0.0));
-    positionAlloc4->Add (Vector(99.73247371098246,151.59619041847688, 0.0));
-    positionAlloc4->Add (Vector(234.4469792743455,308.7767380227517, 0.0));
-    positionAlloc4->Add (Vector(378.1026315034421,200.36253795581328, 0.0));
-    positionAlloc4->Add (Vector(17.5093070271239,369.27118360701434, 0.0));
-    positionAlloc4->Add (Vector(96.62179605887448,224.53588311320738, 0.0));
-    positionAlloc4->Add (Vector(283.58481328460465,380.51874152769966, 0.0));
-    positionAlloc4->Add (Vector(198.59445925266363,305.04409278447395, 0.0));
-    positionAlloc4->Add (Vector(358.55561393611396,364.0768651735635, 0.0));
-    positionAlloc4->Add (Vector(151.1080812562951,305.2485642741514, 0.0));
-    positionAlloc4->Add (Vector(223.54443559921918,274.5845503952141, 0.0));
-    positionAlloc4->Add (Vector(47.78549832233643,376.0250055268671, 0.0));
-    positionAlloc4->Add (Vector(163.56244428600868,8.046319233227006, 0.0));
-    positionAlloc4->Add (Vector(201.06506812481152,37.61244384816109, 0.0));
-    positionAlloc4->Add (Vector(21.444650751518026,85.4301247809091, 0.0));
-    positionAlloc4->Add (Vector(22.381340353984047,244.5649201229445, 0.0));
-    positionAlloc4->Add (Vector(214.014950925495,76.48577710359893, 0.0));
-    positionAlloc4->Add (Vector(59.432734574788086,274.5360976784979, 0.0));
-    positionAlloc4->Add (Vector(284.0751402340922,31.61267666675096, 0.0));
-    positionAlloc4->Add (Vector(13.211607224615118,315.27055144548626, 0.0));
-    positionAlloc4->Add (Vector(255.62128683479622,130.54855478048069, 0.0));
-    positionAlloc4->Add (Vector(236.11057987746463,247.70363627461148, 0.0));
-    positionAlloc4->Add (Vector(307.53534843309063,391.1690364575416, 0.0));
-    positionAlloc4->Add (Vector(280.00245477911915,384.7569659767415, 0.0));
-    positionAlloc4->Add (Vector(313.0542593091002,302.7461004830096, 0.0));
-    positionAlloc4->Add (Vector(223.029840165007,145.5577930621774, 0.0));
-    positionAlloc4->Add (Vector(292.1074886827467,201.7446818152013, 0.0));
-    positionAlloc4->Add (Vector(359.85403448854595,256.4600892981999, 0.0));
-    positionAlloc4->Add (Vector(6.098763676341079,25.95640185377195, 0.0));
-    positionAlloc4->Add (Vector(356.3600826984804,110.47947591767655, 0.0));
-    positionAlloc4->Add (Vector(314.75371348909505,198.10338654752366, 0.0));
-    positionAlloc4->Add (Vector(375.8727993388429,100.7388174004483, 0.0));
-    positionAlloc4->Add (Vector(278.4534651256758,225.62866568355463, 0.0));
-    positionAlloc4->Add (Vector(356.01465538119646,263.2851559258129, 0.0));
-    positionAlloc4->Add (Vector(340.6518457546405,60.60995239233735, 0.0));
-    positionAlloc4->Add (Vector(309.55585459246265,328.13971920853635, 0.0));
-    positionAlloc4->Add (Vector(0.24345692367964133,277.1541276917441, 0.0));
-    positionAlloc4->Add (Vector(112.26302135418385,100.15811454323674, 0.0));
-    positionAlloc4->Add (Vector(173.3873239329082,31.990564442045955, 0.0));
-    positionAlloc4->Add (Vector(6.839289660690717,73.95795621893093, 0.0));
-    positionAlloc4->Add (Vector(339.96181685971385,212.06180538628718, 0.0));
-    positionAlloc4->Add (Vector(222.29650985502394,127.18922920962656, 0.0));
-    positionAlloc4->Add (Vector(388.3622666568351,233.2403746898743, 0.0));
-    positionAlloc4->Add (Vector(214.24282047273272,36.58990224328025, 0.0));
-    positionAlloc4->Add (Vector(338.52017828031677,14.24010361397059, 0.0));
-    positionAlloc4->Add (Vector(322.6660269845558,97.85611546684096, 0.0));
-    positionAlloc4->Add (Vector(64.70736572760889,395.33251665119786, 0.0));
-    positionAlloc4->Add (Vector(269.0214728897649,37.97819011988794, 0.0));
-    positionAlloc4->Add (Vector(398.9846935033966,53.7482945705066, 0.0));
-    positionAlloc4->Add (Vector(234.2492589252928,198.20651081024576, 0.0));
-    positionAlloc4->Add (Vector(319.5004677241928,6.104981050132796, 0.0));
-    positionAlloc4->Add (Vector(275.5956759962908,62.31555364358825, 0.0));
-    positionAlloc4->Add (Vector(143.9235437600482,14.835253180273877, 0.0));
-    positionAlloc4->Add (Vector(84.65427928719191,334.7838920549142, 0.0));
-    positionAlloc4->Add (Vector(138.1555347576076,184.23594613009166, 0.0));
-    positionAlloc4->Add (Vector(211.63963471283668,296.857929282243, 0.0));
-    positionAlloc4->Add (Vector(147.60346365127157,388.87226873756987, 0.0));
-    positionAlloc4->Add (Vector(133.43014400049213,8.643183659169384, 0.0));
-    positionAlloc4->Add (Vector(353.51420759361474,262.1525584962633, 0.0));
-    positionAlloc4->Add (Vector(152.99902851172317,129.31570056135325, 0.0));
-    positionAlloc4->Add (Vector(298.99891515753853,56.20249799270085, 0.0));
-    positionAlloc4->Add (Vector(386.6101116515747,79.31192798579207, 0.0));
-    positionAlloc4->Add (Vector(103.6779821352471,280.3162426690694, 0.0));
-    positionAlloc4->Add (Vector(329.353989903865,91.73507259173994, 0.0));
-    positionAlloc4->Add (Vector(6.489744994586744,62.50039124116071, 0.0));
-    positionAlloc4->Add (Vector(100.95170119719911,340.14173030172026, 0.0));
-    positionAlloc4->Add (Vector(241.42617852329346,49.44515455953646, 0.0));
-    positionAlloc4->Add (Vector(337.312512085301,178.95470388155266, 0.0));
-    positionAlloc4->Add (Vector(232.47008111067876,218.2385303296536, 0.0));
-    positionAlloc4->Add (Vector(22.028923594651452,248.03959597455062, 0.0));
-    positionAlloc4->Add (Vector(269.1823163007435,213.6672010867063, 0.0));
-    positionAlloc4->Add (Vector(188.60819555950292,215.87060048343557, 0.0));
-    positionAlloc4->Add (Vector(215.30402834377833,17.53501921544394, 0.0));
-    positionAlloc4->Add (Vector(226.58425432892523,240.73696451471687, 0.0));
-    positionAlloc4->Add (Vector(3.5778419748548895,394.87047282717, 0.0));
-    positionAlloc4->Add (Vector(103.14549439145048,118.82119820405003, 0.0));
-    positionAlloc4->Add (Vector(112.49408382634533,102.20744701454541, 0.0));
-    positionAlloc4->Add (Vector(101.84007557223893,300.4035303452914, 0.0));
-    positionAlloc4->Add (Vector(72.38826296436707,388.8122683928293, 0.0));
-    positionAlloc4->Add (Vector(5.817327830225194,16.80968821785647, 0.0));
-    positionAlloc4->Add (Vector(309.17240691382017,239.2595059716372, 0.0));
-    positionAlloc4->Add (Vector(37.338037440123,312.4801759959025, 0.0));
-    positionAlloc4->Add (Vector(59.740324330260194,208.31859868203287, 0.0));
-    positionAlloc4->Add (Vector(36.52909592148714,245.62993277560471, 0.0));
-    positionAlloc4->Add (Vector(12.890655488972724,392.9084913401311, 0.0));
-    positionAlloc4->Add (Vector(271.5021950045964,305.6808315998822, 0.0));
-    positionAlloc4->Add (Vector(396.72046368271447,100.12666072911101, 0.0));
-    positionAlloc4->Add (Vector(207.1021005398104,131.2650357700653, 0.0));
-    positionAlloc4->Add (Vector(360.8829828189561,112.94017678984791, 0.0));
-    positionAlloc4->Add (Vector(386.37163862475035,217.41278888014227, 0.0));
-    positionAlloc4->Add (Vector(90.65259707700166,323.4712708278207, 0.0));
-    positionAlloc4->Add (Vector(211.47947774455366,180.07414667630718, 0.0));
-    positionAlloc4->Add (Vector(309.1998966484986,310.38685422749927, 0.0));
-    positionAlloc4->Add (Vector(58.07419004471672,344.09048006814504, 0.0));
-    positionAlloc4->Add (Vector(129.09093430982836,313.77496862853656, 0.0));
-    positionAlloc4->Add (Vector(353.75381861087595,313.4877037180338, 0.0));
-    positionAlloc4->Add (Vector(217.80300394219725,366.84434434533193, 0.0));
-    positionAlloc4->Add (Vector(194.7684667336665,228.116760409286, 0.0));
-    positionAlloc4->Add (Vector(205.4829010060331,195.73456537076203, 0.0));
-    positionAlloc4->Add (Vector(48.930116913102054,373.12316258761854, 0.0));
-    positionAlloc4->Add (Vector(0.05653208337075277,150.89608757012374, 0.0));
-    positionAlloc4->Add (Vector(345.6124686962131,354.40510363526045, 0.0));
-    positionAlloc4->Add (Vector(120.83485484744045,377.93058158435235, 0.0));
-    positionAlloc4->Add (Vector(274.9790935488127,363.2683294117996, 0.0));
-    positionAlloc4->Add (Vector(11.58290018208712,366.5936056008559, 0.0));
-    positionAlloc4->Add (Vector(115.51135081595807,161.24111412862146, 0.0));
-    positionAlloc4->Add (Vector(353.2123969594035,250.1471393917135, 0.0));
-    positionAlloc4->Add (Vector(271.5418096424434,356.81800163428716, 0.0));
-    positionAlloc4->Add (Vector(286.80948936179834,280.19127495180976, 0.0));
-    positionAlloc4->Add (Vector(60.16933510609452,321.4000656429038, 0.0));
-    positionAlloc4->Add (Vector(96.41978774780782,148.3759082040038, 0.0));
-    positionAlloc4->Add (Vector(275.1785399470174,340.4690540454736, 0.0));
-    positionAlloc4->Add (Vector(0.1572012768650044,98.32207439447602, 0.0));
-    positionAlloc4->Add (Vector(159.05760741809317,134.29524392846582, 0.0));
-    positionAlloc4->Add (Vector(31.684305201240328,334.15499440122375, 0.0));
-    positionAlloc4->Add (Vector(350.43205963970996,293.5341733034572, 0.0));
-    positionAlloc4->Add (Vector(369.3769110620389,94.47699742370096, 0.0));
-    positionAlloc4->Add (Vector(193.25296380631428,228.03101174198636, 0.0));
-    positionAlloc4->Add (Vector(212.8309265588822,188.64342778142964, 0.0));
-    positionAlloc4->Add (Vector(222.90562978917157,125.3280940498037, 0.0));
-    positionAlloc4->Add (Vector(94.96538522747535,19.80572477551692, 0.0));
-    positionAlloc4->Add (Vector(176.56687998134254,375.52164145359217, 0.0));
-    positionAlloc4->Add (Vector(375.89160844948265,363.3777173381792, 0.0));
-    positionAlloc4->Add (Vector(392.24092762782686,360.1508717627266, 0.0));
-    positionAlloc4->Add (Vector(20.135873682255134,68.74474346136293, 0.0));
-    positionAlloc4->Add (Vector(79.86822764423258,323.4327921939133, 0.0));
-    positionAlloc4->Add (Vector(163.85207402855352,270.8821055550128, 0.0));
-    positionAlloc4->Add (Vector(244.13544460257134,248.1077218305745, 0.0));
-    positionAlloc4->Add (Vector(191.1841956886144,73.17903450276893, 0.0));
-    positionAlloc4->Add (Vector(55.05033050416137,3.2359693220332275, 0.0));
-    positionAlloc4->Add (Vector(306.65007461806283,369.7756748884111, 0.0));
-    positionAlloc4->Add (Vector(77.74960049350472,236.06657782643418, 0.0));
-    positionAlloc4->Add (Vector(198.25186378032367,153.6415474031592, 0.0));
-    positionAlloc4->Add (Vector(215.89757823640596,398.1058025839921, 0.0));
-    positionAlloc4->Add (Vector(58.19608789048356,291.09131768678117, 0.0));
-    positionAlloc4->Add (Vector(331.5243180152543,12.666276194647752, 0.0));
-    positionAlloc4->Add (Vector(397.88309419173135,241.7069515131102, 0.0));
-    positionAlloc4->Add (Vector(119.57427656410924,139.8802884195478, 0.0));
-    positionAlloc4->Add (Vector(144.88133455239324,282.494101468807, 0.0));
-    positionAlloc4->Add (Vector(396.3005397572139,130.86607032454776, 0.0));
-    positionAlloc4->Add (Vector(149.35404230658412,228.4098504658787, 0.0));
-    positionAlloc4->Add (Vector(137.88212381928108,85.4006661186883, 0.0));
-    positionAlloc4->Add (Vector(168.76254100759013,266.10240712007715, 0.0));
-    positionAlloc4->Add (Vector(50.49484515213525,101.82220313708932, 0.0));
-    positionAlloc4->Add (Vector(45.584147039281355,350.6163030281846, 0.0));
-    positionAlloc4->Add (Vector(41.73495992586829,143.6612861043002, 0.0));
-    positionAlloc4->Add (Vector(147.72545823664362,351.15120756741914, 0.0));
-    positionAlloc4->Add (Vector(305.9135840772316,28.354506284572388, 0.0));
-    positionAlloc4->Add (Vector(56.576495063303156,74.4039957165565, 0.0));
-    positionAlloc4->Add (Vector(80.41325948466861,222.4876688387917, 0.0));
-    positionAlloc4->Add (Vector(73.84718571887427,217.76040980671473, 0.0));
-    positionAlloc4->Add (Vector(203.967200190827,227.2276122311777, 0.0));
-    positionAlloc4->Add (Vector(200.4600392499134,307.1449662701883, 0.0));
-    positionAlloc4->Add (Vector(226.4521393963456,329.2947880405227, 0.0));
-    positionAlloc4->Add (Vector(71.55388695069247,294.36753753875047, 0.0));
-    positionAlloc4->Add (Vector(161.4491164965417,24.239924071628003, 0.0));
-    positionAlloc4->Add (Vector(327.1185327209131,137.45867634223168, 0.0));
-    positionAlloc4->Add (Vector(80.47105588246106,337.1152136257292, 0.0));
-    positionAlloc4->Add (Vector(293.1297787685794,138.94106717226737, 0.0));
-    positionAlloc4->Add (Vector(181.14453518200264,64.16001853107241, 0.0));
-    positionAlloc4->Add (Vector(231.84571953614346,19.638992572362078, 0.0));
-    positionAlloc4->Add (Vector(174.84954593829448,372.1329320025454, 0.0));
-    positionAlloc4->Add (Vector(305.50996928457215,341.36916662167687, 0.0));
-    positionAlloc4->Add (Vector(90.65479126714,133.9894969011731, 0.0));
-    positionAlloc4->Add (Vector(191.26370200482646,317.4212754510209, 0.0));
-    positionAlloc4->Add (Vector(19.421512827367238,346.7985588080116, 0.0));
-    positionAlloc4->Add (Vector(126.19915300295213,257.4004761698132, 0.0));
-    positionAlloc4->Add (Vector(41.46974482556227,259.7846023000728, 0.0));
-    positionAlloc4->Add (Vector(34.63044747844486,204.2625850282985, 0.0));
-    positionAlloc4->Add (Vector(267.63928493080397,311.82043525872047, 0.0));
+    positionAlloc4->Add (Vector(322.9586206658006,285.38915233445596, 0.0));
+    positionAlloc4->Add (Vector(141.88795289936223,181.54114819931755, 0.0));
+    positionAlloc4->Add (Vector(215.8297731148397,63.790151397781884, 0.0));
+    positionAlloc4->Add (Vector(293.42055901043955,372.719737092165, 0.0));
+    positionAlloc4->Add (Vector(43.46014404371184,268.55327090927386, 0.0));
+    positionAlloc4->Add (Vector(394.58561930366915,249.22109946452863, 0.0));
+    positionAlloc4->Add (Vector(296.79622677702434,339.5511595722448, 0.0));
+    positionAlloc4->Add (Vector(59.881065909625605,445.2636403699475, 0.0));
+    positionAlloc4->Add (Vector(105.72400349827232,163.74867608895732, 0.0));
+    positionAlloc4->Add (Vector(10.035598888863184,161.03958279158914, 0.0));
+    positionAlloc4->Add (Vector(134.6216154746905,188.6420815523113, 0.0));
+    positionAlloc4->Add (Vector(266.30863322751156,121.23525181736483, 0.0));
+    positionAlloc4->Add (Vector(53.586005669888024,223.70618341172732, 0.0));
+    positionAlloc4->Add (Vector(255.83872105783306,266.0567426326578, 0.0));
+    positionAlloc4->Add (Vector(356.6747929422762,447.6034188435997, 0.0));
+    positionAlloc4->Add (Vector(18.34160144529895,126.21847217201038, 0.0));
+    positionAlloc4->Add (Vector(231.26735806657393,373.7354690668783, 0.0));
+    positionAlloc4->Add (Vector(309.127385765148,184.4568197848862, 0.0));
+    positionAlloc4->Add (Vector(185.236051395691,242.26149259551067, 0.0));
+    positionAlloc4->Add (Vector(92.26050967818867,104.67466166835516, 0.0));
+    positionAlloc4->Add (Vector(403.10063989653065,374.1298451918292, 0.0));
+    positionAlloc4->Add (Vector(30.538979927431875,138.43882407360186, 0.0));
+    positionAlloc4->Add (Vector(436.7893120533886,460.43620026590656, 0.0));
+    positionAlloc4->Add (Vector(313.95019474545387,40.879515974435954, 0.0));
+    positionAlloc4->Add (Vector(19.65606992054947,399.70519945452133, 0.0));
+    positionAlloc4->Add (Vector(251.70863542742845,345.19741431468265, 0.0));
+    positionAlloc4->Add (Vector(103.16685920289626,182.13493052403774, 0.0));
+    positionAlloc4->Add (Vector(60.317935550300405,230.3893840163629, 0.0));
 	//AUTOCODE USERS FIM
 
 	// Define o modelo de mobilidade (constante)
@@ -1051,6 +851,8 @@
 	ulClient.SetAttribute ("Interval", TimeValue (MilliSeconds(interPacketInterval)));
 	// MaxPackets: Número máximo de pacotes que a aplicação vai enviar
 	ulClient.SetAttribute ("MaxPackets", UintegerValue(1000000));
+  // PacketSize: Tamanho do pacote gerado. O mínimo é 12 e o máximo é 1500
+  ulClient.SetAttribute ("PacketSize", UintegerValue(1024));
 
 	//UdpClientHelper client (ueIpIface.GetAddress (u), otherPort);
 	//client.SetAttribute ("Interval", TimeValue (MilliSeconds(interPacketInterval)));
@@ -1114,7 +916,7 @@
 
 	// Cria interface para o network animator.
 	//AUTOCODE ANIMATION INICIO
-	  AnimationInterface anim ("animations/animation_SUI_6.xml");
+	  AnimationInterface anim ("animations/animation_SA_6.xml");
 	//AUTOCODE ANIMATION FIM
 	
 	// Indica o tempo (s) de parada do simulador
@@ -1171,7 +973,7 @@
 	 /* Serializa os resultados para um std::string no formato XML.
 	 */
 	//INICIO FLOW MONITOR
-	  flowmon->SerializeToXmlFile ("flowmon-results/switch_SUI_flowmon/switch_SUI_6.flowmon", false, false);
+	  flowmon->SerializeToXmlFile ("flowmon-results/switch_SA_flowmon/switch_SA_6.flowmon", false, false);
 	//FIM FLOW MONITOR
 
 	/* PacketSink: Recebe e consume o tráfego gerado para um endereço IP e porta.
