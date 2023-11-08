@@ -11,16 +11,16 @@ print(linha)
 print('AUTOCODE PARA NS-3:'.center(50))
 print(linha)
 while(1):
-    modo = str(input('Indique o cenário utilizado (Opcões: SUI ou ECC): '))
+    modo = str(input('Indique o cenário utilizado (Opcões: SA(Simulated Annealing) ou ECC): '))
 
-    #Caminho para as planilhas de usuários e antenas (SUI-Matlab)
-    if modo.strip().upper() == 'SUI':
-        planilha_smalls = 'SUI_planilhas/SmallPosition_with_SUIModel.xls'
-        planilha_users = 'SUI_planilhas/UserPosition_with_SUIModel.xls'
-        planilha_bbu_allocation = 'SUI_planilhas/mapping_rrh_bbu_sectors_with_SUIModel.xls'
-        planilha_status_rrh = 'SUI_planilhas/rrhs_status_with_SUIModel.xls'
+    #Caminho para as planilhas de usuários e antenas (SA-Matlab)
+    if modo.strip().upper() == 'SA':
+        planilha_smalls = 'SA_planilhas/SmallPosition_with_SAModel.xls'
+        planilha_users = 'SA_planilhas/UserPosition_with_SAModel.xls'
+        planilha_bbu_allocation = 'SA_planilhas/mapping_rrh_bbu_sectors_with_SAModel.xls'
+        planilha_status_rrh = 'SA_planilhas/rrhs_status_with_SAModel.xls'
         #Diretório que será passado para o NS-3
-        diretorio_ns3 = f'./dir_ns3_SUI/SUI'
+        diretorio_ns3 = f'./dir_ns3_SA/SA'
         break
     elif modo.strip().upper() == 'ECC':
         planilha_smalls = 'ECC_planilhas/SmallPosition_with_JasmineModel.xls'
@@ -35,7 +35,7 @@ while(1):
 
 number_of_bbus = 6
 
-quantidade_arquivos_flowmon = int(input('Indique a quantidade de arquivos flowmon: '))
+quantidade_arquivos_flowmon = int(input('Indique a quantidade de horas simuladas no Matlab. \n(Normalmente o valor é 24 para uma CRAN considerando o efeito de maré): '))
 
 #Gerando txt formatado para a alocação RRH-BBU
 autocode_bbu_allocation(planilha_bbu_allocation, planilha_status_rrh, number_of_bbus)
@@ -98,10 +98,10 @@ content_allocation = allocation.readlines()
 
 for hora in range(1, quantidade_arquivos_flowmon + 1):
 
-    if modo.strip().upper() == 'SUI':
+    if modo.strip().upper() == 'SA':
         # Linha de código do flowmonitor para cada hora
-        texto_flowmon = f'	  flowmon->SerializeToXmlFile ("flowmon-results/switch_SUI_flowmon/switch_SUI_{hora}.flowmon", false, false);\n'
-        texto_animation = f'	  AnimationInterface anim ("animations/animation_SUI_{hora}.xml");\n'
+        texto_flowmon = f'	  flowmon->SerializeToXmlFile ("flowmon-results/switch_SA_flowmon/switch_SA_{hora}.flowmon", false, false);\n'
+        texto_animation = f'	  AnimationInterface anim ("animations/animation_SA_{hora}.xml");\n'
 
     if modo.strip().upper() == 'ECC':
         # Linha de código do flowmonitor para cada hora
