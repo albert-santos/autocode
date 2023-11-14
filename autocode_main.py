@@ -11,9 +11,10 @@ print(linha)
 print('AUTOCODE PARA NS-3:'.center(50))
 print(linha)
 while(1):
-    modo = str(input('Indique o cenário utilizado (SA ou ECC): '))
+    modo = str(input('Indique o cenário utilizado (SA, ECC ou HDSO): '))
 
-    #Caminho para as planilhas de usuários e antenas (SA-Matlab)
+    # Caminho para as planilhas de usuários e antenas (SA-Matlab)
+    # Atentar se as pastas já foram criadas
     if modo.strip().upper() == 'SA':
         planilha_smalls = 'SA_planilhas/SmallPosition_with_SAModel.xls'
         planilha_users = 'SA_planilhas/UserPosition_with_SAModel.xls'
@@ -29,6 +30,14 @@ while(1):
         planilha_status_rrh = 'ECC_planilhas/rrhs_status_with_JasmineModel.xls'
         #Diretório que será passado para o NS-3
         diretorio_ns3 = f'./dir_ns3_ECC/ECC'
+        break
+    elif modo.strip().upper() == 'HDSO':
+        planilha_smalls = 'HDSO_planilhas/SmallPosition_with_HDSOModel.xls'
+        planilha_users = 'HDSO_planilhas/UserPosition_with_HDSOModel.xls'
+        planilha_bbu_allocation = 'HDSO_planilhas/mapping_rrh_bbu_sectors_with_HDSOModel.xls'
+        planilha_status_rrh = 'HDSO_planilhas/rrhs_status_with_HDSOModel.xls'
+        #Diretório que será passado para o NS-3
+        diretorio_ns3 = f'./dir_ns3_HDSO/HDSO'
         break
     else:
         print('\nCENÁRIO INCORRETO! TENTE NOVAMENTE.\n')
@@ -107,6 +116,11 @@ for hora in range(1, quantidade_arquivos_flowmon + 1):
         # Linha de código do flowmonitor para cada hora
         texto_flowmon = f'	  flowmon->SerializeToXmlFile ("flowmon-results/switch_ECC_flowmon/switch_ECC_{hora}.flowmon", false, false);\n'
         texto_animation = f'	  AnimationInterface anim ("animations/animation_ECC_{hora}.xml");\n'
+
+    if modo.strip().upper() == 'HDSO':
+    # Linha de código do flowmonitor para cada hora
+        texto_flowmon = f'	  flowmon->SerializeToXmlFile ("flowmon-results/switch_HDSO_flowmon/switch_HDSO_{hora}.flowmon", false, false);\n'
+        texto_animation = f'	  AnimationInterface anim ("animations/animation_HDSO_{hora}.xml");\n'
 
     # Passando o caminho de um novo arquivo main para a hora atual
     nova_main = f'{cwd}/arquivos_txt/main_{hora}.txt'
