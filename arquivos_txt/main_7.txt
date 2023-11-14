@@ -93,7 +93,7 @@
 	//LogComponentEnable ("EvalvidServer", LOG_LEVEL_INFO);
 	//uint16_t numberOfRrhs = 19;
 	//AUTOCODE NUMBEROFRRHS INICIO
-	  uint16_t numberOfRrhs = 16;
+	  uint16_t numberOfRrhs = 14;
 	//AUTOCODE NUMBEROFRRHS FIM
 	//uint16_t numberOfNodes[19] = {70,45,50,45,60,55,65,60,65,45,60,65,50,45,45,50,45,60,50};
 	//uint16_t backNodes[19] = {50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50};
@@ -562,22 +562,20 @@
 	
 	// Indica as posições das eNBs
 	//AUTOCODE SMALLS INICIO
-    positionAlloc->Add (Vector (500.0,444.44444444444446, 0.0));
     positionAlloc->Add (Vector (444.44444444444446,444.44444444444446, 0.0));
-    positionAlloc->Add (Vector (444.44444444444446,277.77777777777777, 0.0));
-    positionAlloc->Add (Vector (388.8888888888889,111.11111111111111, 0.0));
+    positionAlloc->Add (Vector (444.44444444444446,222.22222222222223, 0.0));
+    positionAlloc->Add (Vector (388.8888888888889,55.55555555555556, 0.0));
     positionAlloc->Add (Vector (277.77777777777777,166.66666666666666, 0.0));
     positionAlloc->Add (Vector (277.77777777777777,111.11111111111111, 0.0));
     positionAlloc->Add (Vector (222.22222222222223,500.0, 0.0));
-    positionAlloc->Add (Vector (222.22222222222223,388.8888888888889, 0.0));
-    positionAlloc->Add (Vector (222.22222222222223,111.11111111111111, 0.0));
     positionAlloc->Add (Vector (166.66666666666666,500.0, 0.0));
     positionAlloc->Add (Vector (166.66666666666666,277.77777777777777, 0.0));
     positionAlloc->Add (Vector (111.11111111111111,444.44444444444446, 0.0));
+    positionAlloc->Add (Vector (111.11111111111111,333.3333333333333, 0.0));
     positionAlloc->Add (Vector (111.11111111111111,166.66666666666666, 0.0));
     positionAlloc->Add (Vector (111.11111111111111,55.55555555555556, 0.0));
-    positionAlloc->Add (Vector (55.55555555555556,277.77777777777777, 0.0));
     positionAlloc->Add (Vector (55.55555555555556,222.22222222222223, 0.0));
+    positionAlloc->Add (Vector (55.55555555555556,55.55555555555556, 0.0));
 	//AUTOCODE SMALLS FIM
 	// Passa a lista de posições para o assistente de mobilidade
 	mobility.SetPositionAllocator(positionAlloc);
@@ -909,7 +907,7 @@
 
 	//AUTOCODE ANIMATION INICIO
 	
-	  AnimationInterface anim ("animations/animation_SA_7.xml");
+	  AnimationInterface anim ("animations/animation_HDSO_7.xml");
   //AUTOCODE ANIMATION FIM
   
   // Adiciona imagens ao nós
@@ -998,7 +996,7 @@
 	 /* Serializa os resultados para um std::string no formato XML.
 	 */
 	//INICIO FLOW MONITOR
-	  flowmon->SerializeToXmlFile ("flowmon-results/switch_SA_flowmon/switch_SA_7.flowmon", false, false);
+	  flowmon->SerializeToXmlFile ("flowmon-results/switch_HDSO_flowmon/switch_HDSO_7.flowmon", false, false);
 	//FIM FLOW MONITOR
 
 	/* PacketSink: Recebe e consume o tráfego gerado para um endereço IP e porta.
